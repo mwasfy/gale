@@ -15,8 +15,8 @@ PRK_BASE = prk_base
 
 GRAPH_INPUT = $(GRAPH_DATASET)/prk/exmp.mtx
 KERNEL = ./kernel/kernel_spmv.cl
-PLATFORM_NUM = 1
-DEVICE_NUM = 0
+PLATFORM_NUM_FPGA = 1
+DEVICE_NUM_FPGA = 0
 FILE_FORMAT = 2
 DIRECTED = 1
 
@@ -53,7 +53,7 @@ options.o:
 #-----------
 
 run_base:
-	./$(PRK_BASE) $(GRAPH_INPUT) $(KERNEL) $(PLATFORM_NUM) $(DEVICE_NUM) $(FILE_FORMAT) $(DIRECTED) >> $(PRK_BASE).out
+	./$(PRK_BASE) $(GRAPH_INPUT) $(KERNEL) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED) >> $(PRK_BASE).out
 
 #Clean Targets
 #-------------
