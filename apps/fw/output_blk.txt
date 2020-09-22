@@ -1,0 +1,13 @@
+Opening file: ../../dataset/floydwarshall/512_65536.gr
+Read from file: num_nodes = 512, num_edges = 65536
+Actual added edges: 57936
+num_devices = 2
+kernel computation time = 4.907846 ms
+kernel + memcpy time = 6.833076 ms
+	 H2D: Data write = 0.921011 ms
+	 Kernel1: floydwarshall_dia_block = 0.598192 ms
+	 Kernel2: floydwarshall_strip_blocks_x = 0.638247 ms
+	 Kernel3: floydwarshall_strip_blocks_y = 0.621080 ms
+	 Kernel4: floydwarshall_remaining_blocks = 3.036499 ms
+	 D2H: Data read = 1.002073 ms
+Finishing Floyd-Warshall
