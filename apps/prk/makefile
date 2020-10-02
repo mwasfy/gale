@@ -7,14 +7,15 @@ PROJECT_ROOT = ../..
 AOCL_UTILS = $(PROJECT_ROOT)/common/src/AOCLUtils
 GRAPH_PARSER = $(PROJECT_ROOT)/graph_parser
 GRAPH_DATASET = $(PROJECT_ROOT)/../dataset
-
+HW_DIR = $(PROJECT_ROOT)/../hw/opencl/prk
 PRK_BASE = prk_base
 
 #Run Variables
 #-----------
 
-GRAPH_INPUT = $(GRAPH_DATASET)/prk/exmp.mtx
-KERNEL = ./kernel/kernel_spmv.cl
+GRAPH_INPUT = $(GRAPH_DATASET)/pagerank/road-roadNet-CA.mtx
+KERNEL = ../../../hw/opencl/prk/spmv_base/bin/kernel_spmv.aocx 
+#HW_KERNEL = $(HW_DIR)/spmv_base/bin/
 PLATFORM_NUM_FPGA = 1
 DEVICE_NUM_FPGA = 0
 FILE_FORMAT = 2
@@ -27,8 +28,8 @@ DIRECTED = 1
 ALL: $(PRK_BASE) 
 
 
-$(PRK_BASE): pagerank_base.cpp parse.o util.o opencl.o options.o
-	$(CC) $(CC_FLAGS) -o $(PRK_BASE) -I$(OPENCL_INC) $(foreach D,$(UTIL_INC),-I$D) -I$(GRAPH_PARSER) -L$(OPENCL_LIB) pagerank_base.cpp parse.o util.o opencl.o options.o -lOpenCL
+$(PRK_BASE): pagerank_base.cpp parse.o util.o
+	$(CC) $(CC_FLAGS) -o $(PRK_BASE) -I$(OPENCL_INC) -I$(AOCL_UTILS)/../../inc $(foreach D,$(UTIL_INC),-I$D) -I$(GRAPH_PARSER) -L$(OPENCL_LIB) pagerank_base.cpp parse.o util.o -lOpenCL
 	
 
 #Support functions
@@ -40,12 +41,6 @@ parse.o:
 util.o:
 	${CC} -c $(GRAPH_PARSER)/util.cpp
 
-opencl.o:
-	${CC} -c $(foreach D,$(UTIL_INC),-I$D) $(AOCL_UTILS)/opencl.cpp
-
-options.o:
-	${CC} -c $(foreach D,$(UTIL_INC),-I$D) $(AOCL_UTILS)/options.cpp
-
 
 
 
@@ -53,7 +48,7 @@ options.o:
 #-----------
 
 run_base:
-	./$(PRK_BASE) $(GRAPH_INPUT) $(KERNEL) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED) >> $(PRK_BASE).out
+	./$(PRK_BASE) $(GRAPH_INPUT) $(KERNEL) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
 
 #Clean Targets
 #-------------

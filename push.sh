@@ -1,3 +1,3 @@
 git add .
-git commit -a -m "added commit script"
+git commit -a -m "PageRank base up and running"
 git push -u origin master

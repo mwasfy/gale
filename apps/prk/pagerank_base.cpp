@@ -1,11 +1,11 @@
 //This is the baseline implementation of the pagerank algorithm (SPMV-based)
 #include "pagerank_base.h"
-using namespace aocl_utils;
+//using namespace aocl_utils;
 
 
 int main(int argc, char **argv){
 
-	if(argc == 8){
+	if(argc == 7){
 		tmpchar = argv[1];  //graph inputfile
 		filechar = argv[2];	//kernel file
 		PLATFORM_NUM_FPGA = atoi(argv[3]);
@@ -19,24 +19,30 @@ int main(int argc, char **argv){
 		exit(1);
 	}
 
+	//filechar = "./kernel_spmv.aocx";
 	//allocate the csr structure && parse the graph && allocate pagerank arrays
 	parse_mem_alloc();
+	printf("parse_mem_alloc() --> Done\n");
 
 	//load the OpenCL kernel source files && initialize && create contexts and programs
-	create_programs();
+	initialize();
+	printf("Initialize() --> Done\n");
 
 	//Create OpenCL kernels
 	create_kernels();
+	printf("create_kernels() --> Done\n");
 	
 	//Create device buffers
 	create_buffers();
+	printf("create_buffers() --> Done\n");
 	
 	//Execute FPGA implementation
 	exe_fpga();
+	printf("exe_fpga() --> Done\n");
 	
 	//print FPGA timing information
 	print_time();
-
+	
 	//clean up 
 	cleanup();
 
@@ -45,56 +51,54 @@ int main(int argc, char **argv){
 
 
 int initialize(){
-
-	int i, j;
 	char* value;
 	size_t valueSize;
+	size_t src_len;
 
+	size_t items_read;
+	FILE * fp = fopen(filechar, "rb"); 
+	if(!fp) { fprintf(stderr, "ERROR: unable to open '%s'\n", filechar); }
+	fseek(fp, 0, SEEK_END);
+	src_len = (size_t) ftell(fp);
+	source = (char*)malloc(sizeof(char)*src_len); 
+	if(source == NULL) { fprintf(stderr, "ERROR: malloc(%d) failed\n", src_len); }
+	rewind(fp);
+	items_read = fread(source, src_len, 1, fp);
+	if(items_read != 1) { fprintf(stderr, "ERROR: items_read(%d) failed\n", items_read); }
 
-	// get all platforms
+	fclose(fp);
+	
+		// get platforms & devices
 	clGetPlatformIDs(0, NULL, &platformCount);
 	platforms = (cl_platform_id*) malloc(sizeof(cl_platform_id) * platformCount);
-	clGetPlatformIDs(platformCount, platforms, NULL);
-
-
+	clGetPlatformIDs(platformCount, platforms, &platformCount);
 	clGetDeviceIDs(platforms[PLATFORM_NUM_FPGA], CL_DEVICE_TYPE_ALL, 0, NULL, &num_devices);
 	device_list = (cl_device_id*) malloc(sizeof(cl_device_id) * num_devices);
 	clGetDeviceIDs(platforms[PLATFORM_NUM_FPGA], CL_DEVICE_TYPE_ALL, num_devices, device_list, NULL);
+
 
 	clGetDeviceInfo(device_list[DEVICE_NUM_FPGA], CL_DEVICE_NAME, 0, NULL, &valueSize);
 	value = (char*) malloc(valueSize);
 	clGetDeviceInfo(device_list[DEVICE_NUM_FPGA], CL_DEVICE_NAME, valueSize, value, NULL);
 	printf("Using device: %s\n", value);
 	free(value);
+ 
+	/* Create OpenCL context */
+	context = clCreateContext(NULL, 1, &device_list[DEVICE_NUM_FPGA], NULL, NULL, &err);
+	if(err != CL_SUCCESS) { printf("ERROR: clCreateContext err=%d\n", err); }
 
-	cl_context_properties ctxprop[] = { CL_CONTEXT_PLATFORM, (cl_context_properties)platforms[PLATFORM_NUM_FPGA], 0};
-	context = clCreateContextFromType( ctxprop, CL_DEVICE_TYPE_ALL, NULL, NULL, NULL );
-	if( !context ) { printf("ERROR: clCreateContextFromType(%s) failed\n", use_gpu ? "GPU" : "CPU"); return -1; }
+	/* Create Command Queue */
+	cmd_queue = clCreateCommandQueue(context, device_list[DEVICE_NUM_FPGA], 0, &err);
+	if(err != CL_SUCCESS) { printf("ERROR: clCreateCommandQueue err=%d\n", err); }	
 
-	// create command queue for the first device
-	cmd_queue = clCreateCommandQueue( context, device_list[DEVICE_NUM_FPGA], 0, NULL );
-	if( !cmd_queue ) { printf("ERROR: clCreateCommandQueue() failed\n"); return -1; }
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/* 	clGetDeviceIDs(platforms[2], CL_DEVICE_TYPE_ALL, 0, NULL, &num_devices2);
-	device_list2 = (cl_device_id*) malloc(sizeof(cl_device_id) * num_devices2);
-	clGetDeviceIDs(platforms[2], CL_DEVICE_TYPE_ALL, num_devices2, device_list2, NULL);
-
-	clGetDeviceInfo(device_list2[0], CL_DEVICE_NAME, 0, NULL, &valueSize);
-	value = (char*) malloc(valueSize);
-	clGetDeviceInfo(device_list2[0], CL_DEVICE_NAME, valueSize, value, NULL);
-	printf("Using secondary device: %s\n", value);
-	free(value);
-
-	cl_context_properties ctxprop2[] = { CL_CONTEXT_PLATFORM, (cl_context_properties)platforms[2], 0};
-	context2 = clCreateContextFromType( ctxprop2, CL_DEVICE_TYPE_ALL, NULL, NULL, NULL );
-	//if( !context2 ) { printf("ERROR: clCreateContextFromType(%s) failed\n", use_gpu ? "GPU" : "CPU"); return -1; }
-
-	// create command queue for the first device
-	cmd_queue2 = clCreateCommandQueue( context2, device_list2[0], 0, NULL );
-	if( !cmd_queue2 ) { printf("ERROR: clCreateCommandQueue2() failed\n"); return -1; } */
-
+		//Create and build FPGA program
+	printf("Creating and building FPGA program\n");
+	prog = clCreateProgramWithBinary(context, 1, &device_list[DEVICE_NUM_FPGA], &src_len, (const unsigned char **) &source, NULL, &err);
+	if(err != CL_SUCCESS) { printf("ERROR: clCreateProgramWithBinary err=%d\n", err); }	
+	
+	err = clBuildProgram(prog, 1, &device_list[DEVICE_NUM_FPGA], "", NULL, NULL);
+	if(err != CL_SUCCESS) { printf("ERROR: clBuildProgram err=%d\n", err); }	
+	
 	return 0;
 }
 
@@ -107,31 +111,23 @@ void create_kernels(){
 
 	//Create OpenCL kernels (FPGA)
 	kernel1 = clCreateKernel(prog, kernelprk1, &err);  
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 1 => %d\n", err); return -1; }
+	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 1 => %d\n", err); }
 	kernel2 = clCreateKernel(prog, kernelprk2, &err);  
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 2 => %d\n", err); return -1; }
+	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 2 => %d\n", err); }
 	kernel3 = clCreateKernel(prog, kernelprk3, &err);  
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 3 => %d\n", err); return -1; }
+	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 3 => %d\n", err); }
 	kernel4 = clCreateKernel(prog, kernelprk4, &err);  
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 4 => %d\n", err); return -1; }
-	
-	//Create OpenCL kernels (CPU)
-	kernel1_cpu = clCreateKernel(prog2, kernelprk1, &err);  
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 1 => %d\n", err); return -1; }
-	kernel2_cpu = clCreateKernel(prog2, kernelprk2, &err);  
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 2 => %d\n", err); return -1; }
-	kernel3_cpu = clCreateKernel(prog2, kernelprk3, &err);  
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 3 => %d\n", err); return -1; }
-	kernel4_cpu = clCreateKernel(prog2, kernelprk4, &err);  
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 4 => %d\n", err); return -1; }
+	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateKernel() 4 => %d\n", err); }
 }
 
 
 //allocate the csr structure and parse the graph
 void parse_mem_alloc(){
+
 	csr = (csr_array *)malloc(sizeof(csr_array));
 	if(!csr) fprintf(stderr, "malloc failed csr\n");
 
+	printf("file_format = %d\n", file_format);
 	//parse graph files into csr structure 
 	if (file_format == 1) //metis
 		csr = parseMetis(tmpchar, &num_nodes, &num_edges, directed);
@@ -155,88 +151,26 @@ void parse_mem_alloc(){
 }
 
 
-//load the OpenCL kernel source files && initialize && create contexts and programs
-void create_programs(){
-	int sourcesize = 1024*1024;
-	char * source = (char *)calloc(sourcesize, sizeof(char)); 
-	if(!source) { fprintf(stderr, "ERROR: calloc(%d) failed\n", sourcesize); return -1; }
-
-	FILE * fp = fopen(filechar, "rb"); 
-	if(!fp) { fprintf(stderr, "ERROR: unable to open '%s'\n", filechar); return -1; }
-	fread(source + strlen(source), sourcesize, 1, fp);
-	fclose(fp);
-
-	// OpenCL initialization
-	if(initialize()) return -1;
-
-
-	//Create and build CPU program
-	printf("Creating and building CPU program\n");
-	const char * slist2[2] = { source, 0 };
-	prog2 = clCreateProgramWithSource(context2, 1, slist2, NULL, &err);
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateProgramWithSource2() => %d\n", err); return -1; }
-	err = clBuildProgram(prog2, num_devices2, device_list2, "", NULL, NULL);
-	{
-	static char log2[65536]; 
-	memset(log2, 0, sizeof(log2));
-	clGetProgramBuildInfo(prog2, device_list2[1], CL_PROGRAM_BUILD_LOG, sizeof(log2)-1, log2, NULL);
-	if(err || strstr(log2,"warning:") || strstr(log2, "error:")) printf("<<<<\n%s\n>>>>\n", log2);
-	}
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clBuildProgram2() => %d\n", err); return -1; }
-
-
-	//Create and build FPGA program
-	printf("Creating and building FPGA program\n");
-	std::string binary_file = getBoardBinaryFile("spmv_kernel", device_list[DEVICE_NUM_FPGA]);
-	printf("Using AOCX: %s\n", binary_file.c_str());
-	prog = createProgramFromBinary(context, binary_file.c_str(), &device_list[DEVICE_NUM_FPGA], 1);
-	cl_int status;
-	// Build the program that was just created.
-	status = clBuildProgram(prog, 0, NULL, "", NULL, NULL);
-	checkError(status, "Failed to build program");
-	printf("Finished creating and building programs\n");
-}
-
-
 //Create device buffers
 void create_buffers(){
 	//FPGA buffers
 	row_d = clCreateBuffer(context, CL_MEM_READ_WRITE, (num_nodes + 1) * sizeof(int), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer row_d (size:%d) => %d\n",  num_nodes + 1, err); return -1;}
+	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer row_d (size:%d) => %d\n",  num_nodes + 1, err); }
 	
 	col_d = clCreateBuffer(context, CL_MEM_READ_WRITE, num_edges * sizeof(int), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer col_d (size:%d) => %d\n",  num_edges , err); return -1;}
+	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer col_d (size:%d) => %d\n",  num_edges , err); }
 
 	data_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_edges * sizeof(float), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer data_d (size:%d) => %d\n", num_edges , err); return -1;}	
+	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer data_d (size:%d) => %d\n", num_edges , err); }	
 
 	col_cnt_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer col_cnt (size:%d) => %d\n", num_nodes , err); return -1;}
+	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer col_cnt (size:%d) => %d\n", num_nodes , err); }
 
 	pagerank_d1 = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(float), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer vector_d1 (size:%d) => %d\n", 1 , err); return -1;}
+	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer vector_d1 (size:%d) => %d\n", 1 , err); }
 
 	pagerank_d2 = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(float), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer vector_d2 (size:%d) => %d\n", 1 , err); return -1;}
-	
-	//CPU buffers
-	row_d2 = clCreateBuffer(context2, CL_MEM_READ_WRITE, (num_nodes + 1) * sizeof(int), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer row_d (size:%d) => %d\n",  num_nodes + 1, err); return -1;}
-	
-	col_d2 = clCreateBuffer(context2, CL_MEM_READ_WRITE, num_edges * sizeof(int), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer col_d (size:%d) => %d\n",  num_edges , err); return -1;}
-
-	data_d2 = clCreateBuffer(context2,CL_MEM_READ_WRITE, num_edges * sizeof(float), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer data_d (size:%d) => %d\n", num_edges , err); return -1;}
-	
-	col_cnt_d2 = clCreateBuffer(context2,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer col_cnt (size:%d) => %d\n", num_nodes , err); return -1;}	
-
-	pagerank_d12 = clCreateBuffer(context2,CL_MEM_READ_WRITE, num_nodes * sizeof(float), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer vector_d1 (size:%d) => %d\n", 1 , err); return -1;}
-
-	pagerank_d22 = clCreateBuffer(context2,CL_MEM_READ_WRITE, num_nodes * sizeof(float), NULL, &err );
-	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer vector_d2 (size:%d) => %d\n", 1 , err); return -1;}
+	if(err != CL_SUCCESS) { printf("ERROR: clCreateBuffer vector_d2 (size:%d) => %d\n", 1 , err); }
 }
 
 
@@ -264,7 +198,7 @@ void exe_fpga(){
 	0, 
 	0);
 
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer row_d (size:%d) => %d\n", num_nodes, err); return -1; }
+	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer row_d (size:%d) => %d\n", num_nodes, err); }
 
 	err = clEnqueueWriteBuffer(cmd_queue, 
 	col_d, 
@@ -276,7 +210,7 @@ void exe_fpga(){
 	0, 
 	0);
 
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer col_d (size:%d) => %d\n", num_nodes, err); return -1; }
+	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer col_d (size:%d) => %d\n", num_nodes, err); }
 
 	err = clEnqueueWriteBuffer(cmd_queue, 
 	col_cnt_d, 
@@ -288,11 +222,10 @@ void exe_fpga(){
 	0, 
 	0);
 
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer col_cnt_d (size:%d) => %d\n", num_nodes, err); return -1; }
+	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer col_cnt_d (size:%d) => %d\n", num_nodes, err); }
 
 	timer_refe=gettime();
 	timer_h2d = timer_refe-timer_refs;
-
 
 	//kernel 1
 	clSetKernelArg(kernel1, 0, sizeof(void *), (void*) &pagerank_d1);
@@ -311,11 +244,10 @@ void exe_fpga(){
 	0, 
 	0, 
 	0);
+	if(err != CL_SUCCESS) { printf("ERROR: kernel1  clEnqueueNDRangeKernel()=>%d failed\n", err); }
 	clFinish(cmd_queue);
 	timer_refe = gettime();
 	timer_k1 += (timer_refe-timer_refs);	
-
-	if(err != CL_SUCCESS) { printf("ERROR: kernel1  clEnqueueNDRangeKernel()=>%d failed\n", err); return -1; }
 
 	//kernel 2
 	clSetKernelArg(kernel2, 0, sizeof(void *), (void*) &row_d);
@@ -341,7 +273,7 @@ void exe_fpga(){
 	timer_refe = gettime();
 	timer_k2 += (timer_refe-timer_refs);
 
-	if(err != CL_SUCCESS) { printf("ERROR: kernel2  clEnqueueNDRangeKernel()=>%d failed\n", err); return -1; }
+	if(err != CL_SUCCESS) { printf("ERROR: kernel2  clEnqueueNDRangeKernel()=>%d failed\n", err); }
 
 
 	//kernel 3
@@ -376,7 +308,7 @@ void exe_fpga(){
 		timer_refe = gettime();
 		timer_k3 += (timer_refe-timer_refs);
 
-		if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel3  clEnqueueNDRangeKernel()=>%d failed\n", err); return -1; }
+		if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel3  clEnqueueNDRangeKernel()=>%d failed\n", err); }
 
 		//kernel 4 launch
 		timer_refs = gettime();
@@ -395,7 +327,7 @@ void exe_fpga(){
 		timer_refe = gettime();
 		timer_k4 += (timer_refe-timer_refs);
 
-		if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel4  clEnqueueNDRangeKernel()=>%d failed\n", err); return -1; }
+		if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel4  clEnqueueNDRangeKernel()=>%d failed\n", err); }
 	}
 
 	//Read back the results: PageRank array 
@@ -414,12 +346,27 @@ void exe_fpga(){
 	clFinish(cmd_queue);
 	timer_refe = gettime();
 	timer_d2h += (timer_refe-timer_refs);							  
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueReadBuffer()=>%d failed\n", err); return -1; }
+	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueReadBuffer()=>%d failed\n", err); }
 }
 
 
+void reset_timers()
+{
+	timer_refs = 0;
+	timer_refe = 0;
+	timer_h2d = 0;
+	timer_d2h = 0;
+	timer_k1 = 0;
+	timer_k2 = 0;
+	timer_k3 = 0;
+	timer_k4 = 0;
+	timer_overhead = 0;
+}
+
 //print FPGA timing information
 void print_time(){
+	printf("################################################################\n");
+	printf("################################################################\n");
 	printf("H2D: Data write = %lf ms\n",timer_h2d*1000);
 	printf("Kernel1: inibuffer = %lf ms\n",timer_k1*1000);
 	printf("Kernel2: inicsr = %lf ms\n",timer_k2*1000);
@@ -460,14 +407,15 @@ void print_vectorf(float *vector, int num){
 
 void cleanup(){
 	// release resources
+	
+	if( kernel1)  clReleaseKernel( kernel1 );
+	if( kernel2)  clReleaseKernel( kernel2 );
+	if( kernel3)  clReleaseKernel( kernel3 );
+	if( kernel4)  clReleaseKernel( kernel4 );
+	if( prog) clReleaseProgram( prog );
 	if( cmd_queue ) clReleaseCommandQueue( cmd_queue );
 	if( context ) clReleaseContext( context );
-	if( device_list ) delete device_list;
-
-	if( cmd_queue2 ) clReleaseCommandQueue( cmd_queue2 );
-	if( context2 ) clReleaseContext( context2 );
-	if( device_list2 ) delete device_list2;
-
+	free(device_list);
 	free(platforms);
 
 	//clean up the host side arrays
@@ -475,6 +423,8 @@ void cleanup(){
 	free(pagerank_array2);
 	csr->freeArrays();
 	free(csr);
+	
+	free(source);
 
 	//clean up the OpenCL buffers
 	clReleaseMemObject(row_d);
@@ -484,29 +434,5 @@ void cleanup(){
 	clReleaseMemObject(pagerank_d1);
 	clReleaseMemObject(pagerank_d2);
 
-	clReleaseMemObject(row_d2);
-	clReleaseMemObject(col_d2);
-	clReleaseMemObject(data_d2);
-	clReleaseMemObject(col_cnt_d2);
-	clReleaseMemObject(pagerank_d12);
-	clReleaseMemObject(pagerank_d22);
-
-	// reset all variables
-	cmd_queue = 0;
-	context = 0;
-	device_list = 0;
-	num_devices = 0;
-	device_type = 0;
-
-	cmd_queue2 = 0;
-	context2 = 0;
-	device_list2 = 0;
-	num_devices2 = 0;
 }
-
-/* 	
-timer_refs = gettime();
-sleep(1);
-timer_refe = gettime();
-printf("TESTING wait time = %lf ms\n",(timer_refe-timer_refs)*1000); */
 
