@@ -1,3 +1,3 @@
 git add .
-git commit -a -m "PageRank base up and running"
+git commit -a -m "Cleanup"
 git push -u origin master
