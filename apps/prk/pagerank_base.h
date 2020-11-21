@@ -39,6 +39,7 @@ cl_kernel kernel1, kernel2, kernel3, kernel4;
 csr_array *csr;
 float *pagerank_array;
 float *pagerank_array2;
+float *data;
 char *tmpchar;	
 char *filechar;
 bool directed = 1;
@@ -46,6 +47,7 @@ int num_nodes;
 int num_edges;
 int file_format = 1;
 cl_int err = 0;
+float NORM_FACTOR;
 
 //device buffers
 cl_mem row_d;

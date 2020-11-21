@@ -14,9 +14,9 @@ PRK_SWI = prk_swi
 #Run Variables
 #-----------
 
-GRAPH_INPUT = $(GRAPH_DATASET)/pagerank/road-roadNet-CA.mtx
-KERNEL = ../../../hw/opencl/prk/spmv_base/bin/kernel_spmv.aocx 
-#HW_KERNEL = $(HW_DIR)/spmv_base/bin/
+GRAPH_INPUT = $(GRAPH_DATASET)/pagerank/web-google.mtx
+KERNEL_BASE = ../../../hw/opencl/prk/spmv_base/bin/kernel_spmv.aocx 
+KERNEL_SWI = ../../../hw/opencl/prk/spmv_swi/bin/prk_swi.aocx
 PLATFORM_NUM_FPGA = 1
 DEVICE_NUM_FPGA = 0
 FILE_FORMAT = 2
@@ -26,7 +26,7 @@ DIRECTED = 1
 #Compile Targets
 #-----------
 
-ALL: $(PRK_BASE) 
+ALL: $(PRK_BASE) $(PRK_SWI) 
 
 
 $(PRK_BASE): pagerank_base.cpp parse.o util.o
@@ -51,13 +51,15 @@ util.o:
 #-----------
 
 run_base:
-	./$(PRK_BASE) $(GRAPH_INPUT) $(KERNEL) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
+	./$(PRK_BASE) $(GRAPH_INPUT) $(KERNEL_BASE) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
+run_swi:
+	./$(PRK_SWI) $(GRAPH_INPUT) $(KERNEL_SWI) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
 
 #Clean Targets
 #-------------
 
 clean:
-	rm -f $(PRK_BASE) *.o *.out
+	rm -f $(PRK_BASE) $(PRK_SWI) i*.o *.out
 refresh:
 	rm -f ._*
 

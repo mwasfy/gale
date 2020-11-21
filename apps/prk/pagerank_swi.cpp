@@ -257,13 +257,13 @@ void exe_fpga(){
 	data_d, 
 	1, 
 	0, 
-	(num_edges + 1) * sizeof(float), 
+	(num_edges) * sizeof(float), 
 	data, 
 	0, 
 	0, 
 	0);
 
-	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer row_d (size:%d) => %d\n", num_nodes, err); }
+	if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer data_d (size:%d) => %d\n", num_nodes, err); }
 	
 	timer_refe=gettime();
 	timer_h2d = timer_refe-timer_refs;
@@ -281,22 +281,18 @@ void exe_fpga(){
 	clSetKernelArg(kernel2, 0, sizeof(void *), (void*) &pagerank_d1);
 	clSetKernelArg(kernel2, 1, sizeof(void *), (void*) &pagerank_d2);
 	clSetKernelArg(kernel2, 2, sizeof(cl_int), (void*) &num_nodes);
-	clSetKernelArg(kernel2, 2, sizeof(cl_int), (void*) &NORM_FACTOR);
+	clSetKernelArg(kernel2, 3, sizeof(cl_int), (void*) &NORM_FACTOR);
 
 	//Run PageRank for ITER iterations
 	for(int i = 0; i < ITER ; i++){
 		//kernel 3 launch
 		timer_refs = gettime();
 		
-		err = clEnqueueNDRangeKernel(cmd_queue, 
+		err = clEnqueueTask(cmd_queue, 
 		kernel1, 
-		1, 
 		NULL, 
-		global_work, 
-		local_work, 
-		0, 
-		0, 
-		0);
+		NULL, 
+		NULL);
 
 		clFinish(cmd_queue);
 		timer_refe = gettime();
@@ -307,15 +303,11 @@ void exe_fpga(){
 		//kernel 4 launch
 		timer_refs = gettime();
 		//launch the pagerank update kernel
-		err = clEnqueueNDRangeKernel(cmd_queue, 
+		err = clEnqueueTask(cmd_queue, 
 		kernel2, 
-		1, 
 		NULL, 
-		global_work, 
-		local_work, 
-		0, 
-		0, 
-		0);
+		NULL, 
+		NULL);
 		
 		clFinish(cmd_queue);
 		timer_refe = gettime();

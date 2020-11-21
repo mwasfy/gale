@@ -1,12 +1,12 @@
 CC = g++
 CC_FLAGS = -O3 -Wall -D VERBOSE
 
-EXE = learn
+EXE = perf_model
 
 ALL: $(EXE)
 
-$(EXE): learn.cpp
-	$(CC) $(CC_FLAGS) -o $(EXE) learn.cpp
+$(EXE): hls_model.cpp
+	$(CC) $(CC_FLAGS) -o $(EXE) hls_model.cpp
 
 clean:
 	rm -f $(EXE) *.o *.out *.stat *.csv

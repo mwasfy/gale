@@ -1,3 +1,3 @@
 git add .
-git commit -a -m "Added PageRank Single Work Item implementation"
+git commit -a -m "Performance model start"
 git push -u origin master
