@@ -150,24 +150,24 @@ void create_buffers(){
 	//FPGA buffers
     //create the device-side graph structure
     row_d = clCreateBuffer(context, CL_MEM_READ_WRITE, (num_nodes + 1) * sizeof(int), NULL, &err );
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer row_d (size:%d) => %d\n",  num_nodes , err); return -1;}	
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer row_d (size:%d) => %d\n",  num_nodes , err); }	
     col_d = clCreateBuffer(context, CL_MEM_READ_WRITE, num_edges * sizeof(int), NULL, &err );
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer col_d (size:%d) => %d\n",  num_edges , err); return -1;}
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer col_d (size:%d) => %d\n",  num_edges , err); }
     data_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_edges * sizeof(int), NULL, &err );
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer data_d (size:%d) => %d\n", num_edges , err); return -1;}	
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer data_d (size:%d) => %d\n", num_edges , err); }	
 
     //termination variable 
     stop_d = clCreateBuffer(context,CL_MEM_READ_WRITE, sizeof(int), NULL, &err );
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer stop_d (size:%d) => %d\n", 1 , err); return -1;}	
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer stop_d (size:%d) => %d\n", 1 , err); }	
 
     //create the device-side buffers for sssp
     vector_d1 = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer vector_d1 (size:%d) => %d\n", 1 , err); return -1;}
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer vector_d1 (size:%d) => %d\n", 1 , err); }
     vector_d2 = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer vector_d2 (size:%d) => %d\n", 1 , err); return -1;}
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer vector_d2 (size:%d) => %d\n", 1 , err); }
 }
 
-exe_fpga()
+void exe_fpga()
 {
     timer_refs=gettime();
     //copy data to device side buffers
@@ -181,7 +181,7 @@ exe_fpga()
                                0, 
                                0);
 							   
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer row_d (size:%d) => %d\n", num_nodes, err); return -1; }
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer row_d (size:%d) => %d\n", num_nodes, err); }
 	
     err = clEnqueueWriteBuffer(cmd_queue, 
                                col_d, 
@@ -193,7 +193,7 @@ exe_fpga()
                                0, 
                                0);
 							   
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer col_d (size:%d) => %d\n", num_nodes, err); return -1; }
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer col_d (size:%d) => %d\n", num_nodes, err); }
 
     err = clEnqueueWriteBuffer(cmd_queue, 
                                data_d, 
@@ -205,7 +205,7 @@ exe_fpga()
                                0, 
                                0);
 							   
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer data_d (size:%d) => %d\n", num_nodes, err); return -1; }
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueWriteBuffer data_d (size:%d) => %d\n", num_nodes, err); }
     
     timer_refe=gettime();
 	timer_h2d = timer_refe-timer_refs;
@@ -236,7 +236,7 @@ exe_fpga()
 		NULL, 
 		NULL);
 								 
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel1  clEnqueueNDRangeKernel()=>%d failed\n", err); return -1; }
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel1  clEnqueueNDRangeKernel()=>%d failed\n", err); }
     
     clFinish(cmd_queue);
 	timer_refe = gettime();
@@ -273,7 +273,7 @@ exe_fpga()
        timer_refs = gettime();
 	   //copy the termination variable to the device
        err = clEnqueueWriteBuffer(cmd_queue, stop_d, 1, 0, sizeof(int), &stop, 0, 0, 0);
-       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: write stop_d (%d)\n", err); return -1; }
+       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: write stop_d (%d)\n", err); }
        	clFinish(cmd_queue);
 	    timer_refe = gettime();
 	    timer_stop += (timer_refe-timer_refs);	
@@ -286,7 +286,7 @@ exe_fpga()
 		NULL, 
 		NULL);
 									
-       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel3 (%d)\n", err); return -1; }
+       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel3 (%d)\n", err); }
        	clFinish(cmd_queue);
     	timer_refe = gettime();
 	    timer_k3 += (timer_refe-timer_refs);	
@@ -299,7 +299,7 @@ exe_fpga()
 		NULL, 
 		NULL);
 	   
-       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel2 (%d)\n", err); return -1; }
+       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel2 (%d)\n", err); }
        	clFinish(cmd_queue);
 	    timer_refe = gettime();
 	    timer_k2 += (timer_refe-timer_refs);	
@@ -312,7 +312,7 @@ exe_fpga()
 		NULL, 
 		NULL);
 									
-       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel4 (%d)\n", err); return -1; }
+       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel4 (%d)\n", err); }
        	clFinish(cmd_queue);
 	    timer_refe = gettime();
 	    timer_k4 += (timer_refe-timer_refs);	
@@ -320,7 +320,7 @@ exe_fpga()
        timer_refs = gettime();
        //read the termination variable back
        err = clEnqueueReadBuffer(cmd_queue, stop_d, 1, 0, sizeof(int), &stop, 0, 0, 0);
-       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: read stop_d (%d)\n", err); return -1; }	
+       if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: read stop_d (%d)\n", err); }	
        	clFinish(cmd_queue);
 	    timer_refe = gettime();
 	    timer_stop += (timer_refe-timer_refs);	
@@ -333,7 +333,7 @@ exe_fpga()
     timer_refs = gettime();
     //read the cost_array back
     err = clEnqueueReadBuffer(cmd_queue, vector_d1, 1, 0, num_nodes * sizeof(int), cost_array, 0, 0, 0);
-    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: read vector_d1 (%d)\n", err); return -1; }
+    if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: read vector_d1 (%d)\n", err); }
     double timer2=gettime();
     clFinish(cmd_queue);
 	timer_refe = gettime();
