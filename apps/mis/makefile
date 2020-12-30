@@ -1,82 +1,69 @@
-#################################################################################### 
-#                                                                                  #
-# Copyright © 2014 Advanced Micro Devices, Inc.                                    #
-# All rights reserved.                                                             #
-#                                                                                  #
-# Redistribution and use in source and binary forms, with or without               #
-# modification, are permitted provided that the following are met:                 #
-#                                                                                  #
-# You must reproduce the above copyright notice.                                   #
-#                                                                                  #
-# Neither the name of the copyright holder nor the names of its contributors       #
-# may be used to endorse or promote products derived from this software            #
-# without specific, prior, written permission from at least the copyright holder.  #
-#                                                                                  #
-# You must include the following terms in your license and/or other materials      #
-# provided with the software.                                                      # 
-#                                                                                  #  
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"      #
-# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE        #
-# IMPLIED WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, AND FITNESS FOR A       #
-# PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER        #
-# OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,         #
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT  # 
-# OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS      #
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN          #
-# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING  #
-# IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY   #
-# OF SUCH DAMAGE.                                                                  #
-#                                                                                  #
-# Without limiting the foregoing, the software may implement third party           #  
-# technologies for which you must obtain licenses from parties other than AMD.     #  
-# You agree that AMD has not obtained or conveyed to you, and that you shall       #
-# be responsible for obtaining the rights to use and/or distribute the applicable  # 
-# underlying intellectual property rights related to the third party technologies. #  
-# These third party technologies are not licensed hereunder.                       #
-#                                                                                  #
-# If you use the software (in whole or in part), you shall adhere to all           #        
-# applicable U.S., European, and other export laws, including but not limited to   #
-# the U.S. Export Administration Regulations ("EAR") (15 C.F.R Sections 730-774),  #
-# and E.U. Council Regulation (EC) No 428/2009 of 5 May 2009.  Further, pursuant   #
-# to Section 740.6 of the EAR, you hereby certify that, except pursuant to a       #
-# license granted by the United States Department of Commerce Bureau of Industry   #
-# and Security or as otherwise permitted pursuant to a License Exception under     #
-# the U.S. Export Administration Regulations ("EAR"), you will not (1) export,     #
-# re-export or release to a national of a country in Country Groups D:1, E:1 or    # 
-# E:2 any restricted technology, software, or source code you receive hereunder,   # 
-# or (2) export to Country Groups D:1, E:1 or E:2 the direct product of such       #
-# technology or software, if such foreign produced direct product is subject to    # 
-# national security controls as identified on the Commerce Control List (currently # 
-# found in Supplement 1 to Part 774 of EAR).  For the most current Country Group   # 
-# listings, or for additional information about the EAR or your obligations under  #
-# those regulations, please refer to the U.S. Bureau of Industry and Security's    #
-# website at http://www.bis.doc.gov/.                                              #
-#                                                                                  #
-####################################################################################
-
 include ../../common/make.config
-
+AOCL_COMPILE_CONFIG := $(shell aocl compile-config )
+AOCL_LINK_CONFIG := $(shell aocl link-config )
 CC = g++
-CC_FLAGS = -O3 -Wall
+CC_FLAGS = -O3 -Wall -D VERBOSE
+PROJECT_ROOT = ../..
+AOCL_UTILS = $(PROJECT_ROOT)/common/src/AOCLUtils
+GRAPH_PARSER = $(PROJECT_ROOT)/graph_parser
+GRAPH_DATASET = $(PROJECT_ROOT)/../dataset
+HW_DIR = $(PROJECT_ROOT)/../hw/opencl/mis
+MIS_BASE = mis_base
+MIS_SWI = mis_swi
 
-EXE = mis
+#Run Variables
+#-----------
 
-ALL: $(EXE) 
+GRAPH_INPUT = $(GRAPH_DATASET)/pagerank/road-asia-osm.mtx
+KERNEL_BASE = $(HW_DIR)/mis_base/bin/mis_kernel.aocx 
+KERNEL_SWI = $(HW_DIR)/mis_swi/bin/mis_swi.aocx
+KERNEL_LU2 = $(HW_DIR)/mis_lu2/bin/mis_lu2.aocx
+PLATFORM_NUM_FPGA = 1
+DEVICE_NUM_FPGA = 0
+FILE_FORMAT = 2
+DIRECTED = 1
 
-$(EXE): mis.cpp parse.o util.o 
-	$(CC) $(CC_FLAGS) -o $(EXE) -I$(OPENCL_INC) -L$(OPENCL_LIB) mis.cpp parse.o util.o -lOpenCL
+
+#Compile Targets
+#-----------
+
+ALL: $(MIS_BASE) 
+
+
+$(MIS_BASE): mis_base.cpp parse.o util.o
+	$(CC) $(CC_FLAGS) -o $(MIS_BASE) -I$(OPENCL_INC) -I$(AOCL_UTILS)/../../inc $(foreach D,$(UTIL_INC),-I$D) -I$(GRAPH_PARSER) -L$(OPENCL_LIB) mis_base.cpp parse.o util.o -lOpenCL
+
+$(MIS_SWI): mis_swi.cpp parse.o util.o
+	$(CC) $(CC_FLAGS) -o $(MIS_SWI) -I$(OPENCL_INC) -I$(AOCL_UTILS)/../../inc $(foreach D,$(UTIL_INC),-I$D) -I$(GRAPH_PARSER) -L$(OPENCL_LIB) mis_swi.cpp parse.o util.o -lOpenCL	
+
+#Support functions
+#-----------------
 
 parse.o:
-	${CC} -c ../../graph_parser/parse.cpp
+	${CC} -c $(GRAPH_PARSER)/parse.cpp
 
 util.o:
-	${CC} -c ../../graph_parser/util.cpp
+	${CC} -c $(GRAPH_PARSER)/util.cpp
 
-run_ecology:
-	./mis ../../dataset/mis/ecology1.graph ./kernel/kernel.cl 1
 
-run_circuit:
-	./mis ../../dataset/mis/G3_circuit.graph ./kernel/kernel.cl 1
+
+
+#Run Targets
+#-----------
+
+run_base:
+	./$(MIS_BASE) $(GRAPH_INPUT) $(KERNEL_BASE) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
+run_swi:
+	./$(MIS_SWI) $(GRAPH_INPUT) $(KERNEL_SWI) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
+run_lu2:
+	./$(MIS_SWI) $(GRAPH_INPUT) $(KERNEL_LU2) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
+
+
+#Clean Targets
+#-------------
 
 clean:
-	rm -f $(EXE) *.o *.out
+	rm -f $(MIS_BASE) $(MIS_SWI) *.o *.out
+refresh:
+	rm -f ._*
+
