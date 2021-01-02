@@ -14,14 +14,14 @@ MIS_SWI = mis_swi
 #Run Variables
 #-----------
 
-GRAPH_INPUT = $(GRAPH_DATASET)/pagerank/road-asia-osm.mtx
+GRAPH_INPUT = $(GRAPH_DATASET)/eco/eco-everglades.edges
 KERNEL_BASE = $(HW_DIR)/mis_base/bin/mis_kernel.aocx 
 KERNEL_SWI = $(HW_DIR)/mis_swi/bin/mis_swi.aocx
 KERNEL_LU2 = $(HW_DIR)/mis_lu2/bin/mis_lu2.aocx
 PLATFORM_NUM_FPGA = 1
 DEVICE_NUM_FPGA = 0
 FILE_FORMAT = 2
-DIRECTED = 1
+DIRECTED = 0
 
 
 #Compile Targets
