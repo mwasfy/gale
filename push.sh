@@ -1,3 +1,3 @@
 git add .
-git commit -a -m "Initial debug"
+git commit -a -m "Run scripts added"
 git push -u origin master
