@@ -14,7 +14,7 @@ SSSP_SWI = sssp_swi
 #Run Variables
 #-----------
 
-GRAPH_INPUT = $(GRAPH_DATASET)/pagerank/road-asia-osm.mtx
+GRAPH_INPUT = $(GRAPH_DATASET)/road-asia-osm.mtx
 KERNEL_BASE = ../../../hw/opencl/sssp/sssp_base/bin/kernel_csr.aocx 
 KERNEL_SWI = ../../../hw/opencl/sssp/sssp_swi/bin/sssp_swi.aocx
 KERNEL_LU2 = ../../../hw/opencl/sssp/sssp_lu2/bin/sssp_lu2.aocx

@@ -14,7 +14,7 @@ MIS_SWI = mis_swi
 #Run Variables
 #-----------
 
-GRAPH_INPUT = $(GRAPH_DATASET)/eco/eco-everglades.edges
+GRAPH_INPUT = $(GRAPH_DATASET)/eco-everglades.edges
 KERNEL_BASE = $(HW_DIR)/mis_base/bin/mis_kernel.aocx 
 KERNEL_SWI = $(HW_DIR)/mis_swi/bin/mis_swi.aocx
 KERNEL_LU2 = $(HW_DIR)/mis_lu2/bin/mis_lu2.aocx
