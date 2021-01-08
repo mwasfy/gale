@@ -1,0 +1,32 @@
+mis_base.cpp: In function ‘int initialize()’:
+mis_base.cpp:95:76: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(source == NULL) { fprintf(stderr, "ERROR: malloc(%d) failed\n", src_len); }
+                                                                            ^
+mis_base.cpp:98:84: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(items_read != 1) { fprintf(stderr, "ERROR: items_read(%d) failed\n", items_read); }
+                                                                                    ^
+mis_base.cpp: In function ‘void create_kernels()’:
+mis_base.cpp:138:26: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelmis1  = "init";
+                          ^~~~~~
+mis_base.cpp:139:26: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelmis2  = "mis1";
+                          ^~~~~~
+mis_base.cpp:140:26: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelmis3  = "mis2";
+                          ^~~~~~
+mis_base.cpp:141:26: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelmis4  = "mis3";
+                          ^~~~~~
+mis_base.cpp: In function ‘void exe_fpga()’:
+mis_base.cpp:230:48: warning: narrowing conversion of ‘block_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+     size_t local_work[3] =  { block_size,  1, 1};
+                                                ^
+mis_base.cpp:231:48: warning: narrowing conversion of ‘global_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+     size_t global_work[3] = { global_size, 1, 1};
+                                                ^
+In file included from mis_base.cpp:1:0:
+mis.h: At global scope:
+mis.h:18:25: warning: ‘device_type’ defined but not used [-Wunused-variable]
+ static cl_device_type   device_type;
+                         ^~~~~~~~~~~

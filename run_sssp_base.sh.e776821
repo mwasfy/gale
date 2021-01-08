@@ -1,0 +1,97 @@
+sssp_base.cpp: In function ‘int initialize()’:
+sssp_base.cpp:90:76: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(source == NULL) { fprintf(stderr, "ERROR: malloc(%d) failed\n", src_len); }
+                                                                            ^
+sssp_base.cpp:93:84: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(items_read != 1) { fprintf(stderr, "ERROR: items_read(%d) failed\n", items_read); }
+                                                                                    ^
+sssp_base.cpp: In function ‘void create_kernels()’:
+sssp_base.cpp:132:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelsssp1  = "vector_init";
+                           ^~~~~~~~~~~~~
+sssp_base.cpp:133:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelsssp2  = "spmv_min_dot_plus_kernel";
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~
+sssp_base.cpp:134:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelsssp3  = "vector_assign";
+                           ^~~~~~~~~~~~~~~
+sssp_base.cpp:135:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelsssp4  = "vector_diff";
+                           ^~~~~~~~~~~~~
+sssp_base.cpp: In function ‘void exe_fpga()’:
+sssp_base.cpp:218:49: warning: narrowing conversion of ‘block_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+     size_t local_work[3]   = { block_size,  1, 1};
+                                                 ^
+sssp_base.cpp:219:49: warning: narrowing conversion of ‘global_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+     size_t global_work[3]  = { global_size, 1, 1};
+                                                 ^
+sssp_base.cpp:220:49: warning: narrowing conversion of ‘global_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+     size_t global_work2[3] = { global_size, 1, 1};
+                                                 ^
+sssp_base.cpp:354:12: warning: unused variable ‘timer2’ [-Wunused-variable]
+     double timer2=gettime();
+            ^~~~~~
+In file included from sssp_base.cpp:2:0:
+sssp.h: At global scope:
+sssp.h:17:25: warning: ‘device_type’ defined but not used [-Wunused-variable]
+ static cl_device_type   device_type;
+                         ^~~~~~~~~~~
+sssp_swi.cpp: In function ‘int initialize()’:
+sssp_swi.cpp:89:76: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(source == NULL) { fprintf(stderr, "ERROR: malloc(%d) failed\n", src_len); }
+                                                                            ^
+sssp_swi.cpp:92:84: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(items_read != 1) { fprintf(stderr, "ERROR: items_read(%d) failed\n", items_read); }
+                                                                                    ^
+sssp_swi.cpp: In function ‘void create_kernels()’:
+sssp_swi.cpp:131:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelsssp1  = "vector_init";
+                           ^~~~~~~~~~~~~
+sssp_swi.cpp:132:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelsssp2  = "spmv_min_dot_plus_kernel";
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~
+sssp_swi.cpp:133:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelsssp3  = "vector_assign";
+                           ^~~~~~~~~~~~~~~
+sssp_swi.cpp:134:27: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+     char * kernelsssp4  = "vector_diff";
+                           ^~~~~~~~~~~~~
+sssp_swi.cpp: In function ‘void exe_fpga()’:
+sssp_swi.cpp:217:49: warning: narrowing conversion of ‘block_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+     size_t local_work[3]   = { block_size,  1, 1};
+                                                 ^
+sssp_swi.cpp:218:49: warning: narrowing conversion of ‘global_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+     size_t global_work[3]  = { global_size, 1, 1};
+                                                 ^
+sssp_swi.cpp:219:49: warning: narrowing conversion of ‘global_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+     size_t global_work2[3] = { global_size, 1, 1};
+                                                 ^
+sssp_swi.cpp:237:7: warning: passing NULL to non-pointer argument 3 of ‘cl_int clEnqueueTask(cl_command_queue, cl_kernel, cl_uint, _cl_event* const*, _cl_event**)’ [-Wconversion-null]
+   NULL);
+       ^
+sssp_swi.cpp:287:7: warning: passing NULL to non-pointer argument 3 of ‘cl_int clEnqueueTask(cl_command_queue, cl_kernel, cl_uint, _cl_event* const*, _cl_event**)’ [-Wconversion-null]
+   NULL);
+       ^
+sssp_swi.cpp:300:7: warning: passing NULL to non-pointer argument 3 of ‘cl_int clEnqueueTask(cl_command_queue, cl_kernel, cl_uint, _cl_event* const*, _cl_event**)’ [-Wconversion-null]
+   NULL);
+       ^
+sssp_swi.cpp:313:7: warning: passing NULL to non-pointer argument 3 of ‘cl_int clEnqueueTask(cl_command_queue, cl_kernel, cl_uint, _cl_event* const*, _cl_event**)’ [-Wconversion-null]
+   NULL);
+       ^
+sssp_swi.cpp:217:12: warning: unused variable ‘local_work’ [-Wunused-variable]
+     size_t local_work[3]   = { block_size,  1, 1};
+            ^~~~~~~~~~
+sssp_swi.cpp:218:12: warning: unused variable ‘global_work’ [-Wunused-variable]
+     size_t global_work[3]  = { global_size, 1, 1};
+            ^~~~~~~~~~~
+sssp_swi.cpp:219:12: warning: unused variable ‘global_work2’ [-Wunused-variable]
+     size_t global_work2[3] = { global_size, 1, 1};
+            ^~~~~~~~~~~~
+sssp_swi.cpp:337:12: warning: unused variable ‘timer2’ [-Wunused-variable]
+     double timer2=gettime();
+            ^~~~~~
+In file included from sssp_swi.cpp:2:0:
+sssp.h: At global scope:
+sssp.h:17:25: warning: ‘device_type’ defined but not used [-Wunused-variable]
+ static cl_device_type   device_type;
+                         ^~~~~~~~~~~

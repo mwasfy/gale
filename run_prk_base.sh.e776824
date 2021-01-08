@@ -1,0 +1,70 @@
+pagerank_base.cpp: In function ‘int initialize()’:
+pagerank_base.cpp:64:76: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(source == NULL) { fprintf(stderr, "ERROR: malloc(%d) failed\n", src_len); }
+                                                                            ^
+pagerank_base.cpp:67:84: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(items_read != 1) { fprintf(stderr, "ERROR: items_read(%d) failed\n", items_read); }
+                                                                                    ^
+pagerank_base.cpp: In function ‘void create_kernels()’:
+pagerank_base.cpp:107:23: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  char * kernelprk1  = "inibuffer";
+                       ^~~~~~~~~~~
+pagerank_base.cpp:108:23: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  char * kernelprk2  = "inicsr";
+                       ^~~~~~~~
+pagerank_base.cpp:109:23: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  char * kernelprk3  = "spmv_csr_scalar_kernel";
+                       ^~~~~~~~~~~~~~~~~~~~~~~~
+pagerank_base.cpp:110:23: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  char * kernelprk4  = "pagerank2";
+                       ^~~~~~~~~~~
+pagerank_base.cpp: In function ‘void exe_fpga()’:
+pagerank_base.cpp:184:47: warning: narrowing conversion of ‘block_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+  size_t local_work[3]   =  { block_size,  1, 1};
+                                               ^
+pagerank_base.cpp:185:47: warning: narrowing conversion of ‘global_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+  size_t global_work[3]  =  { global_size, 1, 1};
+                                               ^
+In file included from pagerank_base.cpp:2:0:
+pagerank_base.h: At global scope:
+pagerank_base.h:18:25: warning: ‘device_type’ defined but not used [-Wunused-variable]
+ static cl_device_type   device_type;
+                         ^~~~~~~~~~~
+pagerank_swi.cpp: In function ‘int initialize()’:
+pagerank_swi.cpp:63:76: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(source == NULL) { fprintf(stderr, "ERROR: malloc(%d) failed\n", src_len); }
+                                                                            ^
+pagerank_swi.cpp:66:84: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t {aka long unsigned int}’ [-Wformat=]
+  if(items_read != 1) { fprintf(stderr, "ERROR: items_read(%d) failed\n", items_read); }
+                                                                                    ^
+pagerank_swi.cpp: In function ‘void create_kernels()’:
+pagerank_swi.cpp:106:23: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  char * kernelprk1  = "spmv_csr_scalar_kernel";
+                       ^~~~~~~~~~~~~~~~~~~~~~~~
+pagerank_swi.cpp:107:23: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  char * kernelprk2  = "pagerank2";
+                       ^~~~~~~~~~~
+pagerank_swi.cpp: In function ‘void exe_fpga()’:
+pagerank_swi.cpp:188:47: warning: narrowing conversion of ‘block_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+  size_t local_work[3]   =  { block_size,  1, 1};
+                                               ^
+pagerank_swi.cpp:189:47: warning: narrowing conversion of ‘global_size’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } [-Wnarrowing]
+  size_t global_work[3]  =  { global_size, 1, 1};
+                                               ^
+pagerank_swi.cpp:295:7: warning: passing NULL to non-pointer argument 3 of ‘cl_int clEnqueueTask(cl_command_queue, cl_kernel, cl_uint, _cl_event* const*, _cl_event**)’ [-Wconversion-null]
+   NULL);
+       ^
+pagerank_swi.cpp:310:7: warning: passing NULL to non-pointer argument 3 of ‘cl_int clEnqueueTask(cl_command_queue, cl_kernel, cl_uint, _cl_event* const*, _cl_event**)’ [-Wconversion-null]
+   NULL);
+       ^
+pagerank_swi.cpp:188:9: warning: unused variable ‘local_work’ [-Wunused-variable]
+  size_t local_work[3]   =  { block_size,  1, 1};
+         ^~~~~~~~~~
+pagerank_swi.cpp:189:9: warning: unused variable ‘global_work’ [-Wunused-variable]
+  size_t global_work[3]  =  { global_size, 1, 1};
+         ^~~~~~~~~~~
+In file included from pagerank_swi.cpp:2:0:
+pagerank_base.h: At global scope:
+pagerank_base.h:18:25: warning: ‘device_type’ defined but not used [-Wunused-variable]
+ static cl_device_type   device_type;
+                         ^~~~~~~~~~~
