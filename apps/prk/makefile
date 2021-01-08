@@ -14,14 +14,14 @@ PRK_SWI = prk_swi
 #Run Variables
 #-----------
 
-GRAPH_INPUT = $(GRAPH_DATASET)/pagerank/web-google.mtx
+GRAPH_INPUT = $(GRAPH_DATASET)/web-google.mtx
 KERNEL_BASE = ../../../hw/opencl/prk/spmv_base/bin/kernel_spmv.aocx 
 KERNEL_SWI = ../../../hw/opencl/prk/spmv_swi/bin/prk_swi.aocx
+KERNEL_LU2 = ../../../hw/opencl/prk/prk_lu2/bin/prk_lu2.aocx
 PLATFORM_NUM_FPGA = 1
 DEVICE_NUM_FPGA = 0
 FILE_FORMAT = 2
 DIRECTED = 1
-
 
 #Compile Targets
 #-----------
@@ -54,6 +54,10 @@ run_base:
 	./$(PRK_BASE) $(GRAPH_INPUT) $(KERNEL_BASE) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
 run_swi:
 	./$(PRK_SWI) $(GRAPH_INPUT) $(KERNEL_SWI) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
+
+run_lu2:
+	./$(PRK_SWI) $(GRAPH_INPUT) $(KERNEL_LU2) $(PLATFORM_NUM_FPGA) $(DEVICE_NUM_FPGA) $(FILE_FORMAT) $(DIRECTED)
+
 
 #Clean Targets
 #-------------
