@@ -1,3 +1,3 @@
 git add .
-git commit -a -m "MIS debugged"
+git commit -a -m "Initial analysis code"
 git push -u origin master
