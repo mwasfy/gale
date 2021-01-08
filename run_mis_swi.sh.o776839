@@ -1,0 +1,242 @@
+
+########################################################################
+#      Date:           Thu Jan  7 21:35:55 PST 2021
+#    Job ID:           776839.v-qsvr-1.aidevcloud
+#      User:           u45023
+# Resources:           neednodes=s001-n088:ppn=2,nodes=s001-n088:ppn=2,walltime=22:00:00
+########################################################################
+
+g++ -c ../../graph_parser/parse.cpp
+g++ -c ../../graph_parser/util.cpp
+g++ -O3 -Wall -D VERBOSE -o mis_base -I/opt/intel/inteloneapi/compiler/2021.1-beta09/linux/lib/oclfpga/host//include -I../../common/src/AOCLUtils/../../inc  -I../../graph_parser -L/opt/intel/inteloneapi/compiler/2021.1-beta09/linux/lib/oclfpga/host//linux64/lib mis_base.cpp parse.o util.o -lOpenCL
+g++ -O3 -Wall -D VERBOSE -o mis_swi -I/opt/intel/inteloneapi/compiler/2021.1-beta09/linux/lib/oclfpga/host//include -I../../common/src/AOCLUtils/../../inc  -I../../graph_parser -L/opt/intel/inteloneapi/compiler/2021.1-beta09/linux/lib/oclfpga/host//linux64/lib mis_swi.cpp parse.o util.o -lOpenCL	
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/ca-coauthors-dblp.mtx
+This is a directed graph
+Read from file: num_nodes = 540486, num_edges = 15245729
+COL_COUNT_SUM = 15245729
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+global_size = 540544
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 15.692949 ms
+Kernel1: init = 2.509117 ms
+Kernel2: mis1 = 271.040201 ms
+Kernel3: mis2 = 1013.211966 ms
+Kernel4: mis3 = 24.018288 ms
+D2H: Data read = 2.715826 ms
+Stop_d signal overhead= 1.954556 ms
+################################################################
+################################################################
+Total time: 1331.142902 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/socfb-Georgetown15.mtx
+This is a directed graph
+Read from file: num_nodes = 9414, num_edges = 425638
+COL_COUNT_SUM = 436903
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+global_size = 9472
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 1.647949 ms
+Kernel1: init = 0.138044 ms
+Kernel2: mis1 = 8.460999 ms
+Kernel3: mis2 = 19.747257 ms
+Kernel4: mis3 = 0.837088 ms
+D2H: Data read = 0.426054 ms
+Stop_d signal overhead= 2.298355 ms
+################################################################
+################################################################
+Total time: 33.555746 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/road-roadNet-CA.mtx
+This is a directed graph
+Read from file: num_nodes = 1957027, num_edges = 2760388
+COL_COUNT_SUM = 2760388
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+global_size = 1957120
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 10.755062 ms
+Kernel1: init = 8.642197 ms
+Kernel2: mis1 = 304.105282 ms
+Kernel3: mis2 = 3904.409647 ms
+Kernel4: mis3 = 94.642878 ms
+D2H: Data read = 8.422852 ms
+Stop_d signal overhead= 2.082348 ms
+################################################################
+################################################################
+Total time: 4333.060265 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/eco-everglades.edges
+This is a directed graph
+Read from file: num_nodes = 69, num_edges = 911
+COL_COUNT_SUM = 911
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+global_size = 128
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 0.622988 ms
+Kernel1: init = 0.117064 ms
+Kernel2: mis1 = 0.815868 ms
+Kernel3: mis2 = 0.830173 ms
+Kernel4: mis3 = 0.445127 ms
+D2H: Data read = 0.196934 ms
+Stop_d signal overhead= 1.423836 ms
+################################################################
+################################################################
+Total time: 4.451990 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/eco-foodweb-baydry.edges
+This is a directed graph
+Read from file: num_nodes = 128, num_edges = 2137
+COL_COUNT_SUM = 2137
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+global_size = 128
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 0.627995 ms
+Kernel1: init = 0.112057 ms
+Kernel2: mis1 = 0.799179 ms
+Kernel3: mis2 = 0.891209 ms
+Kernel4: mis3 = 0.442982 ms
+D2H: Data read = 0.293970 ms
+Stop_d signal overhead= 1.518726 ms
+################################################################
+################################################################
+Total time: 4.686117 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/web-wikipedia2009.mtx
+This is a directed graph
+Read from file: num_nodes = 1864433, num_edges = 4507315
+COL_COUNT_SUM = 4507315
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+global_size = 1864448
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 13.149977 ms
+Kernel1: init = 8.235931 ms
+Kernel2: mis1 = 462.342739 ms
+Kernel3: mis2 = 3115.602970 ms
+Kernel4: mis3 = 73.775053 ms
+D2H: Data read = 8.385897 ms
+Stop_d signal overhead= 1.862288 ms
+################################################################
+################################################################
+Total time: 3683.354855 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/eco-stmarks.edges
+This is a directed graph
+Read from file: num_nodes = 54, num_edges = 353
+COL_COUNT_SUM = 4610
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+global_size = 128
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 0.520945 ms
+Kernel1: init = 0.146151 ms
+Kernel2: mis1 = 0.674725 ms
+Kernel3: mis2 = 0.648975 ms
+Kernel4: mis3 = 0.340939 ms
+D2H: Data read = 0.145912 ms
+Stop_d signal overhead= 0.848055 ms
+################################################################
+################################################################
+Total time: 3.325701 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/socfb-Duke14.mtx
+This is a directed graph
+Read from file: num_nodes = 9885, num_edges = 506437
+COL_COUNT_SUM = 506437
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+global_size = 9984
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 1.775026 ms
+Kernel1: init = 0.161886 ms
+Kernel2: mis1 = 9.421587 ms
+Kernel3: mis2 = 19.047499 ms
+Kernel4: mis3 = 0.760078 ms
+D2H: Data read = 0.326157 ms
+Stop_d signal overhead= 1.936674 ms
+################################################################
+################################################################
+Total time: 33.428907 ms
+################################################################
+################################################################
+
+########################################################################
+# End of output for job 776839.v-qsvr-1.aidevcloud
+# Date: Thu Jan  7 21:36:26 PST 2021
+########################################################################
+

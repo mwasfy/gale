@@ -27,7 +27,7 @@ DIRECTED = 0
 #Compile Targets
 #-----------
 
-ALL: $(MIS_BASE) 
+ALL: $(MIS_BASE) $(MIS_SWI) 
 
 
 $(MIS_BASE): mis_base.cpp parse.o util.o
