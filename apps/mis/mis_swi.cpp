@@ -350,7 +350,7 @@ void exe_fpga()
 	    timer_stop += (timer_refe-timer_refs);	
 
     }
-    printf("The total number of iterations = %d",cnt);
+    printf("The total number of iterations = %d\n",cnt);
     timer_refs = gettime();
     err = clEnqueueReadBuffer(cmd_queue, 
                               s_array_d, 

@@ -315,6 +315,8 @@ void exe_fpga(){
 
 		if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: kernel2  clEnqueueNDRangeKernel()=>%d failed\n", err); }
 	}
+	
+	printf("The total number of iterations = %d\n",ITER);
 
 	//Read back the results: PageRank array 
 	timer_refs = gettime();

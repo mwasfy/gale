@@ -438,6 +438,28 @@ int read_pages(string page_name)
 			ss.str("");
 			ss.clear();
 		}
+		else if(nextLine.compare(0,30,"The total number of iterations") == 0)
+		{
+			ss << nextLine;
+			string stemp;
+			while (!ss.eof()) { 
+				/* extracting word by word from stream */
+				ss >> stemp; 
+		  
+				/* Checking the given word is integer or not */
+				if (stringstream(stemp) >> temp_double)
+				{
+					time_val = temp_double;					
+				}
+			}
+			temp->time_stop = time_val;
+			//cout << "time value k1 " << time_val << endl; 
+			time_val = 0;
+			temp_double = 0;
+			stemp.clear();
+			ss.str("");
+			ss.clear();
+		}
 		else if(nextLine.compare(0,11,"Total time:") == 0)
 		{
 			ss << nextLine;
