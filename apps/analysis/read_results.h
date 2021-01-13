@@ -21,9 +21,23 @@
 using namespace std;
 #define NUMBER_OF_GRAPHS 20
 #define NUMBER_OF_CONFIGS 9
+#define NUMBER_OF_KERNELS 3
+#define NUM_OF_ESTIMATIONS 60
+#define MEM_BYTES 4
+//int NUM_OF_ESTIMATIONS = NUMBER_OF_KERNELS * NUMBER_OF_GRAPHS;
 
 
 enum page { PRK_BASE, PRK_SWI, PRK_LU2, SSSP_BASE, SSSP_SWI, SSSP_LU2, MIS_BASE, MIS_SWI, MIS_LU2};
+
+//perofmance model (graph input linked to a hardware implementation)
+typedef struct perf_model {
+	int graph_id;
+	int model_id;
+	double BW;
+	double est_time;
+} perf_model;
+
+perf_model * perf_inst[NUM_OF_ESTIMATIONS];
 
 //dataset characteristics 
 typedef struct graph_stats {
@@ -36,23 +50,33 @@ typedef struct graph_stats {
 
 graph_stats graph_db [NUMBER_OF_GRAPHS];
 
+typedef struct hls_model_struct {
+	std::string config_name;
+	//Hardware parameters 
+	double N; // Number of pipeline stages (thread capacity)
+	double F; // Frequency
+	double II; // Initiation Interval (N_d), or number of stall cycles between iterations
+	double num_mem_accesses_1; // Actual memory accesses per cycle (N_m)/ number of consecutive memory accesses
+	double num_mem_accesses_2; 
+	double mem_cycles;
+	double mem_bytes;
+	double num_mem_requests; //Numbers of memory requests in one loop iteration
+	//double W; // Maximum memory accesses per cycle
 
-
-
-
-
-
+	//General parameters
+	double R; // Throughput
+	double P; // Parallelism degree
+}hls_model_struct;
+hls_model_struct * model_inst [NUMBER_OF_KERNELS];
 
 typedef struct graph_inst {
 	//graph instance indexing
     int gid;
     std::string graph_name;
-	bool complete = false;
 	
 	//genereal graph info
 	int num_vertices;
 	int num_edges;
-	double overhead_ratio;
 	
 	//timing info
 	double time_h2d = 0;
@@ -64,11 +88,6 @@ typedef struct graph_inst {
 	double time_stop = 0;
 	double time_tot = 0;
 	
-	
-	void calculate_totals(){
-		time_tot = time_h2d + time_k1 + time_k2 + time_k3 + time_k4 + time_d2h + time_stop;
-		complete = true;
-	}
 } graph_inst;
 
 typedef struct config {
@@ -91,6 +110,49 @@ void get_kernel_best_performance();
 void adjust();
 void shutdown();
 
+void calc_perf(perf_model * model);
+double get_real_time(const std::string& str, int n);
+
+//initialize the hardware model parameters
+void init_model_inst()
+{
+	for(int i = 0; i < NUMBER_OF_KERNELS; i++)
+		model_inst[i] = (hls_model_struct *)malloc(sizeof(hls_model_struct));
+		
+	model_inst[0]->config_name = "PRK_SWI";
+	model_inst[0]->N = 589;
+	model_inst[0]->F = 240*(1e6);
+	model_inst[0]->II = 1;
+	model_inst[0]->mem_cycles = 288;
+	model_inst[0]->mem_bytes = 4;
+	model_inst[0]->num_mem_accesses_1 = 0;
+	model_inst[0]->num_mem_accesses_2 = 2;
+	model_inst[0]->num_mem_requests = 4;
+	
+
+	model_inst[1]->config_name = "SSSP_SWI";
+	model_inst[1]->N = 585;
+	model_inst[1]->F = 240*(1e6);
+	model_inst[1]->II = 1;
+	model_inst[1]->mem_cycles = 288;
+	model_inst[1]->mem_bytes = 4;
+	model_inst[1]->num_mem_accesses_1 = 0; // prefetching 
+	model_inst[1]->num_mem_accesses_2 = 2;
+	model_inst[1]->num_mem_requests = 4;
+	
+	
+	model_inst[2]->config_name = "MIS_SWI";
+	model_inst[2]->N = 592;
+	model_inst[2]->F = 240*(1e6);
+	model_inst[2]->II = 1;
+	model_inst[2]->mem_cycles = 193;
+	model_inst[2]->mem_bytes = 4;
+	model_inst[2]->num_mem_accesses_1 = 1;
+	model_inst[2]->num_mem_accesses_2 = 3;
+	model_inst[2]->num_mem_requests = 4;
+}
+
+//initialize the dataset properties
 void init_data_set()
 {
 graph_db[0].graph_name = "road-road-usa";
@@ -163,13 +225,13 @@ graph_db[11].graph_name = "eco-everglades";
 graph_db[11].num_nodes = 69;
 graph_db[11].num_edges = 911;
 graph_db[11].avg_deg = 26;
-graph_db[11].diameter = 2;
+graph_db[11].diameter = 6;
 
 graph_db[12].graph_name = "eco-stmarks";
 graph_db[12].num_nodes =  54;
 graph_db[12].num_edges = 353;
 graph_db[12].avg_deg = 13;
-graph_db[12].diameter = 2;
+graph_db[12].diameter = 3;
 
 graph_db[13].graph_name = "eco-foodweb-baydry";
 graph_db[13].num_nodes =  128;

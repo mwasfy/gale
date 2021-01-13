@@ -329,7 +329,7 @@ void exe_fpga()
        if (stop==0) break;
        cnt++;
     }
-    
+    printf("The total number of iterations = %d",cnt);
     timer_refs = gettime();
     //read the cost_array back
     err = clEnqueueReadBuffer(cmd_queue, vector_d1, 1, 0, num_nodes * sizeof(int), cost_array, 0, 0, 0);

@@ -13,4 +13,4 @@ $(ZORO): read_results.cpp
 	$(CC) $(CC_FLAGS) -o $(ZORO) read_results.cpp
 
 clean:
-	rm -f $(EXE) *.o *.out *.stat *.csv
+	rm -f $(EXE) $(ZORO) *.out *.stat *.csv
