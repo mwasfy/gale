@@ -172,8 +172,9 @@ int read_pages(string page_name)
 	int page_id = page_convert(page_name);
 	config_page[page_id]->config_idx = page_id;
 	config_page[page_id]->config_name = page_name;
+	string page_path_pre = "timing_info/";
 	string page_path_post = ".o";
-	string page_path = page_name + page_path_post;
+	string page_path = page_path_pre + page_name + page_path_post;
 	//cout << "Page path: " << page_path << endl;
 	//cout << "Page name: " << config_page[page_id]->config_name << " Page ID: " << config_page[page_id]->config_idx << endl;
 	
