@@ -1,7 +1,7 @@
 
 ########################################################################
-#      Date:           Thu Jan  7 21:02:51 PST 2021
-#    Job ID:           776821.v-qsvr-1.aidevcloud
+#      Date:           Wed Jan 13 00:03:19 PST 2021
+#    Job ID:           779574.v-qsvr-1.aidevcloud
 #      User:           u45023
 # Resources:           neednodes=s001-n088:ppn=2,nodes=s001-n088:ppn=2,walltime=22:00:00
 ########################################################################
@@ -25,16 +25,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 30.267954 ms
-Kernel1: vector_init = 2.161026 ms
-Kernel2: spmv_min_dot_plus_kernel = 68.473101 ms
-Kernel3: vector_assign = 2.120018 ms
-Kernel4: vector_diff = 2.123833 ms
-D2H: Data read = 0.859976 ms
-Stop_d signal overhead= 0.241041 ms
+H2D: Data write = 26.390076 ms
+Kernel1: vector_init = 2.168894 ms
+Kernel2: spmv_min_dot_plus_kernel = 68.496943 ms
+Kernel3: vector_assign = 2.127171 ms
+Kernel4: vector_diff = 2.124071 ms
+D2H: Data read = 0.957012 ms
+Stop_d signal overhead= 0.184774 ms
 ################################################################
 ################################################################
-Total time: 106.246948 ms
+Total time: 102.448940 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -52,16 +52,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 1.415968 ms
-Kernel1: vector_init = 0.221014 ms
-Kernel2: spmv_min_dot_plus_kernel = 1.149893 ms
-Kernel3: vector_assign = 0.192165 ms
-Kernel4: vector_diff = 0.200033 ms
-D2H: Data read = 0.396967 ms
-Stop_d signal overhead= 0.247002 ms
+H2D: Data write = 1.393080 ms
+Kernel1: vector_init = 0.211000 ms
+Kernel2: spmv_min_dot_plus_kernel = 1.152039 ms
+Kernel3: vector_assign = 0.191927 ms
+Kernel4: vector_diff = 0.200987 ms
+D2H: Data read = 0.409842 ms
+Stop_d signal overhead= 0.250101 ms
 ################################################################
 ################################################################
-Total time: 3.823042 ms
+Total time: 3.808975 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -79,16 +79,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 2.310991 ms
-Kernel1: vector_init = 0.126839 ms
-Kernel2: spmv_min_dot_plus_kernel = 1.861811 ms
-Kernel3: vector_assign = 0.099182 ms
-Kernel4: vector_diff = 0.106096 ms
-D2H: Data read = 0.395060 ms
-Stop_d signal overhead= 0.246763 ms
+H2D: Data write = 2.348900 ms
+Kernel1: vector_init = 0.129938 ms
+Kernel2: spmv_min_dot_plus_kernel = 1.899958 ms
+Kernel3: vector_assign = 0.110149 ms
+Kernel4: vector_diff = 0.119925 ms
+D2H: Data read = 0.373125 ms
+Stop_d signal overhead= 0.258923 ms
 ################################################################
 ################################################################
-Total time: 5.146742 ms
+Total time: 5.240917 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -106,16 +106,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 88.259935 ms
-Kernel1: vector_init = 4.176855 ms
-Kernel2: spmv_min_dot_plus_kernel = 296.669006 ms
-Kernel3: vector_assign = 4.158974 ms
-Kernel4: vector_diff = 4.158974 ms
-D2H: Data read = 1.464128 ms
-Stop_d signal overhead= 0.190973 ms
+H2D: Data write = 86.951971 ms
+Kernel1: vector_init = 4.179001 ms
+Kernel2: spmv_min_dot_plus_kernel = 295.883894 ms
+Kernel3: vector_assign = 4.159212 ms
+Kernel4: vector_diff = 4.159927 ms
+D2H: Data read = 1.437902 ms
+Stop_d signal overhead= 0.197887 ms
 ################################################################
 ################################################################
-Total time: 399.078846 ms
+Total time: 396.969795 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -133,16 +133,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 31.908989 ms
-Kernel1: vector_init = 46.129942 ms
-Kernel2: spmv_min_dot_plus_kernel = 60.997963 ms
-Kernel3: vector_assign = 46.112061 ms
-Kernel4: vector_diff = 46.114922 ms
-D2H: Data read = 11.543989 ms
-Stop_d signal overhead= 0.226021 ms
+H2D: Data write = 39.497852 ms
+Kernel1: vector_init = 46.130896 ms
+Kernel2: spmv_min_dot_plus_kernel = 60.993195 ms
+Kernel3: vector_assign = 46.111822 ms
+Kernel4: vector_diff = 46.108961 ms
+D2H: Data read = 11.447191 ms
+Stop_d signal overhead= 0.208855 ms
 ################################################################
 ################################################################
-Total time: 243.033886 ms
+Total time: 250.498772 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -160,16 +160,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 180.845022 ms
-Kernel1: vector_init = 226.711988 ms
-Kernel2: spmv_min_dot_plus_kernel = 982.146025 ms
-Kernel3: vector_assign = 226.691008 ms
-Kernel4: vector_diff = 226.696968 ms
-D2H: Data read = 44.615984 ms
-Stop_d signal overhead= 0.215054 ms
+H2D: Data write = 176.560163 ms
+Kernel1: vector_init = 226.713181 ms
+Kernel2: spmv_min_dot_plus_kernel = 982.101202 ms
+Kernel3: vector_assign = 226.694822 ms
+Kernel4: vector_diff = 226.697922 ms
+D2H: Data read = 45.120955 ms
+Stop_d signal overhead= 0.177145 ms
 ################################################################
 ################################################################
-Total time: 1887.922049 ms
+Total time: 1884.065390 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -187,16 +187,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.828028 ms
-Kernel1: vector_init = 0.138998 ms
-Kernel2: spmv_min_dot_plus_kernel = 5.769491 ms
-Kernel3: vector_assign = 2.015114 ms
-Kernel4: vector_diff = 2.058506 ms
-D2H: Data read = 0.197172 ms
-Stop_d signal overhead= 3.483295 ms
+H2D: Data write = 0.823021 ms
+Kernel1: vector_init = 0.137806 ms
+Kernel2: spmv_min_dot_plus_kernel = 5.787134 ms
+Kernel3: vector_assign = 2.018452 ms
+Kernel4: vector_diff = 2.047062 ms
+D2H: Data read = 0.177145 ms
+Stop_d signal overhead= 3.452539 ms
 ################################################################
 ################################################################
-Total time: 14.490604 ms
+Total time: 14.443159 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -214,16 +214,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 11.466980 ms
-Kernel1: vector_init = 7.618904 ms
-Kernel2: spmv_min_dot_plus_kernel = 15.580177 ms
-Kernel3: vector_assign = 7.586956 ms
-Kernel4: vector_diff = 7.587910 ms
-D2H: Data read = 2.701044 ms
-Stop_d signal overhead= 0.256062 ms
+H2D: Data write = 11.497974 ms
+Kernel1: vector_init = 7.611036 ms
+Kernel2: spmv_min_dot_plus_kernel = 15.622139 ms
+Kernel3: vector_assign = 7.586002 ms
+Kernel4: vector_diff = 7.582903 ms
+D2H: Data read = 2.707958 ms
+Stop_d signal overhead= 0.252008 ms
 ################################################################
 ################################################################
-Total time: 52.798033 ms
+Total time: 52.860022 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -241,16 +241,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 1.214981 ms
-Kernel1: vector_init = 0.144958 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.655890 ms
-Kernel3: vector_assign = 0.123024 ms
+H2D: Data write = 1.258135 ms
+Kernel1: vector_init = 0.121117 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.653028 ms
+Kernel3: vector_assign = 0.077009 ms
 Kernel4: vector_diff = 0.086069 ms
-D2H: Data read = 0.124216 ms
-Stop_d signal overhead= 0.263929 ms
+D2H: Data read = 0.128984 ms
+Stop_d signal overhead= 0.252008 ms
 ################################################################
 ################################################################
-Total time: 2.613068 ms
+Total time: 2.576351 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -268,16 +268,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 36.917210 ms
-Kernel1: vector_init = 14.614105 ms
-Kernel2: spmv_min_dot_plus_kernel = 366.483927 ms
-Kernel3: vector_assign = 29.175997 ms
-Kernel4: vector_diff = 29.185057 ms
-D2H: Data read = 3.827095 ms
-Stop_d signal overhead= 0.401974 ms
+H2D: Data write = 32.525063 ms
+Kernel1: vector_init = 14.611959 ms
+Kernel2: spmv_min_dot_plus_kernel = 366.486073 ms
+Kernel3: vector_assign = 29.179335 ms
+Kernel4: vector_diff = 29.186964 ms
+D2H: Data read = 3.562927 ms
+Stop_d signal overhead= 0.409603 ms
 ################################################################
 ################################################################
-Total time: 480.605364 ms
+Total time: 475.961924 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -295,16 +295,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 70.314169 ms
-Kernel1: vector_init = 92.378855 ms
-Kernel2: spmv_min_dot_plus_kernel = 178.054094 ms
-Kernel3: vector_assign = 92.363834 ms
-Kernel4: vector_diff = 92.366934 ms
-D2H: Data read = 21.067858 ms
-Stop_d signal overhead= 0.259161 ms
+H2D: Data write = 68.526030 ms
+Kernel1: vector_init = 92.375994 ms
+Kernel2: spmv_min_dot_plus_kernel = 178.056002 ms
+Kernel3: vector_assign = 92.360973 ms
+Kernel4: vector_diff = 92.365026 ms
+D2H: Data read = 21.359921 ms
+Stop_d signal overhead= 0.231028 ms
 ################################################################
 ################################################################
-Total time: 546.804905 ms
+Total time: 545.274973 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -322,16 +322,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 18.032074 ms
-Kernel1: vector_init = 2.034903 ms
-Kernel2: spmv_min_dot_plus_kernel = 29.909134 ms
-Kernel3: vector_assign = 2.007008 ms
-Kernel4: vector_diff = 2.003908 ms
-D2H: Data read = 1.050949 ms
-Stop_d signal overhead= 0.269890 ms
+H2D: Data write = 16.933918 ms
+Kernel1: vector_init = 2.027988 ms
+Kernel2: spmv_min_dot_plus_kernel = 29.918909 ms
+Kernel3: vector_assign = 2.002001 ms
+Kernel4: vector_diff = 2.006054 ms
+D2H: Data read = 1.015902 ms
+Stop_d signal overhead= 0.259161 ms
 ################################################################
 ################################################################
-Total time: 55.307865 ms
+Total time: 54.163933 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -349,16 +349,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.672102 ms
-Kernel1: vector_init = 0.106812 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.527620 ms
-Kernel3: vector_assign = 0.371933 ms
-Kernel4: vector_diff = 0.418186 ms
-D2H: Data read = 0.176907 ms
-Stop_d signal overhead= 0.819206 ms
+H2D: Data write = 0.714064 ms
+Kernel1: vector_init = 0.103951 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.527143 ms
+Kernel3: vector_assign = 0.371695 ms
+Kernel4: vector_diff = 0.415802 ms
+D2H: Data read = 0.195980 ms
+Stop_d signal overhead= 0.888586 ms
 ################################################################
 ################################################################
-Total time: 3.092766 ms
+Total time: 3.217220 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -376,16 +376,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 9.310007 ms
-Kernel1: vector_init = 4.369974 ms
-Kernel2: spmv_min_dot_plus_kernel = 31.878948 ms
-Kernel3: vector_assign = 4.338980 ms
-Kernel4: vector_diff = 4.332066 ms
-D2H: Data read = 1.737118 ms
-Stop_d signal overhead= 0.263929 ms
+H2D: Data write = 7.969141 ms
+Kernel1: vector_init = 4.377842 ms
+Kernel2: spmv_min_dot_plus_kernel = 31.880856 ms
+Kernel3: vector_assign = 4.347086 ms
+Kernel4: vector_diff = 4.329205 ms
+D2H: Data read = 1.523972 ms
+Stop_d signal overhead= 0.276804 ms
 ################################################################
 ################################################################
-Total time: 56.231022 ms
+Total time: 54.704905 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -403,16 +403,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 6.930113 ms
-Kernel1: vector_init = 1.171827 ms
-Kernel2: spmv_min_dot_plus_kernel = 697.103977 ms
-Kernel3: vector_assign = 21.352768 ms
-Kernel4: vector_diff = 21.421432 ms
-D2H: Data read = 0.501871 ms
-Stop_d signal overhead= 3.875971 ms
+H2D: Data write = 7.122040 ms
+Kernel1: vector_init = 1.175880 ms
+Kernel2: spmv_min_dot_plus_kernel = 697.031736 ms
+Kernel3: vector_assign = 21.377087 ms
+Kernel4: vector_diff = 21.386623 ms
+D2H: Data read = 0.532150 ms
+Stop_d signal overhead= 3.385544 ms
 ################################################################
 ################################################################
-Total time: 752.357960 ms
+Total time: 752.011061 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -430,16 +430,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.636101 ms
-Kernel1: vector_init = 0.108004 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.468016 ms
-Kernel3: vector_assign = 0.299931 ms
-Kernel4: vector_diff = 0.355005 ms
-D2H: Data read = 0.267029 ms
-Stop_d signal overhead= 0.659943 ms
+H2D: Data write = 0.509024 ms
+Kernel1: vector_init = 0.141859 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.502348 ms
+Kernel3: vector_assign = 0.323772 ms
+Kernel4: vector_diff = 0.365496 ms
+D2H: Data read = 0.287056 ms
+Stop_d signal overhead= 0.735044 ms
 ################################################################
 ################################################################
-Total time: 2.794027 ms
+Total time: 2.864599 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -457,16 +457,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 51.183939 ms
-Kernel1: vector_init = 11.996984 ms
-Kernel2: spmv_min_dot_plus_kernel = 312.314987 ms
-Kernel3: vector_assign = 11.979103 ms
-Kernel4: vector_diff = 11.981964 ms
-D2H: Data read = 3.505945 ms
-Stop_d signal overhead= 0.226974 ms
+H2D: Data write = 44.043064 ms
+Kernel1: vector_init = 12.005091 ms
+Kernel2: spmv_min_dot_plus_kernel = 312.334061 ms
+Kernel3: vector_assign = 11.976957 ms
+Kernel4: vector_diff = 11.979818 ms
+D2H: Data read = 3.239155 ms
+Stop_d signal overhead= 0.198126 ms
 ################################################################
 ################################################################
-Total time: 403.189898 ms
+Total time: 395.776272 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -484,16 +484,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 16.000986 ms
-Kernel1: vector_init = 7.254124 ms
-Kernel2: spmv_min_dot_plus_kernel = 55.846930 ms
-Kernel3: vector_assign = 7.231951 ms
-Kernel4: vector_diff = 7.225037 ms
-D2H: Data read = 2.588034 ms
-Stop_d signal overhead= 0.207186 ms
+H2D: Data write = 13.881922 ms
+Kernel1: vector_init = 7.254839 ms
+Kernel2: spmv_min_dot_plus_kernel = 55.848122 ms
+Kernel3: vector_assign = 7.225990 ms
+Kernel4: vector_diff = 7.230997 ms
+D2H: Data read = 2.403975 ms
+Stop_d signal overhead= 0.265837 ms
 ################################################################
 ################################################################
-Total time: 96.354246 ms
+Total time: 94.111681 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -511,16 +511,16 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.597954 ms
-Kernel1: vector_init = 0.102997 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.531197 ms
-Kernel3: vector_assign = 0.370741 ms
-Kernel4: vector_diff = 0.417709 ms
-D2H: Data read = 0.160933 ms
-Stop_d signal overhead= 0.829458 ms
+H2D: Data write = 0.643015 ms
+Kernel1: vector_init = 0.103951 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.530720 ms
+Kernel3: vector_assign = 0.371933 ms
+Kernel4: vector_diff = 0.416517 ms
+D2H: Data read = 0.190973 ms
+Stop_d signal overhead= 0.917912 ms
 ################################################################
 ################################################################
-Total time: 3.010988 ms
+Total time: 3.175020 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -538,21 +538,21 @@ create_buffers() --> Done
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 2.425909 ms
-Kernel1: vector_init = 0.133038 ms
-Kernel2: spmv_min_dot_plus_kernel = 2.187967 ms
-Kernel3: vector_assign = 0.102043 ms
-Kernel4: vector_diff = 0.110149 ms
-D2H: Data read = 0.348091 ms
-Stop_d signal overhead= 0.254869 ms
+H2D: Data write = 2.377987 ms
+Kernel1: vector_init = 0.127077 ms
+Kernel2: spmv_min_dot_plus_kernel = 2.250910 ms
+Kernel3: vector_assign = 0.097990 ms
+Kernel4: vector_diff = 0.107050 ms
+D2H: Data read = 0.365973 ms
+Stop_d signal overhead= 0.252962 ms
 ################################################################
 ################################################################
-Total time: 5.562067 ms
+Total time: 5.579948 ms
 ################################################################
 ################################################################
 
 ########################################################################
-# End of output for job 776821.v-qsvr-1.aidevcloud
-# Date: Thu Jan  7 21:04:57 PST 2021
+# End of output for job 779574.v-qsvr-1.aidevcloud
+# Date: Wed Jan 13 00:05:24 PST 2021
 ########################################################################
 

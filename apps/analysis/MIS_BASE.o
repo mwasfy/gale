@@ -1,7 +1,7 @@
 
 ########################################################################
-#      Date:           Thu Jan  7 21:19:40 PST 2021
-#    Job ID:           776827.v-qsvr-1.aidevcloud
+#      Date:           Wed Jan 13 00:19:50 PST 2021
+#    Job ID:           779580.v-qsvr-1.aidevcloud
 #      User:           u45023
 # Resources:           neednodes=s001-n088:ppn=2,nodes=s001-n088:ppn=2,walltime=22:00:00
 ########################################################################
@@ -9,6 +9,7 @@
 g++ -c ../../graph_parser/parse.cpp
 g++ -c ../../graph_parser/util.cpp
 g++ -O3 -Wall -D VERBOSE -o mis_base -I/opt/intel/inteloneapi/compiler/2021.1-beta09/linux/lib/oclfpga/host//include -I../../common/src/AOCLUtils/../../inc  -I../../graph_parser -L/opt/intel/inteloneapi/compiler/2021.1-beta09/linux/lib/oclfpga/host//linux64/lib mis_base.cpp parse.o util.o -lOpenCL
+g++ -O3 -Wall -D VERBOSE -o mis_swi -I/opt/intel/inteloneapi/compiler/2021.1-beta09/linux/lib/oclfpga/host//include -I../../common/src/AOCLUtils/../../inc  -I../../graph_parser -L/opt/intel/inteloneapi/compiler/2021.1-beta09/linux/lib/oclfpga/host//linux64/lib mis_swi.cpp parse.o util.o -lOpenCL	
 file_format = 2
 TRANSPOSED MM GRAPH PARSING
 Opening file: ../../../dataset/ca-coauthors-dblp.mtx
@@ -25,16 +26,16 @@ global_size = 540544
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 15.524864 ms
-Kernel1: init = 2.514124 ms
-Kernel2: mis1 = 3055.072069 ms
-Kernel3: mis2 = 124.401808 ms
-Kernel4: mis3 = 24.232149 ms
-D2H: Data read = 2.665997 ms
-Stop_d signal overhead= 2.034903 ms
+H2D: Data write = 17.307043 ms
+Kernel1: init = 2.509117 ms
+Kernel2: mis1 = 3055.131435 ms
+Kernel3: mis2 = 124.247789 ms
+Kernel4: mis3 = 24.233580 ms
+D2H: Data read = 2.866030 ms
+Stop_d signal overhead= 1.873970 ms
 ################################################################
 ################################################################
-Total time: 3226.445913 ms
+Total time: 3228.168964 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -53,16 +54,16 @@ global_size = 9472
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 1.725912 ms
-Kernel1: init = 0.144958 ms
-Kernel2: mis1 = 72.726011 ms
-Kernel3: mis2 = 4.915237 ms
+H2D: Data write = 1.620054 ms
+Kernel1: init = 0.158072 ms
+Kernel2: mis1 = 72.756290 ms
+Kernel3: mis2 = 4.919767 ms
 Kernel4: mis3 = 0.803232 ms
-D2H: Data read = 0.374794 ms
-Stop_d signal overhead= 1.627684 ms
+D2H: Data read = 0.369072 ms
+Stop_d signal overhead= 1.530647 ms
 ################################################################
 ################################################################
-Total time: 82.317829 ms
+Total time: 82.157135 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -81,16 +82,16 @@ global_size = 1957120
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 10.783911 ms
-Kernel1: init = 8.715153 ms
-Kernel2: mis1 = 648.206711 ms
-Kernel3: mis2 = 114.708424 ms
-Kernel4: mis3 = 95.453739 ms
-D2H: Data read = 8.371830 ms
-Stop_d signal overhead= 2.238989 ms
+H2D: Data write = 11.334181 ms
+Kernel1: init = 8.728027 ms
+Kernel2: mis1 = 648.186684 ms
+Kernel3: mis2 = 114.696741 ms
+Kernel4: mis3 = 95.461130 ms
+D2H: Data read = 8.378983 ms
+Stop_d signal overhead= 2.238512 ms
 ################################################################
 ################################################################
-Total time: 888.478756 ms
+Total time: 889.024258 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -109,16 +110,16 @@ global_size = 128
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.614882 ms
-Kernel1: init = 0.118971 ms
-Kernel2: mis1 = 0.855923 ms
-Kernel3: mis2 = 0.812769 ms
-Kernel4: mis3 = 0.441313 ms
-D2H: Data read = 0.187874 ms
-Stop_d signal overhead= 1.436234 ms
+H2D: Data write = 0.765800 ms
+Kernel1: init = 0.143051 ms
+Kernel2: mis1 = 0.821590 ms
+Kernel3: mis2 = 0.816107 ms
+Kernel4: mis3 = 0.437260 ms
+D2H: Data read = 0.200033 ms
+Stop_d signal overhead= 1.086235 ms
 ################################################################
 ################################################################
-Total time: 4.467964 ms
+Total time: 4.270077 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -137,16 +138,16 @@ global_size = 128
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.616074 ms
-Kernel1: init = 0.116825 ms
-Kernel2: mis1 = 0.859737 ms
-Kernel3: mis2 = 0.834227 ms
-Kernel4: mis3 = 0.442266 ms
-D2H: Data read = 0.242949 ms
-Stop_d signal overhead= 1.457453 ms
+H2D: Data write = 0.623941 ms
+Kernel1: init = 0.114918 ms
+Kernel2: mis1 = 0.875235 ms
+Kernel3: mis2 = 0.831842 ms
+Kernel4: mis3 = 0.442028 ms
+D2H: Data read = 0.236988 ms
+Stop_d signal overhead= 1.354933 ms
 ################################################################
 ################################################################
-Total time: 4.569530 ms
+Total time: 4.479885 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -165,16 +166,16 @@ global_size = 1864448
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 13.618946 ms
-Kernel1: init = 8.302927 ms
-Kernel2: mis1 = 3488.470078 ms
-Kernel3: mis2 = 132.911205 ms
+H2D: Data write = 13.340950 ms
+Kernel1: init = 8.308887 ms
+Kernel2: mis1 = 3488.504887 ms
+Kernel3: mis2 = 132.914782 ms
 Kernel4: mis3 = 74.425936 ms
-D2H: Data read = 8.377075 ms
-Stop_d signal overhead= 1.849890 ms
+D2H: Data read = 8.337021 ms
+Stop_d signal overhead= 1.848221 ms
 ################################################################
 ################################################################
-Total time: 3727.956057 ms
+Total time: 3727.680683 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -193,16 +194,16 @@ global_size = 128
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.525951 ms
-Kernel1: init = 0.117064 ms
-Kernel2: mis1 = 0.675201 ms
-Kernel3: mis2 = 0.700951 ms
-Kernel4: mis3 = 0.370026 ms
-D2H: Data read = 0.180006 ms
-Stop_d signal overhead= 0.904799 ms
+H2D: Data write = 0.551939 ms
+Kernel1: init = 0.115156 ms
+Kernel2: mis1 = 0.668287 ms
+Kernel3: mis2 = 0.677109 ms
+Kernel4: mis3 = 0.367403 ms
+D2H: Data read = 0.166178 ms
+Stop_d signal overhead= 0.898123 ms
 ################################################################
 ################################################################
-Total time: 3.473997 ms
+Total time: 3.444195 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -221,21 +222,21 @@ global_size = 9984
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 1.659155 ms
+H2D: Data write = 1.767874 ms
 Kernel1: init = 0.149012 ms
-Kernel2: mis1 = 85.952282 ms
-Kernel3: mis2 = 4.554987 ms
-Kernel4: mis3 = 0.731468 ms
-D2H: Data read = 0.304937 ms
-Stop_d signal overhead= 1.464367 ms
+Kernel2: mis1 = 86.000204 ms
+Kernel3: mis2 = 4.560709 ms
+Kernel4: mis3 = 0.725985 ms
+D2H: Data read = 0.303984 ms
+Stop_d signal overhead= 1.486063 ms
 ################################################################
 ################################################################
-Total time: 94.816208 ms
+Total time: 94.993830 ms
 ################################################################
 ################################################################
 
 ########################################################################
-# End of output for job 776827.v-qsvr-1.aidevcloud
-# Date: Thu Jan  7 21:20:09 PST 2021
+# End of output for job 779580.v-qsvr-1.aidevcloud
+# Date: Wed Jan 13 00:20:19 PST 2021
 ########################################################################
 

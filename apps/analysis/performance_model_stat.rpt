@@ -1,0 +1,720 @@
+Kernel: PRK_SWI	 Graph: road-road-usa
+Nodes: 23947347	 Edges: 28854313
+---------------------------------------------------------------------
+Estimated pipe time: 199.564
+Estimated mem time: 112.253
+Estimated execution time: 311.817
+Actual execution time: 299.21
+Accuracy: 95.7866%
+%error: 4.21341%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: ca-coauthors-dblp
+Nodes: 540486	 Edges: 15245730
+---------------------------------------------------------------------
+Estimated pipe time: 4.5065
+Estimated mem time: 70.9388
+Estimated execution time: 75.4453
+Actual execution time: 57.8496
+Accuracy: 69.5837%
+%error: 30.4163%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: road-roadNet-CA
+Nodes: 1957027	 Edges: 2760389
+---------------------------------------------------------------------
+Estimated pipe time: 16.311
+Estimated mem time: 9.17356
+Estimated execution time: 25.4846
+Actual execution time: 25.294
+Accuracy: 99.2467%
+%error: 0.75328%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: socfb-Georgetown15
+Nodes: 9414	 Edges: 425639
+---------------------------------------------------------------------
+Estimated pipe time: 0.0809042
+Estimated mem time: 1.98577
+Estimated execution time: 2.06667
+Actual execution time: 1.63604
+Accuracy: 73.6785%
+%error: 26.3215%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: web-it-2004
+Nodes: 509338	 Edges: 7178414
+---------------------------------------------------------------------
+Estimated pipe time: 4.24694
+Estimated mem time: 33.4253
+Estimated execution time: 37.6722
+Actual execution time: 29.1618
+Accuracy: 70.8167%
+%error: 29.1833%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: road-asia-osm
+Nodes: 11950757	 Edges: 12711604
+---------------------------------------------------------------------
+Estimated pipe time: 99.5921
+Estimated mem time: 56.0192
+Estimated execution time: 155.611
+Actual execution time: 132.504
+Accuracy: 82.5607%
+%error: 17.4393%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: socfb-Duke14
+Nodes: 9885	 Edges: 506438
+---------------------------------------------------------------------
+Estimated pipe time: 0.0848292
+Estimated mem time: 2.36313
+Estimated execution time: 2.44796
+Actual execution time: 1.92274
+Accuracy: 72.6836%
+%error: 27.3164%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: web-google
+Nodes: 1299	 Edges: 2774
+---------------------------------------------------------------------
+Estimated pipe time: 0.0132792
+Estimated mem time: 0.3897
+Estimated execution time: 0.402979
+Actual execution time: 0.599813
+Accuracy: 67.1841%
+%error: 32.8159%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: cit-DBLP
+Nodes: 12591	 Edges: 49744
+---------------------------------------------------------------------
+Estimated pipe time: 0.107379
+Estimated mem time: 0.177061
+Estimated execution time: 0.28444
+Actual execution time: 0.365508
+Accuracy: 77.8206%
+%error: 22.1794%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: cit-patent
+Nodes: 3774768	 Edges: 16518948
+---------------------------------------------------------------------
+Estimated pipe time: 31.4589
+Estimated mem time: 70.7769
+Estimated execution time: 102.236
+Actual execution time: 152.508
+Accuracy: 67.0364%
+%error: 32.9636%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: email-enron-large
+Nodes: 33696	 Edges: 180812
+---------------------------------------------------------------------
+Estimated pipe time: 0.283254
+Estimated mem time: 0.78975
+Estimated execution time: 1.073
+Actual execution time: 1.0178
+Accuracy: 94.5758%
+%error: 5.42418%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: eco-everglades
+Nodes: 69	 Edges: 911
+---------------------------------------------------------------------
+Estimated pipe time: 0.00302917
+Estimated mem time: 0.13455
+Estimated execution time: 0.137579
+Actual execution time: 0.109601
+Accuracy: 74.4727%
+%error: 25.5273%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: eco-stmarks
+Nodes: 54	 Edges: 353
+---------------------------------------------------------------------
+Estimated pipe time: 0.00290417
+Estimated mem time: 0.0486
+Estimated execution time: 0.0515042
+Actual execution time: 0.108576
+Accuracy: 47.4361%
+%error: 52.5639%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: eco-foodweb-baydry
+Nodes: 128	 Edges: 2137
+---------------------------------------------------------------------
+Estimated pipe time: 0.00352083
+Estimated mem time: 0.3072
+Estimated execution time: 0.310721
+Actual execution time: 0.109887
+Accuracy: -82.7637%
+%error: 182.764%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: ca-hollywood-2009
+Nodes: 1069126	 Edges: 56306654
+---------------------------------------------------------------------
+Estimated pipe time: 8.91184
+Estimated mem time: 260.599
+Estimated execution time: 269.511
+Actual execution time: 209.486
+Accuracy: 71.3466%
+%error: 28.6534%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: web-Stanford
+Nodes: 281903	 Edges: 2312498
+---------------------------------------------------------------------
+Estimated pipe time: 2.35165
+Estimated mem time: 10.5714
+Estimated execution time: 12.923
+Actual execution time: 19.9194
+Accuracy: 64.8765%
+%error: 35.1235%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: socfb-uci-uni
+Nodes: 58790782	 Edges: 92208196
+---------------------------------------------------------------------
+Estimated pipe time: 489.926
+Estimated mem time: 275.582
+Estimated execution time: 765.507
+Actual execution time: 896.123
+Accuracy: 85.4244%
+%error: 14.5756%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: socfb-A-anon
+Nodes: 3097165	 Edges: 23667394
+---------------------------------------------------------------------
+Estimated pipe time: 25.8122
+Estimated mem time: 101.626
+Estimated execution time: 127.438
+Actual execution time: 223.127
+Accuracy: 57.1145%
+%error: 42.8855%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: rt-retweet-crawl
+Nodes: 1112702	 Edges: 2278852
+---------------------------------------------------------------------
+Estimated pipe time: 9.27497
+Estimated mem time: 10.4316
+Estimated execution time: 19.7066
+Actual execution time: 29.3053
+Accuracy: 67.2456%
+%error: 32.7544%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: PRK_SWI	 Graph: web-wikipedia2009
+Nodes: 1864433	 Edges: 4507315
+---------------------------------------------------------------------
+Estimated pipe time: 15.5394
+Estimated mem time: 17.4791
+Estimated execution time: 33.0185
+Actual execution time: 49.2363
+Accuracy: 67.0613%
+%error: 32.9387%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: road-road-usa
+Nodes: 23947347	 Edges: 28854313
+---------------------------------------------------------------------
+Estimated pipe time: 199.564
+Estimated mem time: 112.253
+Estimated execution time: 311.817
+Actual execution time: 292.066
+Accuracy: 93.2376%
+%error: 6.76243%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: ca-coauthors-dblp
+Nodes: 540486	 Edges: 15245730
+---------------------------------------------------------------------
+Estimated pipe time: 4.50649
+Estimated mem time: 70.9388
+Estimated execution time: 75.4453
+Actual execution time: 56.4609
+Accuracy: 66.376%
+%error: 33.624%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: road-roadNet-CA
+Nodes: 1957027	 Edges: 2760389
+---------------------------------------------------------------------
+Estimated pipe time: 16.311
+Estimated mem time: 9.17356
+Estimated execution time: 25.4846
+Actual execution time: 24.6871
+Accuracy: 96.7695%
+%error: 3.23047%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: socfb-Georgetown15
+Nodes: 9414	 Edges: 425639
+---------------------------------------------------------------------
+Estimated pipe time: 0.0808875
+Estimated mem time: 1.98577
+Estimated execution time: 2.06665
+Actual execution time: 1.63102
+Accuracy: 73.2908%
+%error: 26.7092%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: web-it-2004
+Nodes: 509338	 Edges: 7178414
+---------------------------------------------------------------------
+Estimated pipe time: 4.24692
+Estimated mem time: 33.4253
+Estimated execution time: 37.6722
+Actual execution time: 28.4629
+Accuracy: 67.6444%
+%error: 32.3556%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: road-asia-osm
+Nodes: 11950757	 Edges: 12711604
+---------------------------------------------------------------------
+Estimated pipe time: 99.5921
+Estimated mem time: 56.0192
+Estimated execution time: 155.611
+Actual execution time: 129.317
+Accuracy: 79.6669%
+%error: 20.3331%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: socfb-Duke14
+Nodes: 9885	 Edges: 506438
+---------------------------------------------------------------------
+Estimated pipe time: 0.0848125
+Estimated mem time: 2.36313
+Estimated execution time: 2.44795
+Actual execution time: 1.91307
+Accuracy: 72.0411%
+%error: 27.9589%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: web-google
+Nodes: 1299	 Edges: 2774
+---------------------------------------------------------------------
+Estimated pipe time: 0.0132625
+Estimated mem time: 0.3897
+Estimated execution time: 0.402963
+Actual execution time: 0.616074
+Accuracy: 65.4081%
+%error: 34.5919%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: cit-DBLP
+Nodes: 12591	 Edges: 49744
+---------------------------------------------------------------------
+Estimated pipe time: 0.107362
+Estimated mem time: 0.177061
+Estimated execution time: 0.284423
+Actual execution time: 0.355649
+Accuracy: 79.9731%
+%error: 20.0269%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: cit-patent
+Nodes: 3774768	 Edges: 16518948
+---------------------------------------------------------------------
+Estimated pipe time: 31.4588
+Estimated mem time: 70.7769
+Estimated execution time: 102.236
+Actual execution time: 172.16
+Accuracy: 59.3842%
+%error: 40.6158%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: email-enron-large
+Nodes: 33696	 Edges: 180812
+---------------------------------------------------------------------
+Estimated pipe time: 0.283237
+Estimated mem time: 0.78975
+Estimated execution time: 1.07299
+Actual execution time: 1.05
+Accuracy: 97.8102%
+%error: 2.18977%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: eco-everglades
+Nodes: 69	 Edges: 911
+---------------------------------------------------------------------
+Estimated pipe time: 0.0030125
+Estimated mem time: 0.13455
+Estimated execution time: 0.137562
+Actual execution time: 0.108433
+Accuracy: 73.1357%
+%error: 26.8643%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: eco-stmarks
+Nodes: 54	 Edges: 353
+---------------------------------------------------------------------
+Estimated pipe time: 0.0028875
+Estimated mem time: 0.0486
+Estimated execution time: 0.0514875
+Actual execution time: 0.112391
+Accuracy: 45.8112%
+%error: 54.1888%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: eco-foodweb-baydry
+Nodes: 128	 Edges: 2137
+---------------------------------------------------------------------
+Estimated pipe time: 0.00350417
+Estimated mem time: 0.3072
+Estimated execution time: 0.310704
+Actual execution time: 0.133455
+Accuracy: -32.8161%
+%error: 132.816%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: ca-hollywood-2009
+Nodes: 1069126	 Edges: 56306654
+---------------------------------------------------------------------
+Estimated pipe time: 8.91182
+Estimated mem time: 260.599
+Estimated execution time: 269.511
+Actual execution time: 208.349
+Accuracy: 70.6443%
+%error: 29.3557%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: web-Stanford
+Nodes: 281903	 Edges: 2312498
+---------------------------------------------------------------------
+Estimated pipe time: 2.35163
+Estimated mem time: 10.5714
+Estimated execution time: 12.923
+Actual execution time: 22.4558
+Accuracy: 57.5485%
+%error: 42.4515%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: socfb-uci-uni
+Nodes: 58790782	 Edges: 92208196
+---------------------------------------------------------------------
+Estimated pipe time: 489.926
+Estimated mem time: 275.582
+Estimated execution time: 765.507
+Actual execution time: 934.198
+Accuracy: 81.9427%
+%error: 18.0573%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: socfb-A-anon
+Nodes: 3097165	 Edges: 23667394
+---------------------------------------------------------------------
+Estimated pipe time: 25.8121
+Estimated mem time: 101.626
+Estimated execution time: 127.438
+Actual execution time: 249.221
+Accuracy: 51.1345%
+%error: 48.8655%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: rt-retweet-crawl
+Nodes: 1112702	 Edges: 2278852
+---------------------------------------------------------------------
+Estimated pipe time: 9.27495
+Estimated mem time: 10.4316
+Estimated execution time: 19.7065
+Actual execution time: 32.3279
+Accuracy: 60.9583%
+%error: 39.0417%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: SSSP_SWI	 Graph: web-wikipedia2009
+Nodes: 1864433	 Edges: 4507315
+---------------------------------------------------------------------
+Estimated pipe time: 15.5394
+Estimated mem time: 17.4791
+Estimated execution time: 33.0184
+Actual execution time: 54.0738
+Accuracy: 61.0618%
+%error: 38.9382%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: road-road-usa
+Nodes: 23947347	 Edges: 28854313
+---------------------------------------------------------------------
+Estimated pipe time: 199.564
+Estimated mem time: 188.063
+Estimated execution time: 387.627
+Actual execution time: -1
+Accuracy: 38962.7%
+%error: -38862.7%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: ca-coauthors-dblp
+Nodes: 540486	 Edges: 15245730
+---------------------------------------------------------------------
+Estimated pipe time: 4.50652
+Estimated mem time: 73.0061
+Estimated execution time: 77.5126
+Actual execution time: 27.1041
+Accuracy: -85.9806%
+%error: 185.981%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: road-roadNet-CA
+Nodes: 1957027	 Edges: 2760389
+---------------------------------------------------------------------
+Estimated pipe time: 16.311
+Estimated mem time: 15.3689
+Estimated execution time: 31.6799
+Actual execution time: 27.6453
+Accuracy: 85.4058%
+%error: 14.5942%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: socfb-Georgetown15
+Nodes: 9414	 Edges: 425639
+---------------------------------------------------------------------
+Estimated pipe time: 0.0809167
+Estimated mem time: 2.02568
+Estimated execution time: 2.1066
+Actual execution time: 0.842953
+Accuracy: -49.9069%
+%error: 149.907%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: web-it-2004
+Nodes: 509338	 Edges: 7178414
+---------------------------------------------------------------------
+Estimated pipe time: 4.24695
+Estimated mem time: 35.1994
+Estimated execution time: 39.4463
+Actual execution time: -1
+Accuracy: 4144.63%
+%error: -4044.63%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: road-asia-osm
+Nodes: 11950757	 Edges: 12711604
+---------------------------------------------------------------------
+Estimated pipe time: 99.5921
+Estimated mem time: 93.8516
+Estimated execution time: 193.444
+Actual execution time: -1
+Accuracy: 19544.4%
+%error: -19444.4%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: socfb-Duke14
+Nodes: 9885	 Edges: 506438
+---------------------------------------------------------------------
+Estimated pipe time: 0.0848417
+Estimated mem time: 2.40649
+Estimated execution time: 2.49133
+Actual execution time: 1.04899
+Accuracy: -37.4986%
+%error: 137.499%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: web-google
+Nodes: 1299	 Edges: 2774
+---------------------------------------------------------------------
+Estimated pipe time: 0.0132917
+Estimated mem time: 0.522306
+Estimated execution time: 0.535598
+Actual execution time: -1
+Accuracy: 253.56%
+%error: -153.56%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: cit-DBLP
+Nodes: 12591	 Edges: 49744
+---------------------------------------------------------------------
+Estimated pipe time: 0.107392
+Estimated mem time: 0.217535
+Estimated execution time: 0.324927
+Actual execution time: -1
+Accuracy: 232.493%
+%error: -132.493%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: cit-patent
+Nodes: 3774768	 Edges: 16518948
+---------------------------------------------------------------------
+Estimated pipe time: 31.4589
+Estimated mem time: 83.0031
+Estimated execution time: 114.462
+Actual execution time: -1
+Accuracy: 11646.2%
+%error: -11546.2%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: email-enron-large
+Nodes: 33696	 Edges: 180812
+---------------------------------------------------------------------
+Estimated pipe time: 0.283267
+Estimated mem time: 0.899712
+Estimated execution time: 1.18298
+Actual execution time: -1
+Accuracy: 318.298%
+%error: -218.298%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: eco-everglades
+Nodes: 69	 Edges: 911
+---------------------------------------------------------------------
+Estimated pipe time: 0.00304167
+Estimated mem time: 0.142187
+Estimated execution time: 0.145228
+Actual execution time: 0.130177
+Accuracy: 88.4373%
+%error: 11.5627%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: eco-stmarks
+Nodes: 54	 Edges: 353
+---------------------------------------------------------------------
+Estimated pipe time: 0.00291667
+Estimated mem time: 0.0542813
+Estimated execution time: 0.0571979
+Actual execution time: 0.137043
+Accuracy: 41.7372%
+%error: 58.2628%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: eco-foodweb-baydry
+Nodes: 128	 Edges: 2137
+---------------------------------------------------------------------
+Estimated pipe time: 0.00353333
+Estimated mem time: 0.321667
+Estimated execution time: 0.3252
+Actual execution time: 0.134826
+Accuracy: -41.2004%
+%error: 141.2%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: ca-hollywood-2009
+Nodes: 1069126	 Edges: 56306654
+---------------------------------------------------------------------
+Estimated pipe time: 8.91185
+Estimated mem time: 265.315
+Estimated execution time: 274.227
+Actual execution time: -1
+Accuracy: 27622.7%
+%error: -27522.7%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: web-Stanford
+Nodes: 281903	 Edges: 2312498
+---------------------------------------------------------------------
+Estimated pipe time: 2.35166
+Estimated mem time: 11.512
+Estimated execution time: 13.8636
+Actual execution time: -1
+Accuracy: 1586.36%
+%error: -1486.36%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: socfb-uci-uni
+Nodes: 58790782	 Edges: 92208196
+---------------------------------------------------------------------
+Estimated pipe time: 489.926
+Estimated mem time: 461.695
+Estimated execution time: 951.621
+Actual execution time: -1
+Accuracy: 95362.1%
+%error: -95262.1%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: socfb-A-anon
+Nodes: 3097165	 Edges: 23667394
+---------------------------------------------------------------------
+Estimated pipe time: 25.8122
+Estimated mem time: 111.884
+Estimated execution time: 137.696
+Actual execution time: -1
+Accuracy: 13969.6%
+%error: -13869.6%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: rt-retweet-crawl
+Nodes: 1112702	 Edges: 2278852
+---------------------------------------------------------------------
+Estimated pipe time: 9.27498
+Estimated mem time: 13.9812
+Estimated execution time: 23.2562
+Actual execution time: -1
+Accuracy: 2525.62%
+%error: -2425.62%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Kernel: MIS_SWI	 Graph: web-wikipedia2009
+Nodes: 1864433	 Edges: 4507315
+---------------------------------------------------------------------
+Estimated pipe time: 15.5394
+Estimated mem time: 23.4268
+Estimated execution time: 38.9662
+Actual execution time: 51.3726
+Accuracy: 75.8502%
+%error: 24.1498%
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+

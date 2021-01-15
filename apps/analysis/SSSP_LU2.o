@@ -1,7 +1,7 @@
 
 ########################################################################
-#      Date:           Thu Jan  7 21:07:14 PST 2021
-#    Job ID:           776823.v-qsvr-1.aidevcloud
+#      Date:           Wed Jan 13 00:07:30 PST 2021
+#    Job ID:           779576.v-qsvr-1.aidevcloud
 #      User:           u45023
 # Resources:           neednodes=s001-n088:ppn=2,nodes=s001-n088:ppn=2,walltime=22:00:00
 ########################################################################
@@ -19,19 +19,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 32.044172 ms
-Kernel1: vector_init = 1.067877 ms
-Kernel2: spmv_min_dot_plus_kernel = 30.570030 ms
-Kernel3: vector_assign = 1.048088 ms
-Kernel4: vector_diff = 1.041889 ms
-D2H: Data read = 1.007080 ms
-Stop_d signal overhead= 0.257969 ms
+H2D: Data write = 26.722908 ms
+Kernel1: vector_init = 1.069069 ms
+Kernel2: spmv_min_dot_plus_kernel = 30.585051 ms
+Kernel3: vector_assign = 1.048803 ms
+Kernel4: vector_diff = 1.041174 ms
+D2H: Data read = 0.934124 ms
+Stop_d signal overhead= 0.206947 ms
 ################################################################
 ################################################################
-Total time: 67.037106 ms
+Total time: 61.608076 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -46,19 +47,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 1.443863 ms
-Kernel1: vector_init = 0.149012 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.633955 ms
+H2D: Data write = 1.410007 ms
+Kernel1: vector_init = 0.148058 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.647783 ms
 Kernel3: vector_assign = 0.121117 ms
-Kernel4: vector_diff = 0.139952 ms
-D2H: Data read = 0.452995 ms
-Stop_d signal overhead= 0.263929 ms
+Kernel4: vector_diff = 0.130177 ms
+D2H: Data read = 0.355005 ms
+Stop_d signal overhead= 0.245810 ms
 ################################################################
 ################################################################
-Total time: 3.204823 ms
+Total time: 3.057957 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -73,19 +75,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 2.310038 ms
-Kernel1: vector_init = 0.101089 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.956774 ms
-Kernel3: vector_assign = 0.084162 ms
-Kernel4: vector_diff = 0.083208 ms
-D2H: Data read = 0.370979 ms
-Stop_d signal overhead= 0.245810 ms
+H2D: Data write = 2.689838 ms
+Kernel1: vector_init = 0.100136 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.953197 ms
+Kernel3: vector_assign = 0.079870 ms
+Kernel4: vector_diff = 0.087976 ms
+D2H: Data read = 0.410080 ms
+Stop_d signal overhead= 0.234842 ms
 ################################################################
 ################################################################
-Total time: 4.152060 ms
+Total time: 4.555941 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -100,19 +103,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 85.236073 ms
-Kernel1: vector_init = 2.026081 ms
-Kernel2: spmv_min_dot_plus_kernel = 160.547972 ms
-Kernel3: vector_assign = 2.012014 ms
-Kernel4: vector_diff = 2.015114 ms
-D2H: Data read = 1.479864 ms
-Stop_d signal overhead= 0.220060 ms
+H2D: Data write = 85.280895 ms
+Kernel1: vector_init = 2.027988 ms
+Kernel2: spmv_min_dot_plus_kernel = 160.543919 ms
+Kernel3: vector_assign = 2.013922 ms
+Kernel4: vector_diff = 2.017021 ms
+D2H: Data read = 1.421928 ms
+Stop_d signal overhead= 0.208139 ms
 ################################################################
 ################################################################
-Total time: 253.537178 ms
+Total time: 253.513813 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -127,19 +131,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 39.134979 ms
-Kernel1: vector_init = 22.081137 ms
-Kernel2: spmv_min_dot_plus_kernel = 69.457054 ms
-Kernel3: vector_assign = 22.120953 ms
-Kernel4: vector_diff = 22.123098 ms
-D2H: Data read = 11.400223 ms
-Stop_d signal overhead= 0.206709 ms
+H2D: Data write = 37.711143 ms
+Kernel1: vector_init = 22.074938 ms
+Kernel2: spmv_min_dot_plus_kernel = 69.454908 ms
+Kernel3: vector_assign = 22.119045 ms
+Kernel4: vector_diff = 22.119999 ms
+D2H: Data read = 11.507034 ms
+Stop_d signal overhead= 0.203133 ms
 ################################################################
 ################################################################
-Total time: 186.524153 ms
+Total time: 185.190201 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -154,19 +159,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 177.643061 ms
-Kernel1: vector_init = 108.385086 ms
-Kernel2: spmv_min_dot_plus_kernel = 983.904123 ms
-Kernel3: vector_assign = 109.272957 ms
-Kernel4: vector_diff = 109.181881 ms
-D2H: Data read = 44.389963 ms
-Stop_d signal overhead= 0.210047 ms
+H2D: Data write = 176.320791 ms
+Kernel1: vector_init = 108.379126 ms
+Kernel2: spmv_min_dot_plus_kernel = 983.971119 ms
+Kernel3: vector_assign = 109.277010 ms
+Kernel4: vector_diff = 109.200954 ms
+D2H: Data read = 46.330929 ms
+Stop_d signal overhead= 0.216007 ms
 ################################################################
 ################################################################
-Total time: 1532.987118 ms
+Total time: 1533.695936 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -181,19 +187,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.698090 ms
-Kernel1: vector_init = 0.110865 ms
-Kernel2: spmv_min_dot_plus_kernel = 4.769087 ms
-Kernel3: vector_assign = 1.489162 ms
-Kernel4: vector_diff = 1.639843 ms
-D2H: Data read = 0.281096 ms
-Stop_d signal overhead= 3.426790 ms
+H2D: Data write = 0.726938 ms
+Kernel1: vector_init = 0.114918 ms
+Kernel2: spmv_min_dot_plus_kernel = 4.745245 ms
+Kernel3: vector_assign = 1.515865 ms
+Kernel4: vector_diff = 1.659393 ms
+D2H: Data read = 0.164032 ms
+Stop_d signal overhead= 3.353834 ms
 ################################################################
 ################################################################
-Total time: 12.414932 ms
+Total time: 12.280226 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -208,19 +215,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 10.055065 ms
-Kernel1: vector_init = 3.674984 ms
-Kernel2: spmv_min_dot_plus_kernel = 13.303995 ms
-Kernel3: vector_assign = 3.659964 ms
-Kernel4: vector_diff = 3.656149 ms
-D2H: Data read = 2.433062 ms
-Stop_d signal overhead= 0.270844 ms
+H2D: Data write = 11.487961 ms
+Kernel1: vector_init = 3.673077 ms
+Kernel2: spmv_min_dot_plus_kernel = 13.306856 ms
+Kernel3: vector_assign = 3.658056 ms
+Kernel4: vector_diff = 3.657103 ms
+D2H: Data read = 2.808094 ms
+Stop_d signal overhead= 0.269890 ms
 ################################################################
 ################################################################
-Total time: 37.054062 ms
+Total time: 38.861036 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -235,19 +243,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.995159 ms
-Kernel1: vector_init = 0.133038 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.406027 ms
-Kernel3: vector_assign = 0.103951 ms
-Kernel4: vector_diff = 0.081062 ms
-D2H: Data read = 0.113964 ms
-Stop_d signal overhead= 0.252008 ms
+H2D: Data write = 0.754118 ms
+Kernel1: vector_init = 0.097990 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.382900 ms
+Kernel3: vector_assign = 0.077009 ms
+Kernel4: vector_diff = 0.084162 ms
+D2H: Data read = 0.105858 ms
+Stop_d signal overhead= 0.256062 ms
 ################################################################
 ################################################################
-Total time: 2.085209 ms
+Total time: 1.758099 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -262,19 +271,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 2
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 38.199186 ms
-Kernel1: vector_init = 7.016182 ms
-Kernel2: spmv_min_dot_plus_kernel = 471.720695 ms
-Kernel3: vector_assign = 14.090061 ms
-Kernel4: vector_diff = 14.067173 ms
-D2H: Data read = 3.898144 ms
-Stop_d signal overhead= 0.349998 ms
+H2D: Data write = 31.186104 ms
+Kernel1: vector_init = 7.010221 ms
+Kernel2: spmv_min_dot_plus_kernel = 471.735954 ms
+Kernel3: vector_assign = 14.087200 ms
+Kernel4: vector_diff = 14.065981 ms
+D2H: Data read = 3.925085 ms
+Stop_d signal overhead= 0.450850 ms
 ################################################################
 ################################################################
-Total time: 549.341440 ms
+Total time: 542.461395 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -289,19 +299,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 65.205097 ms
-Kernel1: vector_init = 44.181824 ms
-Kernel2: spmv_min_dot_plus_kernel = 186.857939 ms
-Kernel3: vector_assign = 44.279099 ms
-Kernel4: vector_diff = 44.285059 ms
-D2H: Data read = 20.900011 ms
-Stop_d signal overhead= 0.207901 ms
+H2D: Data write = 69.759846 ms
+Kernel1: vector_init = 44.180870 ms
+Kernel2: spmv_min_dot_plus_kernel = 186.856031 ms
+Kernel3: vector_assign = 44.281960 ms
+Kernel4: vector_diff = 44.286013 ms
+D2H: Data read = 20.709038 ms
+Stop_d signal overhead= 0.221014 ms
 ################################################################
 ################################################################
-Total time: 405.916929 ms
+Total time: 410.294771 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -316,19 +327,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 18.028975 ms
-Kernel1: vector_init = 1.008987 ms
-Kernel2: spmv_min_dot_plus_kernel = 15.258789 ms
-Kernel3: vector_assign = 0.990152 ms
+H2D: Data write = 18.017054 ms
+Kernel1: vector_init = 0.995159 ms
+Kernel2: spmv_min_dot_plus_kernel = 15.259027 ms
+Kernel3: vector_assign = 0.983000 ms
 Kernel4: vector_diff = 0.983000 ms
-D2H: Data read = 1.074076 ms
-Stop_d signal overhead= 0.231028 ms
+D2H: Data read = 1.127005 ms
+Stop_d signal overhead= 0.248909 ms
 ################################################################
 ################################################################
-Total time: 37.575006 ms
+Total time: 37.613153 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -343,19 +355,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 5
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 1.494884 ms
-Kernel1: vector_init = 0.138998 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.514984 ms
-Kernel3: vector_assign = 0.355721 ms
-Kernel4: vector_diff = 0.398159 ms
-D2H: Data read = 0.225782 ms
-Stop_d signal overhead= 0.783205 ms
+H2D: Data write = 0.654936 ms
+Kernel1: vector_init = 0.130892 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.580549 ms
+Kernel3: vector_assign = 0.430822 ms
+Kernel4: vector_diff = 0.444412 ms
+D2H: Data read = 0.194073 ms
+Stop_d signal overhead= 1.024485 ms
 ################################################################
 ################################################################
-Total time: 3.911734 ms
+Total time: 3.460169 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -370,19 +383,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 9.366035 ms
-Kernel1: vector_init = 2.127171 ms
-Kernel2: spmv_min_dot_plus_kernel = 36.309958 ms
-Kernel3: vector_assign = 2.104044 ms
-Kernel4: vector_diff = 2.100945 ms
-D2H: Data read = 1.700878 ms
-Stop_d signal overhead= 0.272036 ms
+H2D: Data write = 9.278059 ms
+Kernel1: vector_init = 2.120018 ms
+Kernel2: spmv_min_dot_plus_kernel = 36.311865 ms
+Kernel3: vector_assign = 2.104998 ms
+Kernel4: vector_diff = 2.095938 ms
+D2H: Data read = 1.724958 ms
+Stop_d signal overhead= 0.214100 ms
 ################################################################
 ################################################################
-Total time: 53.981066 ms
+Total time: 53.849936 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -397,19 +411,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 19
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 6.945848 ms
-Kernel1: vector_init = 0.586033 ms
-Kernel2: spmv_min_dot_plus_kernel = 548.476458 ms
-Kernel3: vector_assign = 10.654449 ms
-Kernel4: vector_diff = 10.644197 ms
-D2H: Data read = 0.542164 ms
-Stop_d signal overhead= 3.888130 ms
+H2D: Data write = 7.017136 ms
+Kernel1: vector_init = 0.608921 ms
+Kernel2: spmv_min_dot_plus_kernel = 548.507929 ms
+Kernel3: vector_assign = 10.665178 ms
+Kernel4: vector_diff = 10.628939 ms
+D2H: Data read = 0.510931 ms
+Stop_d signal overhead= 3.942251 ms
 ################################################################
 ################################################################
-Total time: 581.737280 ms
+Total time: 581.881285 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -424,19 +439,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 4
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.700951 ms
-Kernel1: vector_init = 0.102997 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.425339 ms
-Kernel3: vector_assign = 0.297546 ms
-Kernel4: vector_diff = 0.355959 ms
-D2H: Data read = 0.244141 ms
-Stop_d signal overhead= 0.671387 ms
+H2D: Data write = 0.692129 ms
+Kernel1: vector_init = 0.104904 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.423908 ms
+Kernel3: vector_assign = 0.295877 ms
+Kernel4: vector_diff = 0.334024 ms
+D2H: Data read = 0.277996 ms
+Stop_d signal overhead= 0.653267 ms
 ################################################################
 ################################################################
-Total time: 2.798319 ms
+Total time: 2.782106 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -451,19 +467,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 49.745083 ms
-Kernel1: vector_init = 5.764008 ms
-Kernel2: spmv_min_dot_plus_kernel = 268.833876 ms
-Kernel3: vector_assign = 5.759954 ms
-Kernel4: vector_diff = 5.764008 ms
-D2H: Data read = 3.521919 ms
-Stop_d signal overhead= 0.196218 ms
+H2D: Data write = 49.269915 ms
+Kernel1: vector_init = 5.765915 ms
+Kernel2: spmv_min_dot_plus_kernel = 268.849850 ms
+Kernel3: vector_assign = 5.761147 ms
+Kernel4: vector_diff = 5.764961 ms
+D2H: Data read = 3.530979 ms
+Stop_d signal overhead= 0.195026 ms
 ################################################################
 ################################################################
-Total time: 339.585066 ms
+Total time: 339.137793 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -478,19 +495,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 15.865088 ms
-Kernel1: vector_init = 3.499031 ms
-Kernel2: spmv_min_dot_plus_kernel = 63.465834 ms
-Kernel3: vector_assign = 3.487110 ms
-Kernel4: vector_diff = 3.488064 ms
-D2H: Data read = 2.563000 ms
-Stop_d signal overhead= 0.267029 ms
+H2D: Data write = 16.106129 ms
+Kernel1: vector_init = 3.504992 ms
+Kernel2: spmv_min_dot_plus_kernel = 63.469887 ms
+Kernel3: vector_assign = 3.481150 ms
+Kernel4: vector_diff = 3.483057 ms
+D2H: Data read = 2.628088 ms
+Stop_d signal overhead= 0.250816 ms
 ################################################################
 ################################################################
-Total time: 92.635155 ms
+Total time: 92.924118 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -505,19 +523,20 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 5
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.571012 ms
-Kernel1: vector_init = 0.106096 ms
-Kernel2: spmv_min_dot_plus_kernel = 0.538111 ms
-Kernel3: vector_assign = 0.370741 ms
-Kernel4: vector_diff = 0.416756 ms
-D2H: Data read = 0.164032 ms
-Stop_d signal overhead= 0.819445 ms
+H2D: Data write = 0.544786 ms
+Kernel1: vector_init = 0.101089 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.560045 ms
+Kernel3: vector_assign = 0.368118 ms
+Kernel4: vector_diff = 0.415802 ms
+D2H: Data read = 0.185966 ms
+Stop_d signal overhead= 0.810146 ms
 ################################################################
 ################################################################
-Total time: 2.986193 ms
+Total time: 2.985954 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -532,24 +551,25 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 1
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 2.435207 ms
-Kernel1: vector_init = 0.111818 ms
-Kernel2: spmv_min_dot_plus_kernel = 1.096010 ms
-Kernel3: vector_assign = 0.085115 ms
-Kernel4: vector_diff = 0.092983 ms
-D2H: Data read = 0.316858 ms
-Stop_d signal overhead= 0.265837 ms
+H2D: Data write = 2.362013 ms
+Kernel1: vector_init = 0.113964 ms
+Kernel2: spmv_min_dot_plus_kernel = 1.092911 ms
+Kernel3: vector_assign = 0.084162 ms
+Kernel4: vector_diff = 0.092030 ms
+D2H: Data read = 0.360966 ms
+Stop_d signal overhead= 0.254869 ms
 ################################################################
 ################################################################
-Total time: 4.403830 ms
+Total time: 4.360914 ms
 ################################################################
 ################################################################
 
 ########################################################################
-# End of output for job 776823.v-qsvr-1.aidevcloud
-# Date: Thu Jan  7 21:09:19 PST 2021
+# End of output for job 779576.v-qsvr-1.aidevcloud
+# Date: Wed Jan 13 00:09:32 PST 2021
 ########################################################################
 

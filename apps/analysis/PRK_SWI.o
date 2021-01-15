@@ -1,7 +1,7 @@
 
 ########################################################################
-#      Date:           Thu Jan  7 21:13:53 PST 2021
-#    Job ID:           776825.v-qsvr-1.aidevcloud
+#      Date:           Wed Jan 13 00:14:08 PST 2021
+#    Job ID:           779578.v-qsvr-1.aidevcloud
 #      User:           u45023
 # Resources:           neednodes=s001-n088:ppn=2,nodes=s001-n088:ppn=2,walltime=22:00:00
 ########################################################################
@@ -19,18 +19,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 12.073040 ms
-Kernel1: spmv_csr_scalar_kernel = 1194.815397 ms
-Kernel2: pagerank2 = 40.140629 ms
-D2H: Data read = 1.119852 ms
+H2D: Data write = 12.204885 ms
+Kernel1: spmv_csr_scalar_kernel = 1156.991482 ms
+Kernel2: pagerank2 = 38.870573 ms
+D2H: Data read = 1.008034 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 1248.148918 ms
-Total time (Overhead): 1248.148918 ms
+Total time: 1209.074974 ms
+Total time (Overhead): 1209.074974 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -45,18 +46,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.519037 ms
-Kernel1: spmv_csr_scalar_kernel = 20.999908 ms
-Kernel2: pagerank2 = 3.359318 ms
-D2H: Data read = 0.398874 ms
+H2D: Data write = 0.433922 ms
+Kernel1: spmv_csr_scalar_kernel = 20.355940 ms
+Kernel2: pagerank2 = 3.312111 ms
+D2H: Data read = 0.473022 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 25.277138 ms
-Total time (Overhead): 25.277138 ms
+Total time: 24.574995 ms
+Total time (Overhead): 24.574995 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -71,18 +73,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.834942 ms
-Kernel1: spmv_csr_scalar_kernel = 33.784389 ms
-Kernel2: pagerank2 = 1.550674 ms
-D2H: Data read = 0.425816 ms
+H2D: Data write = 0.854015 ms
+Kernel1: spmv_csr_scalar_kernel = 32.720804 ms
+Kernel2: pagerank2 = 1.490116 ms
+D2H: Data read = 0.516891 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 36.595821 ms
-Total time (Overhead): 36.595821 ms
+Total time: 35.581827 ms
+Total time (Overhead): 35.581827 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -97,18 +100,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 38.326979 ms
-Kernel1: spmv_csr_scalar_kernel = 4325.791836 ms
-Kernel2: pagerank2 = 78.673124 ms
-D2H: Data read = 1.553059 ms
+H2D: Data write = 38.302898 ms
+Kernel1: spmv_csr_scalar_kernel = 4189.725876 ms
+Kernel2: pagerank2 = 76.198101 ms
+D2H: Data read = 1.512051 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 4444.344997 ms
-Total time (Overhead): 4444.344997 ms
+Total time: 4305.738926 ms
+Total time (Overhead): 4305.738926 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -123,18 +127,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 10.219097 ms
-Kernel1: spmv_csr_scalar_kernel = 2736.798048 ms
-Kernel2: pagerank2 = 871.937752 ms
-D2H: Data read = 11.704206 ms
+H2D: Data write = 10.394096 ms
+Kernel1: spmv_csr_scalar_kernel = 2650.070667 ms
+Kernel2: pagerank2 = 844.314337 ms
+D2H: Data read = 11.515856 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 3630.659103 ms
-Total time (Overhead): 3630.659103 ms
+Total time: 3516.294956 ms
+Total time (Overhead): 3516.294956 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -149,18 +154,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 60.614109 ms
-Kernel1: spmv_csr_scalar_kernel = 18504.611969 ms
-Kernel2: pagerank2 = 4286.588192 ms
-D2H: Data read = 43.808937 ms
+H2D: Data write = 60.837984 ms
+Kernel1: spmv_csr_scalar_kernel = 17922.451973 ms
+Kernel2: pagerank2 = 4150.756121 ms
+D2H: Data read = 45.323133 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 22895.623207 ms
-Total time (Overhead): 22895.623207 ms
+Total time: 22179.369211 ms
+Total time (Overhead): 22179.369211 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -175,18 +181,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.298023 ms
-Kernel1: spmv_csr_scalar_kernel = 7.421494 ms
-Kernel2: pagerank2 = 2.051592 ms
-D2H: Data read = 0.272989 ms
+H2D: Data write = 0.324011 ms
+Kernel1: spmv_csr_scalar_kernel = 7.310152 ms
+Kernel2: pagerank2 = 2.103806 ms
+D2H: Data read = 0.275135 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 10.044098 ms
-Total time (Overhead): 10.044098 ms
+Total time: 10.013103 ms
+Total time (Overhead): 10.013103 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -201,18 +208,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 2.849102 ms
-Kernel1: spmv_csr_scalar_kernel = 522.389889 ms
-Kernel2: pagerank2 = 143.395185 ms
-D2H: Data read = 2.645969 ms
+H2D: Data write = 2.986908 ms
+Kernel1: spmv_csr_scalar_kernel = 505.880833 ms
+Kernel2: pagerank2 = 138.877392 ms
+D2H: Data read = 2.609968 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 671.280146 ms
-Total time (Overhead): 671.280146 ms
+Total time: 650.355101 ms
+Total time (Overhead): 650.355101 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -227,18 +235,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.242949 ms
-Kernel1: spmv_csr_scalar_kernel = 12.176752 ms
-Kernel2: pagerank2 = 1.280308 ms
-D2H: Data read = 0.215054 ms
+H2D: Data write = 0.265121 ms
+Kernel1: spmv_csr_scalar_kernel = 11.996269 ms
+Kernel2: pagerank2 = 1.360655 ms
+D2H: Data read = 0.216007 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 13.915062 ms
-Total time (Overhead): 13.915062 ms
+Total time: 13.838053 ms
+Total time (Overhead): 13.838053 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -253,18 +262,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 12.979031 ms
-Kernel1: spmv_csr_scalar_kernel = 3149.944782 ms
-Kernel2: pagerank2 = 275.893211 ms
-D2H: Data read = 4.207134 ms
+H2D: Data write = 13.029099 ms
+Kernel1: spmv_csr_scalar_kernel = 3050.156116 ms
+Kernel2: pagerank2 = 267.160892 ms
+D2H: Data read = 3.600836 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 3443.024158 ms
-Total time (Overhead): 3443.024158 ms
+Total time: 3333.946943 ms
+Total time (Overhead): 3333.946943 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -279,18 +289,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 20.941019 ms
-Kernel1: spmv_csr_scalar_kernel = 6180.010080 ms
-Kernel2: pagerank2 = 1746.489763 ms
-D2H: Data read = 21.464109 ms
+H2D: Data write = 20.986080 ms
+Kernel1: spmv_csr_scalar_kernel = 5984.198332 ms
+Kernel2: pagerank2 = 1691.148520 ms
+D2H: Data read = 20.715952 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 7968.904972 ms
-Total time (Overhead): 7968.904972 ms
+Total time: 7717.048883 ms
+Total time (Overhead): 7717.048883 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -305,18 +316,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 6.690979 ms
-Kernel1: spmv_csr_scalar_kernel = 602.280140 ms
-Kernel2: pagerank2 = 37.876844 ms
-D2H: Data read = 1.116991 ms
+H2D: Data write = 6.658077 ms
+Kernel1: spmv_csr_scalar_kernel = 583.236933 ms
+Kernel2: pagerank2 = 36.666870 ms
+D2H: Data read = 1.093149 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 647.964954 ms
-Total time (Overhead): 647.964954 ms
+Total time: 627.655029 ms
+Total time (Overhead): 627.655029 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -331,18 +343,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.304937 ms
-Kernel1: spmv_csr_scalar_kernel = 2.480268 ms
-Kernel2: pagerank2 = 1.627207 ms
-D2H: Data read = 0.298977 ms
+H2D: Data write = 0.266075 ms
+Kernel1: spmv_csr_scalar_kernel = 2.192020 ms
+Kernel2: pagerank2 = 1.467943 ms
+D2H: Data read = 0.268936 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 4.711390 ms
-Total time (Overhead): 4.711390 ms
+Total time: 4.194975 ms
+Total time (Overhead): 4.194975 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -357,18 +370,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 2.604008 ms
-Kernel1: spmv_csr_scalar_kernel = 605.233431 ms
-Kernel2: pagerank2 = 81.831694 ms
-D2H: Data read = 1.647949 ms
+H2D: Data write = 2.673149 ms
+Kernel1: spmv_csr_scalar_kernel = 586.106539 ms
+Kernel2: pagerank2 = 79.263449 ms
+D2H: Data read = 1.677990 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 691.317081 ms
-Total time (Overhead): 691.317081 ms
+Total time: 669.721127 ms
+Total time (Overhead): 669.721127 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -383,18 +397,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 2.557993 ms
-Kernel1: spmv_csr_scalar_kernel = 411.398649 ms
-Kernel2: pagerank2 = 21.251202 ms
-D2H: Data read = 0.610113 ms
+H2D: Data write = 2.133131 ms
+Kernel1: spmv_csr_scalar_kernel = 398.387671 ms
+Kernel2: pagerank2 = 20.617247 ms
+D2H: Data read = 0.574112 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 435.817957 ms
-Total time (Overhead): 435.817957 ms
+Total time: 421.712160 ms
+Total time (Overhead): 421.712160 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -409,18 +424,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.180960 ms
-Kernel1: spmv_csr_scalar_kernel = 2.559900 ms
-Kernel2: pagerank2 = 1.702070 ms
-D2H: Data read = 0.347137 ms
+H2D: Data write = 0.202894 ms
+Kernel1: spmv_csr_scalar_kernel = 2.197742 ms
+Kernel2: pagerank2 = 1.477480 ms
+D2H: Data read = 0.364065 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 4.790068 ms
-Total time (Overhead): 4.790068 ms
+Total time: 4.242182 ms
+Total time (Overhead): 4.242182 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -435,18 +451,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 17.517090 ms
-Kernel1: spmv_csr_scalar_kernel = 4608.378649 ms
-Kernel2: pagerank2 = 226.524353 ms
-D2H: Data read = 3.667116 ms
+H2D: Data write = 18.460989 ms
+Kernel1: spmv_csr_scalar_kernel = 4462.542534 ms
+Kernel2: pagerank2 = 219.351530 ms
+D2H: Data read = 3.394127 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 4856.087208 ms
-Total time (Overhead): 4856.087208 ms
+Total time: 4703.749180 ms
+Total time (Overhead): 4703.749180 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -461,18 +478,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 4.502058 ms
-Kernel1: spmv_csr_scalar_kernel = 1016.891718 ms
-Kernel2: pagerank2 = 136.629343 ms
-D2H: Data read = 2.660990 ms
+H2D: Data write = 4.507065 ms
+Kernel1: spmv_csr_scalar_kernel = 984.725237 ms
+Kernel2: pagerank2 = 132.356644 ms
+D2H: Data read = 2.624035 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 1160.684109 ms
-Total time (Overhead): 1160.684109 ms
+Total time: 1124.212980 ms
+Total time (Overhead): 1124.212980 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -487,18 +505,19 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.293970 ms
-Kernel1: spmv_csr_scalar_kernel = 2.591372 ms
-Kernel2: pagerank2 = 1.724958 ms
-D2H: Data read = 0.262022 ms
+H2D: Data write = 0.154018 ms
+Kernel1: spmv_csr_scalar_kernel = 2.171516 ms
+Kernel2: pagerank2 = 1.485348 ms
+D2H: Data read = 0.245094 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 4.872322 ms
-Total time (Overhead): 4.872322 ms
+Total time: 4.055977 ms
+Total time (Overhead): 4.055977 ms
 ################################################################
 ################################################################
 file_format = 2
@@ -513,23 +532,24 @@ Creating and building FPGA program
 Initialize() --> Done
 create_kernels() --> Done
 create_buffers() --> Done
+The total number of iterations = 20
 exe_fpga() --> Done
 ################################################################
 ################################################################
-H2D: Data write = 0.927925 ms
-Kernel1: spmv_csr_scalar_kernel = 39.773464 ms
-Kernel2: pagerank2 = 1.567364 ms
-D2H: Data read = 0.422001 ms
+H2D: Data write = 1.019001 ms
+Kernel1: spmv_csr_scalar_kernel = 38.454771 ms
+Kernel2: pagerank2 = 1.546144 ms
+D2H: Data read = 0.396967 ms
 Overhead: workload dist. overhead = 0.000000 ms
 ################################################################
 ################################################################
-Total time: 42.690754 ms
-Total time (Overhead): 42.690754 ms
+Total time: 41.416883 ms
+Total time (Overhead): 41.416883 ms
 ################################################################
 ################################################################
 
 ########################################################################
-# End of output for job 776825.v-qsvr-1.aidevcloud
-# Date: Thu Jan  7 21:16:50 PST 2021
+# End of output for job 779578.v-qsvr-1.aidevcloud
+# Date: Wed Jan 13 00:17:01 PST 2021
 ########################################################################
 

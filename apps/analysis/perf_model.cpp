@@ -12,7 +12,7 @@
 /*##############################################################################*/
 
 
-#include "read_results.h"
+#include "perf_model.h"
 #include "stdlib.h"
 #include "stdio.h"
 #include <string.h>
@@ -28,9 +28,6 @@ config *config_page [NUMBER_OF_CONFIGS];
 graph_inst *temp = (graph_inst *)malloc(sizeof(graph_inst));
 
 using namespace std;
-
-
-
 
 int main(int argc, char **argv){
 	init_data_set();
@@ -56,14 +53,7 @@ int main(int argc, char **argv){
 	for(int p = 0; p < NUM_OF_ESTIMATIONS; p++)
 		calc_perf(perf_inst[p]);
 		
-//  	for(int p = 0; p < NUMBER_OF_CONFIGS; p++)
-// 		print_page(p); 
-// 	adjust();
-// 	write_tot_time();
-// 	write_tot_time_overhead();
-	//get_kernel_best_performance();
-	//write_overhead();
-
+	write_stat_report();
 	shutdown();
 }
 
@@ -100,84 +90,59 @@ void init()
 //Calculate the performance estimation for one graph instance on hardware implementation
 void calc_perf(perf_model * model)
 {
+	model->graph_name = graph_db[model->graph_id].graph_name;
+	model->kernel_name = model_inst[model->model_id]->config_name;
+	model->num_nodes = graph_db[model->graph_id].num_nodes;
+	model->num_edges = graph_db[model->graph_id].num_edges;
 	//Calculate edge to node ratio
 	double n_to_e = graph_db[model->graph_id].num_edges / graph_db[model->graph_id].num_nodes;
 	double cycles = 0;
+	double burst_size = 2;
+	double est_total_access_1 = 0;
+	double est_total_access_2 = 0;
 	
 	//Pipe stages calculation
 	cycles += model_inst[model->model_id]->N + (graph_db[model->graph_id].num_nodes * (model_inst[model->model_id]->II+1));
-	double est_pipe_time = cycles / model_inst[model->model_id]->F;
+	model->est_pipe_time = cycles / model_inst[model->model_id]->F;
 
 	//Bandwidth calculation
-	double tot_access_bytes = MEM_BYTES * model_inst[model->model_id]->num_mem_requests * (model_inst[model->model_id]->num_mem_accesses_1 + model_inst[model->model_id]->num_mem_accesses_2);
-	double mem_access_time = model_inst[model->model_id]->mem_cycles / model_inst[model->model_id]->F;
-	model->BW = tot_access_bytes / mem_access_time;
+// 	double tot_access_bytes = MEM_BYTES * model_inst[model->model_id]->num_mem_requests * (model_inst[model->model_id]->num_mem_accesses_1 + model_inst[model->model_id]->num_mem_accesses_2);
+// 	double mem_access_time = model_inst[model->model_id]->mem_cycles / model_inst[model->model_id]->F;
+// 	model->BW = tot_access_bytes / mem_access_time;
 	
 	//Estiamted total accesses for the graph instance (Number of total accesses)
-	double est_total_access = 0;
-	//est_total_access += graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_1 * 2;
-	//est_total_access += graph_db[model->graph_id].avg_deg * model_inst[model->model_id]->num_mem_accesses_2 * graph_db[model->graph_id].num_nodes;
-	//est_total_access += n_to_e * model_inst[model->model_id]->num_mem_accesses_2 * graph_db[model->graph_id].num_nodes;
-	double burst_size = 4;
-	if(n_to_e > burst_size)
-	{
-		double temp = n_to_e / burst_size;
-		est_total_access = temp * graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_2 ;
-	}
-	else
-	{
-		est_total_access = n_to_e * graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_2 ;
-	}
+	double temp = n_to_e / burst_size;
+	est_total_access_1 += graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_1;
+	est_total_access_1 *= model_inst[model->model_id]->mem_cycles_1;
 	
-	//Estiamted total accesses for the graph instance (Size of total accesses "Bytes")
+	est_total_access_2 += temp * graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_2 ;
+	est_total_access_2 *= model_inst[model->model_id]->mem_cycles_2;
 
-// 	double temp = graph_db[model->graph_id].avg_deg * model_inst[model->model_id]->mem_bytes;
-// 	double est_total_bytes = est_total_access / temp ;
-	double est_total_bytes = est_total_access / 16 ;
+
+	if(graph_db[model->graph_id].num_nodes > 2000)
+	{
+		est_total_access_2 = est_total_access_2 / LARGE_MOD_FACTOR;
+	}
+	else 
+	{
+		est_total_access_2 = est_total_access_2 / SMALL_MOD_FACTOR;
+	}
 	
-	//Estimate the memory access time. Divide total memory access bytes by the bandwidth
-	double bw = (double) 2400*1024*1024;
-	bw = bw/8;
-	//double est_mem_time = (est_total_bytes / bw);
-	//double est_mem_time = (est_total_bytes / model->BW) * 1000;
-	//double est_mem_time = est_total_bytes * mem_access_time * 1000;
-	double est_mem_time = model_inst[model->model_id]->mem_cycles * est_total_bytes;
-	est_mem_time = est_mem_time / model_inst[model->model_id]->F;
+
+	model->est_mem_time = est_total_access_1 + est_total_access_2;
+	model->est_mem_time = model->est_mem_time / model_inst[model->model_id]->F;
 	//Total estimated time
-	model->est_time = (est_pipe_time + est_mem_time) * 1000; 
+	model->est_tot_time = (model->est_pipe_time + model->est_mem_time) * 1000; 
 	
 	//Get Measured execution time
-	double real_time = get_real_time(graph_db[model->graph_id].graph_name, model->model_id);
-	
-	cout << "Kernel: " << model_inst[model->model_id]->config_name << "\t Graph: " << graph_db[model->graph_id].graph_name <<  endl;
-	cout << "---------------------------------------------------------------------" << endl;
-	cout << "Estimated pipe time: " << est_pipe_time * 1000 <<  endl;
-	cout << "Estimated mem time: " << est_mem_time * 1000 <<  endl;
-	cout << "Estimated execution time: " << model->est_time <<  endl;
-	cout << "Actual execution time: " << real_time <<  endl;
-	cout << "Accuracy: " << (1 - (abs(model->est_time - real_time) / real_time)) * 100 <<  "%" << endl;
-	cout << "Est to real ratio: " << model->est_time / real_time * 100 << "%" << endl;
-	cout << "---------------------------------------------------------------------"  << endl;
-	cout << "---------------------------------------------------------------------"  << endl << endl;
+	model->real_time = get_real_time(graph_db[model->graph_id].graph_name, model->model_id);
 }
 
 //Retrieve the real measured execution time
 double get_real_time(const std::string& str, int n)
 {	
-	int page_id;
+	int page_id = n;
 	int gr_id = 100;
-	if(n == 0)
-	{
-		page_id = 1;
-	}
-	else if(n == 1)
-	{
-		page_id = 4;
-	}
-	else if(n == 2)
-	{
-		page_id = 7;
-	}
 	
 	for(int x = 0 ; x < NUMBER_OF_GRAPHS; x++)
 	{
@@ -191,20 +156,15 @@ double get_real_time(const std::string& str, int n)
 	if(gr_id == 100)
 		return -1;
 
-	if(n == 0)
+	if(n < 7)
 	{
-		return config_page[page_id]->config_graphs[gr_id]->time_k1;
+		return config_page[page_id]->config_graphs[gr_id]->time_k1 / config_page[page_id]->config_graphs[gr_id]->num_iter;
 	}
-	else if(n == 1)
+	else 
 	{
-		return config_page[page_id]->config_graphs[gr_id]->time_k2;
+		return config_page[page_id]->config_graphs[gr_id]->time_k2 / config_page[page_id]->config_graphs[gr_id]->num_iter;
 	}
-	else if(n == 2)
-	{
-		return config_page[page_id]->config_graphs[gr_id]->time_k2;
-	}
-	else
-		return -1;
+
 }
 
 int read_pages(string page_name)
@@ -280,6 +240,29 @@ int read_pages(string page_name)
 			nodes = 0;
 			edges = 0;
 			temp_int = 0;
+			stemp.clear();
+			ss.str("");
+			ss.clear();
+		}
+		else if(nextLine.compare(0,3,"The") == 0)
+		{
+			int temp_1;
+			ss << nextLine;
+			string stemp;
+			while (!ss.eof()) { 
+				/* extracting word by word from stream */
+				ss >> stemp; 
+		  
+				/* Checking the given word is integer or not */
+				if (stringstream(stemp) >> temp_int)
+				{
+					temp_1 = temp_int;
+				}
+			}
+			//cout << "Iters  = " << temp_1 << endl; 
+			temp->num_iter = temp_1;
+			temp_int = 0;
+			temp_1 = 0;
 			stemp.clear();
 			ss.str("");
 			ss.clear();
@@ -438,28 +421,6 @@ int read_pages(string page_name)
 			ss.str("");
 			ss.clear();
 		}
-		else if(nextLine.compare(0,30,"The total number of iterations") == 0)
-		{
-			ss << nextLine;
-			string stemp;
-			while (!ss.eof()) { 
-				/* extracting word by word from stream */
-				ss >> stemp; 
-		  
-				/* Checking the given word is integer or not */
-				if (stringstream(stemp) >> temp_double)
-				{
-					time_val = temp_double;					
-				}
-			}
-			temp->time_stop = time_val;
-			//cout << "time value k1 " << time_val << endl; 
-			time_val = 0;
-			temp_double = 0;
-			stemp.clear();
-			ss.str("");
-			ss.clear();
-		}
 		else if(nextLine.compare(0,11,"Total time:") == 0)
 		{
 			ss << nextLine;
@@ -499,6 +460,7 @@ void graph_inst_reset (graph_inst *temp)
 	temp->graph_name.erase (temp->graph_name.begin(), temp->graph_name.end());
 	temp->num_vertices = 0;
 	temp->num_edges = 0;
+	temp->num_iter = 0;
 	temp->time_h2d = 0;
 	temp->time_k1 = 0;
 	temp->time_k2 = 0;
@@ -516,6 +478,7 @@ void graph_inst_copy (graph_inst *temp1, graph_inst *temp2)
 	temp2->graph_name = temp1->graph_name;
 	temp2->num_vertices = temp1->num_vertices;
 	temp2->num_edges = temp1->num_edges;
+	temp2->num_iter = temp1->num_iter;
 	temp2->time_h2d = temp1->time_h2d;
 	temp2->time_k1 = temp1->time_k1;
 	temp2->time_k2 = temp1->time_k2;
@@ -533,6 +496,7 @@ void print_page(int page_num)
 	{
 		cout << "(GRAPH ID): " << config_page[page_num]->config_graphs[x]->gid << " (GRAPH NAME): " << config_page[page_num]->config_graphs[x]->graph_name << endl;
 		cout << "Nodes: " << config_page[page_num]->config_graphs[x]->num_vertices << " Edges: " << config_page[page_num]->config_graphs[x]->num_edges << endl;
+		cout << "Iteration count: " << config_page[page_num]->config_graphs[x]->num_iter << endl;
 		cout << "H2D: " << config_page[page_num]->config_graphs[x]->time_h2d << 
 				" K1: " << config_page[page_num]->config_graphs[x]->time_k1 << 
 				" K2: " << config_page[page_num]->config_graphs[x]->time_k2 << 
@@ -548,27 +512,72 @@ page page_convert(const std::string& str)
 {
 	if(str == "PRK_BASE") return PRK_BASE;
 	else if(str == "PRK_SWI") return PRK_SWI;
+	else if(str == "PRK_CU2") return PRK_CU2;
+	else if(str == "PRK_CU4") return PRK_CU4;
     else if(str == "PRK_LU2") return PRK_LU2;
+    else if(str == "PRK_LU4") return PRK_LU4;
+    else if(str == "PRK_LU8") return PRK_LU8;
     else if(str == "SSSP_BASE") return SSSP_BASE;
     else if(str == "SSSP_SWI") return SSSP_SWI;
+    else if(str == "SSSP_CU2") return SSSP_CU2;
+    else if(str == "SSSP_CU4") return SSSP_CU4;
     else if(str == "SSSP_LU2") return SSSP_LU2;
+    else if(str == "SSSP_LU4") return SSSP_LU4;
+    else if(str == "SSSP_LU8") return SSSP_LU8;
 	else if(str == "MIS_BASE") return MIS_BASE;
 	else if(str == "MIS_SWI") return MIS_SWI;
+	else if(str == "MIS_CU2") return MIS_CU2;
+	else if(str == "MIS_CU4") return MIS_CU4;
 	else if(str == "MIS_LU2") return MIS_LU2;
+	else if(str == "MIS_LU4") return MIS_LU4;
+	else if(str == "MIS_LU8") return MIS_LU8;
 }
 
 string get_page_name(int n)
 {
     if(n == 0) return "PRK_BASE";
     else if(n == 1) return "PRK_SWI";
-    else if(n == 2) return "PRK_LU2";
-    else if(n == 3) return "SSSP_BASE";
-    else if(n == 4) return "SSSP_SWI";
-	else if(n == 5) return "SSSP_LU2";
-	else if(n == 6) return "MIS_BASE";
-	else if(n == 7) return "MIS_SWI";
-	else if(n == 8) return "MIS_LU2";
+    else if(n == 2) return "PRK_CU2";
+    else if(n == 3) return "PRK_CU4";
+    else if(n == 4) return "PRK_LU2";
+	else if(n == 5) return "PRK_LU4";
+	else if(n == 6) return "PRK_LU8";
+	else if(n == 7) return "SSSP_BASE";
+	else if(n == 8) return "SSSP_SWI";
+    else if(n == 9) return "SSSP_CU2";
+    else if(n == 10) return "SSSP_CU4";
+    else if(n == 11) return "SSSP_LU2";
+    else if(n == 12) return "SSSP_LU4";
+	else if(n == 13) return "SSSP_LU8";
+	else if(n == 14) return "MIS_BASE";
+	else if(n == 15) return "MIS_SWI";
+	else if(n == 16) return "MIS_CU2";
+    else if(n == 17) return "MIS_CU4";
+    else if(n == 18) return "PRK_LU2";
+    else if(n == 19) return "MIS_LU4";
+    else if(n == 20) return "MIS_LU8";
 }
+
+void write_stat_report()
+{
+	ofstream outfile("performance_model_stat.rpt");
+	for(int i = 0; i < NUM_OF_ESTIMATIONS; i++)
+	{
+		outfile << "Kernel: " << perf_inst[i]->kernel_name << "\t Graph: " << perf_inst[i]->graph_name <<  endl;
+		outfile << "Nodes: " << perf_inst[i]->num_nodes << "\t Edges: " << perf_inst[i]->num_edges << endl;
+		outfile << "---------------------------------------------------------------------" << endl;
+		outfile << "Estimated pipe time: " << perf_inst[i]->est_pipe_time * 1000 <<  endl;
+		outfile << "Estimated mem time: " << perf_inst[i]->est_mem_time * 1000 <<  endl;
+		outfile << "Estimated execution time: " << perf_inst[i]->est_tot_time <<  endl;
+		outfile << "Actual execution time: " << perf_inst[i]->real_time <<  endl;
+		outfile << "Accuracy: " << (1 - (abs(perf_inst[i]->est_tot_time - perf_inst[i]->real_time) / perf_inst[i]->real_time)) * 100 <<  "%" << endl;
+		outfile << "%error: " << (abs(perf_inst[i]->real_time - perf_inst[i]->est_tot_time) / perf_inst[i]->real_time) * 100 <<  "%" << endl;
+		outfile << "---------------------------------------------------------------------"  << endl;
+		outfile << "---------------------------------------------------------------------"  << endl << endl;
+	}	
+	outfile.close();
+}
+
 
 // void write_tot_time()
 // {
@@ -743,7 +752,7 @@ void shutdown()
 		free(config_page[p]);
 	}
 	free(temp);
-	for(int p = 0; p < NUMBER_OF_KERNELS; p++)
+	for(int p = 0; p < NUMBER_OF_CONFIGS; p++)
 		free(model_inst[p]);
 	for(int p = 0; p < NUM_OF_ESTIMATIONS; p++)
 		free(perf_inst[p]); 

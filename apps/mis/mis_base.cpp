@@ -287,9 +287,9 @@ void exe_fpga()
     clSetKernelArg(kernel4, 2, sizeof(cl_int), (void*) &num_nodes);
 
 	int stop = 1;
-    
+    int cnt = 0;
 	while(stop){
-        
+        cnt++;
 		stop = 0;
         //copy the termination variable to the device
         timer_refs = gettime();
@@ -364,7 +364,7 @@ void exe_fpga()
 	    timer_stop += (timer_refe-timer_refs);	
 
     }
-    
+    printf("The total number of iterations = %d\n",cnt);
     timer_refs = gettime();
     err = clEnqueueReadBuffer(cmd_queue, 
                               s_array_d, 

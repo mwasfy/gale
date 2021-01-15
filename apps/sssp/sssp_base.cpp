@@ -273,6 +273,7 @@ void exe_fpga()
     //main computation loop
     for(int i = 1; i < num_nodes; i++){
 	   //reset the termination variable
+	   cnt++;
        stop = 0;
        clSetKernelArg(kernel4, 2, sizeof(void *), (void*) &stop_d);
        timer_refs = gettime();
@@ -344,9 +345,8 @@ void exe_fpga()
 	   
 	   //exit the loop
        if (stop==0) break;
-       cnt++;
     }
-    
+    printf("The total number of iterations = %d\n",cnt);
     timer_refs = gettime();
     //read the cost_array back
     err = clEnqueueReadBuffer(cmd_queue, vector_d1, 1, 0, num_nodes * sizeof(int), cost_array, 0, 0, 0);
