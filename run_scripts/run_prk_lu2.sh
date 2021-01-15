@@ -1,6 +1,6 @@
 export C_INCLUDE_PATH=/opt/intel/inteloneapi/compiler/2021.1.1/linux/lib/oclfpga/host/include/
 export CPLUS_INCLUDE_PATH=/opt/intel/inteloneapi/compiler/2021.1.1/linux/lib/oclfpga/host/include/
-cd apps/prk
+cd ../apps/prk
 make
 ./prk_swi ../../../dataset/ca-coauthors-dblp.mtx ../../../hw/opencl/prk/prk_lu2/bin/prk_lu2.aocx  1 0 2 1
 ./prk_swi ../../../dataset/email-enron-large.mtx ../../../hw/opencl/prk/prk_lu2/bin/prk_lu2.aocx  1 0 2 1
