@@ -1,6 +1,6 @@
 export C_INCLUDE_PATH=/opt/intel/inteloneapi/compiler/2021.1.1/linux/lib/oclfpga/host/include/
 export CPLUS_INCLUDE_PATH=/opt/intel/inteloneapi/compiler/2021.1.1/linux/lib/oclfpga/host/include/
-cd ../apps/mis
+cd apps/mis
 make
 ./mis_swi ../../../dataset/ca-coauthors-dblp.mtx ../../../hw/opencl/mis/mis_lu2/bin/mis_lu2.aocx  1 0 2 1
 ./mis_swi ../../../dataset/socfb-Georgetown15.mtx ../../../hw/opencl/mis/mis_lu2/bin/mis_lu2.aocx  1 0 2 1

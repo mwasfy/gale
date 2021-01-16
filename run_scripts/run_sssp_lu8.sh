@@ -1,6 +1,6 @@
 export C_INCLUDE_PATH=/opt/intel/inteloneapi/compiler/2021.1.1/linux/lib/oclfpga/host/include/
 export CPLUS_INCLUDE_PATH=/opt/intel/inteloneapi/compiler/2021.1.1/linux/lib/oclfpga/host/include/
-cd ../apps/sssp
+cd apps/sssp
 make
 ./sssp_swi ../../../dataset/ca-coauthors-dblp.mtx ../../../hw/opencl/sssp/sssp_lu8/bin/sssp_lu8.aocx  1 0 2 1
 ./sssp_swi ../../../dataset/email-enron-large.mtx ../../../hw/opencl/sssp/sssp_lu8/bin/sssp_lu8.aocx  1 0 2 1
