@@ -1,0 +1,575 @@
+
+########################################################################
+#      Date:           Sat Jan 16 12:32:03 PST 2021
+#    Job ID:           780709.v-qsvr-1.aidevcloud
+#      User:           u45023
+# Resources:           neednodes=s001-n088:ppn=2,nodes=s001-n088:ppn=2,walltime=22:00:00
+########################################################################
+
+make: Nothing to be done for 'ALL'.
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/ca-coauthors-dblp.mtx
+This is a directed graph
+Read from file: num_nodes = 540486, num_edges = 15245729
+COL_COUNT_SUM = 15245729
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 31.766891 ms
+Kernel1: vector_init = 1.940012 ms
+Kernel2: spmv_min_dot_plus_kernel = 56.466103 ms
+Kernel3: vector_assign = 1.903057 ms
+Kernel4: vector_diff = 1.901865 ms
+D2H: Data read = 0.996113 ms
+Stop_d signal overhead= 0.215054 ms
+################################################################
+################################################################
+Total time: 95.189095 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/email-enron-large.mtx
+This is a directed graph
+Read from file: num_nodes = 33696, num_edges = 180811
+COL_COUNT_SUM = 180811
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 1.301050 ms
+Kernel1: vector_init = 0.194073 ms
+Kernel2: spmv_min_dot_plus_kernel = 1.008987 ms
+Kernel3: vector_assign = 0.177860 ms
+Kernel4: vector_diff = 0.185966 ms
+D2H: Data read = 0.397921 ms
+Stop_d signal overhead= 0.257254 ms
+################################################################
+################################################################
+Total time: 3.523111 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/socfb-Georgetown15.mtx
+This is a directed graph
+Read from file: num_nodes = 9414, num_edges = 425638
+COL_COUNT_SUM = 436903
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 2.317190 ms
+Kernel1: vector_init = 0.130892 ms
+Kernel2: spmv_min_dot_plus_kernel = 1.647949 ms
+Kernel3: vector_assign = 0.110149 ms
+Kernel4: vector_diff = 0.108004 ms
+D2H: Data read = 0.365019 ms
+Stop_d signal overhead= 0.262976 ms
+################################################################
+################################################################
+Total time: 4.942179 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/ca-hollywood-2009.mtx
+This is a directed graph
+Read from file: num_nodes = 1069126, num_edges = 56306653
+COL_COUNT_SUM = 56306653
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 84.203005 ms
+Kernel1: vector_init = 3.735781 ms
+Kernel2: spmv_min_dot_plus_kernel = 208.338976 ms
+Kernel3: vector_assign = 3.721952 ms
+Kernel4: vector_diff = 3.724098 ms
+D2H: Data read = 1.433134 ms
+Stop_d signal overhead= 0.206947 ms
+################################################################
+################################################################
+Total time: 305.363894 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/road-asia-osm.mtx
+This is a directed graph
+Read from file: num_nodes = 11950757, num_edges = 12711603
+COL_COUNT_SUM = 12711603
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 39.258957 ms
+Kernel1: vector_init = 41.225910 ms
+Kernel2: spmv_min_dot_plus_kernel = 129.313946 ms
+Kernel3: vector_assign = 41.203022 ms
+Kernel4: vector_diff = 41.202068 ms
+D2H: Data read = 11.553049 ms
+Stop_d signal overhead= 0.203848 ms
+################################################################
+################################################################
+Total time: 303.960800 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/socfb-uci-uni.mtx
+This is a directed graph
+Read from file: num_nodes = 58790782, num_edges = 92208195
+COL_COUNT_SUM = 92208195
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 175.705910 ms
+Kernel1: vector_init = 202.565193 ms
+Kernel2: spmv_min_dot_plus_kernel = 934.172869 ms
+Kernel3: vector_assign = 202.549219 ms
+Kernel4: vector_diff = 202.549934 ms
+D2H: Data read = 44.373989 ms
+Stop_d signal overhead= 0.209093 ms
+################################################################
+################################################################
+Total time: 1762.126207 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/cit-DBLP.edges
+This is a directed graph
+Read from file: num_nodes = 12591, num_edges = 49743
+COL_COUNT_SUM = 49728
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 20
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 0.771046 ms
+Kernel1: vector_init = 0.138044 ms
+Kernel2: spmv_min_dot_plus_kernel = 6.962776 ms
+Kernel3: vector_assign = 1.961946 ms
+Kernel4: vector_diff = 2.097368 ms
+D2H: Data read = 0.164986 ms
+Stop_d signal overhead= 4.236937 ms
+################################################################
+################################################################
+Total time: 16.333103 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/road-roadNet-CA.mtx
+This is a directed graph
+Read from file: num_nodes = 1957027, num_edges = 2760388
+COL_COUNT_SUM = 2760388
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 10.907888 ms
+Kernel1: vector_init = 6.813049 ms
+Kernel2: spmv_min_dot_plus_kernel = 24.684906 ms
+Kernel3: vector_assign = 6.787062 ms
+Kernel4: vector_diff = 6.780863 ms
+D2H: Data read = 2.718925 ms
+Stop_d signal overhead= 0.270128 ms
+################################################################
+################################################################
+Total time: 58.962822 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/web-google.mtx
+This is a directed graph
+Read from file: num_nodes = 1299, num_edges = 2773
+COL_COUNT_SUM = 2773
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 0.788927 ms
+Kernel1: vector_init = 0.099897 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.592947 ms
+Kernel3: vector_assign = 0.076056 ms
+Kernel4: vector_diff = 0.086069 ms
+D2H: Data read = 0.134945 ms
+Stop_d signal overhead= 0.258923 ms
+################################################################
+################################################################
+Total time: 2.037764 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/cit-patent.edges
+This is a directed graph
+Read from file: num_nodes = 3774768, num_edges = 16518947
+COL_COUNT_SUM = 16518947
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 2
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 37.812948 ms
+Kernel1: vector_init = 13.062000 ms
+Kernel2: spmv_min_dot_plus_kernel = 344.319105 ms
+Kernel3: vector_assign = 26.079893 ms
+Kernel4: vector_diff = 26.085854 ms
+D2H: Data read = 3.852844 ms
+Stop_d signal overhead= 0.358343 ms
+################################################################
+################################################################
+Total time: 451.570988 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/road-road-usa.mtx
+This is a directed graph
+Read from file: num_nodes = 23947347, num_edges = 28854312
+COL_COUNT_SUM = 28854312
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 64.780951 ms
+Kernel1: vector_init = 82.545042 ms
+Kernel2: spmv_min_dot_plus_kernel = 292.062998 ms
+Kernel3: vector_assign = 82.526922 ms
+Kernel4: vector_diff = 82.528114 ms
+D2H: Data read = 20.974874 ms
+Stop_d signal overhead= 0.207186 ms
+################################################################
+################################################################
+Total time: 625.626087 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/web-it-2004.mtx
+This is a directed graph
+Read from file: num_nodes = 509338, num_edges = 7178413
+COL_COUNT_SUM = 7178413
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 18.016815 ms
+Kernel1: vector_init = 1.821041 ms
+Kernel2: spmv_min_dot_plus_kernel = 28.461933 ms
+Kernel3: vector_assign = 1.790047 ms
+Kernel4: vector_diff = 1.795053 ms
+D2H: Data read = 1.040936 ms
+Stop_d signal overhead= 0.271082 ms
+################################################################
+################################################################
+Total time: 53.196907 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/eco-everglades.edges
+This is a directed graph
+Read from file: num_nodes = 69, num_edges = 911
+COL_COUNT_SUM = 911
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 5
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 0.629902 ms
+Kernel1: vector_init = 0.103951 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.555277 ms
+Kernel3: vector_assign = 0.366926 ms
+Kernel4: vector_diff = 0.415802 ms
+D2H: Data read = 0.159025 ms
+Stop_d signal overhead= 0.818253 ms
+################################################################
+################################################################
+Total time: 3.049135 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/rt-retweet-crawl.mtx
+This is a directed graph
+Read from file: num_nodes = 1112702, num_edges = 2278852
+COL_COUNT_SUM = 2278852
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 9.559155 ms
+Kernel1: vector_init = 3.901958 ms
+Kernel2: spmv_min_dot_plus_kernel = 32.340050 ms
+Kernel3: vector_assign = 3.881931 ms
+Kernel4: vector_diff = 3.870010 ms
+D2H: Data read = 1.671076 ms
+Stop_d signal overhead= 0.263929 ms
+################################################################
+################################################################
+Total time: 55.488110 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/web-Stanford.mtx
+This is a directed graph
+Read from file: num_nodes = 281903, num_edges = 2312497
+COL_COUNT_SUM = 2312497
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 19
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 7.333040 ms
+Kernel1: vector_init = 1.055956 ms
+Kernel2: spmv_min_dot_plus_kernel = 426.654816 ms
+Kernel3: vector_assign = 19.305229 ms
+Kernel4: vector_diff = 19.193888 ms
+D2H: Data read = 0.524998 ms
+Stop_d signal overhead= 3.877401 ms
+################################################################
+################################################################
+Total time: 477.945328 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/eco-foodweb-baydry.edges
+This is a directed graph
+Read from file: num_nodes = 128, num_edges = 2137
+COL_COUNT_SUM = 2137
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 4
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 0.694990 ms
+Kernel1: vector_init = 0.104904 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.433207 ms
+Kernel3: vector_assign = 0.296831 ms
+Kernel4: vector_diff = 0.331879 ms
+D2H: Data read = 0.272989 ms
+Stop_d signal overhead= 0.704288 ms
+################################################################
+################################################################
+Total time: 2.839088 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/socfb-A-anon.mtx
+This is a directed graph
+Read from file: num_nodes = 3097165, num_edges = 23667394
+COL_COUNT_SUM = 23667394
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 47.829866 ms
+Kernel1: vector_init = 10.730982 ms
+Kernel2: spmv_min_dot_plus_kernel = 249.222994 ms
+Kernel3: vector_assign = 10.703087 ms
+Kernel4: vector_diff = 10.710001 ms
+D2H: Data read = 3.513098 ms
+Stop_d signal overhead= 0.195026 ms
+################################################################
+################################################################
+Total time: 332.905054 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/web-wikipedia2009.mtx
+This is a directed graph
+Read from file: num_nodes = 1864433, num_edges = 4507315
+COL_COUNT_SUM = 4507315
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 14.100790 ms
+Kernel1: vector_init = 6.488085 ms
+Kernel2: spmv_min_dot_plus_kernel = 54.076910 ms
+Kernel3: vector_assign = 6.465912 ms
+Kernel4: vector_diff = 6.464005 ms
+D2H: Data read = 2.462864 ms
+Stop_d signal overhead= 0.261307 ms
+################################################################
+################################################################
+Total time: 90.319872 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/eco-stmarks.edges
+This is a directed graph
+Read from file: num_nodes = 54, num_edges = 353
+COL_COUNT_SUM = 4610
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 5
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 0.642061 ms
+Kernel1: vector_init = 0.104189 ms
+Kernel2: spmv_min_dot_plus_kernel = 0.535011 ms
+Kernel3: vector_assign = 0.369072 ms
+Kernel4: vector_diff = 0.411987 ms
+D2H: Data read = 0.153065 ms
+Stop_d signal overhead= 0.836849 ms
+################################################################
+################################################################
+Total time: 3.052235 ms
+################################################################
+################################################################
+file_format = 2
+TRANSPOSED MM GRAPH PARSING
+Opening file: ../../../dataset/socfb-Duke14.mtx
+This is a directed graph
+Read from file: num_nodes = 9885, num_edges = 506437
+COL_COUNT_SUM = 506437
+parse_mem_alloc() --> Done
+Using device: pac_a10 : Intel PAC Platform (pac_ee00000)
+Creating and building FPGA program
+Initialize() --> Done
+create_kernels() --> Done
+create_buffers() --> Done
+The total number of iterations = 1
+exe_fpga() --> Done
+################################################################
+################################################################
+H2D: Data write = 2.550840 ms
+Kernel1: vector_init = 0.149965 ms
+Kernel2: spmv_min_dot_plus_kernel = 1.944065 ms
+Kernel3: vector_assign = 0.114918 ms
+Kernel4: vector_diff = 0.100136 ms
+D2H: Data read = 0.337839 ms
+Stop_d signal overhead= 0.263929 ms
+################################################################
+################################################################
+Total time: 5.461693 ms
+################################################################
+################################################################
+
+########################################################################
+# End of output for job 780709.v-qsvr-1.aidevcloud
+# Date: Sat Jan 16 12:34:10 PST 2021
+########################################################################
+

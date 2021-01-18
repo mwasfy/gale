@@ -49,7 +49,7 @@ int main(int argc, char **argv){
 		if(!read_pages(get_page_name(p)))
 			cout << "FAIL: Page read number " << p << " failed." << endl;
 	}
-	
+
 	for(int p = 0; p < NUM_OF_ESTIMATIONS; p++)
 		calc_perf(perf_inst[p]);
 		
@@ -100,32 +100,29 @@ void calc_perf(perf_model * model)
 	double burst_size = 2;
 	double est_total_access_1 = 0;
 	double est_total_access_2 = 0;
+	double LU = model_inst[model->model_id]->P_lu;
 	
 	//Pipe stages calculation
-	cycles += model_inst[model->model_id]->N + (graph_db[model->graph_id].num_nodes * (model_inst[model->model_id]->II+1));
+	cycles += model_inst[model->model_id]->N + (graph_db[model->graph_id].num_nodes * (model_inst[model->model_id]->II+1)/  model_inst[model->model_id]->P_lu);
 	model->est_pipe_time = cycles / model_inst[model->model_id]->F;
-
-	//Bandwidth calculation
-// 	double tot_access_bytes = MEM_BYTES * model_inst[model->model_id]->num_mem_requests * (model_inst[model->model_id]->num_mem_accesses_1 + model_inst[model->model_id]->num_mem_accesses_2);
-// 	double mem_access_time = model_inst[model->model_id]->mem_cycles / model_inst[model->model_id]->F;
-// 	model->BW = tot_access_bytes / mem_access_time;
 	
 	//Estiamted total accesses for the graph instance (Number of total accesses)
-	double temp = n_to_e / burst_size;
-	est_total_access_1 += graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_1;
+	double temp = (n_to_e / (burst_size * LU)) / LU;
+	est_total_access_1 += (graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_1) / LU;
 	est_total_access_1 *= model_inst[model->model_id]->mem_cycles_1;
 	
-	est_total_access_2 += temp * graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_2 ;
+	est_total_access_2 += (temp * graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_2) / LU;
+	est_total_access_2 += ((temp * graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_2) / LU) * (LU-2);
 	est_total_access_2 *= model_inst[model->model_id]->mem_cycles_2;
 
 
 	if(graph_db[model->graph_id].num_nodes > 2000)
 	{
-		est_total_access_2 = est_total_access_2 / LARGE_MOD_FACTOR;
+		est_total_access_2 = est_total_access_2 / (LARGE_MOD_FACTOR/(LU/2));
 	}
 	else 
 	{
-		est_total_access_2 = est_total_access_2 / SMALL_MOD_FACTOR;
+		est_total_access_2 = est_total_access_2 / (SMALL_MOD_FACTOR/(LU/2));
 	}
 	
 
@@ -137,6 +134,63 @@ void calc_perf(perf_model * model)
 	//Get Measured execution time
 	model->real_time = get_real_time(graph_db[model->graph_id].graph_name, model->model_id);
 }
+
+//Calculate the performance estimation for one graph instance on hardware implementation
+// void calc_perf(perf_model * model)
+// {
+// 	model->graph_name = graph_db[model->graph_id].graph_name;
+// 	model->kernel_name = model_inst[model->model_id]->config_name;
+// 	model->num_nodes = graph_db[model->graph_id].num_nodes;
+// 	model->num_edges = graph_db[model->graph_id].num_edges;
+// 	//Calculate edge to node ratio
+// 	double n_to_e = graph_db[model->graph_id].num_edges / graph_db[model->graph_id].num_nodes;
+// 	double cycles = 0;
+// 	double burst_size = 4;
+// 	double est_total_access_1 = 0;
+// 	double est_total_access_2 = 0;
+// 	
+// 	//Pipe stages calculation
+// 	cycles += model_inst[model->model_id]->N + ((graph_db[model->graph_id].num_nodes/model_inst[model->model_id]->P_lu) * (model_inst[model->model_id]->II+1));
+// 	//cycles /= model_inst[model->model_id]->P_lu;
+// 	model->est_pipe_time = cycles / model_inst[model->model_id]->F;
+// 	
+// 	//Estiamted total accesses for the graph instance (Number of total accesses)
+// 	double temp = (n_to_e / burst_size);
+// 	double LU_FACTOR =  model_inst[model->model_id]->P_lu - 2;
+// 	est_total_access_1 += graph_db[model->graph_id].num_nodes * model_inst[model->model_id]->num_mem_accesses_1;
+// 	est_total_access_1 *= model_inst[model->model_id]->mem_cycles_1;
+// 	est_total_access_1 /= model_inst[model->model_id]->P_lu;
+// 	
+// // 	est_total_access_2 += temp * (graph_db[model->graph_id].num_nodes) * model_inst[model->model_id]->num_mem_accesses_2 ;
+// // 	est_total_access_2 *= model_inst[model->model_id]->mem_cycles_2;
+// // 	est_total_access_2 /= model_inst[model->model_id]->P_lu;
+// 
+// 	double iters = (graph_db[model->graph_id].num_nodes) / (model_inst[model->model_id]->P_lu);
+// 	est_total_access_2 += (temp * iters * model_inst[model->model_id]->num_mem_accesses_2);
+// 	est_total_access_2 += (temp * iters);
+// 	est_total_access_2 += (temp * iters * model_inst[model->model_id]->num_mem_accesses_2 *LU_FACTOR) ;
+// 	est_total_access_2 += (temp * iters *LU_FACTOR);
+// 	est_total_access_2 *= model_inst[model->model_id]->mem_cycles_2;
+// 
+// 
+// 	if(graph_db[model->graph_id].num_nodes > 2000)
+// 	{
+// 		est_total_access_2 = est_total_access_2 / LARGE_MOD_FACTOR;
+// 	}
+// 	else 
+// 	{
+// 		est_total_access_2 = est_total_access_2 / SMALL_MOD_FACTOR;
+// 	}
+// 	
+// 
+// 	model->est_mem_time = est_total_access_1 + est_total_access_2;
+// 	model->est_mem_time = model->est_mem_time / model_inst[model->model_id]->F;
+// 	//Total estimated time
+// 	model->est_tot_time = (model->est_pipe_time + model->est_mem_time) * 1000; 
+// 	
+// 	//Get Measured execution time
+// 	model->real_time = get_real_time(graph_db[model->graph_id].graph_name, model->model_id);
+// }
 
 //Retrieve the real measured execution time
 double get_real_time(const std::string& str, int n)
@@ -156,7 +210,11 @@ double get_real_time(const std::string& str, int n)
 	if(gr_id == 100)
 		return -1;
 
-	if(n < 7)
+	if (n==0 || n==2 || n==3)
+	{
+		return config_page[page_id]->config_graphs[gr_id]->time_k3 / config_page[page_id]->config_graphs[gr_id]->num_iter;
+	}
+	else if (n==1 || n==4 || n==5 || n==6)
 	{
 		return config_page[page_id]->config_graphs[gr_id]->time_k1 / config_page[page_id]->config_graphs[gr_id]->num_iter;
 	}
@@ -554,7 +612,7 @@ string get_page_name(int n)
 	else if(n == 15) return "MIS_SWI";
 	else if(n == 16) return "MIS_CU2";
     else if(n == 17) return "MIS_CU4";
-    else if(n == 18) return "PRK_LU2";
+    else if(n == 18) return "MIS_LU2";
     else if(n == 19) return "MIS_LU4";
     else if(n == 20) return "MIS_LU8";
 }
@@ -563,6 +621,7 @@ void write_stat_report()
 {
 	ofstream outfile("performance_model_stat.rpt");
 	for(int i = 0; i < NUM_OF_ESTIMATIONS; i++)
+	if(perf_inst[i]->kernel_name == "PRK_SWI" || perf_inst[i]->kernel_name == "PRK_LU2" || perf_inst[i]->kernel_name == "PRK_LU4" || perf_inst[i]->kernel_name == "PRK_LU8" || perf_inst[i]->kernel_name == "SSSP_SWI" || perf_inst[i]->kernel_name == "SSSP_LU2" || perf_inst[i]->kernel_name == "SSSP_LU4" || perf_inst[i]->kernel_name == "SSSP_LU8" || perf_inst[i]->kernel_name == "MIS_SWI" || perf_inst[i]->kernel_name == "MIS_LU2" || perf_inst[i]->kernel_name == "MIS_LU4" || perf_inst[i]->kernel_name == "MIS_LU8")
 	{
 		outfile << "Kernel: " << perf_inst[i]->kernel_name << "\t Graph: " << perf_inst[i]->graph_name <<  endl;
 		outfile << "Nodes: " << perf_inst[i]->num_nodes << "\t Edges: " << perf_inst[i]->num_edges << endl;
