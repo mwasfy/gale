@@ -20,15 +20,15 @@
 
 using namespace std;
 #define NUMBER_OF_GRAPHS 20
-#define NUMBER_OF_CONFIGS 21
-#define NUM_OF_ESTIMATIONS 420
+#define NUMBER_OF_CONFIGS 18
+#define NUM_OF_ESTIMATIONS 360
 #define MEM_BYTES 4
 #define LARGE_MOD_FACTOR 256
 #define SMALL_MOD_FACTOR 8
 //int NUM_OF_ESTIMATIONS = NUMBER_OF_KERNELS * NUMBER_OF_GRAPHS;
 
 
-enum page { PRK_BASE, PRK_SWI, PRK_CU2, PRK_CU4, PRK_LU2, PRK_LU4, PRK_LU8, SSSP_BASE, SSSP_SWI, SSSP_CU2, SSSP_CU4, SSSP_LU2, SSSP_LU4, SSSP_LU8, MIS_BASE, MIS_SWI, MIS_CU2, MIS_CU4, MIS_LU2, MIS_LU4, MIS_LU8};
+enum page {PRK_SWI, PRK_CU2, PRK_CU4, PRK_LU2, PRK_LU4, PRK_LU8, SSSP_SWI, SSSP_CU2, SSSP_CU4, SSSP_LU2, SSSP_LU4, SSSP_LU8, MIS_SWI, MIS_CU2, MIS_CU4, MIS_LU2, MIS_LU4, MIS_LU8};
 
 //perofmance model (graph input linked to a hardware implementation)
 typedef struct perf_model {
@@ -42,6 +42,7 @@ typedef struct perf_model {
 	double est_mem_time;
 	double est_tot_time;
 	double real_time;
+	double accuracy;
 } perf_model;
 
 perf_model * perf_inst[NUM_OF_ESTIMATIONS];
@@ -121,6 +122,10 @@ void adjust();
 void shutdown();
 
 void calc_perf(perf_model * model);
+void calc_perf_parallel(perf_model * model);
+void eval_accuracy();
+void evaluate_extensions();
+void evaluate_optimizations();
 double get_real_time(const std::string& str, int n);
 
 //initialize the hardware model parameters
@@ -129,284 +134,284 @@ void init_model_inst()
 	for(int i = 0; i < NUMBER_OF_CONFIGS; i++)
 		model_inst[i] = (hls_model_struct *)malloc(sizeof(hls_model_struct));
 		
-	model_inst[0]->config_name = "PRK_BASE";
-	model_inst[0]->N = 393;
+// 	model_inst[0]->config_name = "PRK_BASE";
+// 	model_inst[0]->N = 393;
+// 	model_inst[0]->F = 240*(1e6);
+// 	model_inst[0]->II = 1;
+// 	model_inst[0]->mem_cycles_1 = 280;
+// 	model_inst[0]->mem_cycles_2 = 192;
+// 	model_inst[0]->mem_bytes = 4;
+// 	model_inst[0]->num_mem_accesses_1 = 1;
+// 	model_inst[0]->num_mem_accesses_2 = 2; // 2 in parallel then 1
+// 	model_inst[0]->num_mem_requests = 4;
+// 	model_inst[0]->P_cu = 1;
+// 	model_inst[0]->P_lu = 1;
+	
+	model_inst[0]->config_name = "PRK_SWI";
+	model_inst[0]->N = 589;
 	model_inst[0]->F = 240*(1e6);
 	model_inst[0]->II = 1;
-	model_inst[0]->mem_cycles_1 = 280;
-	model_inst[0]->mem_cycles_2 = 192;
+	model_inst[0]->mem_cycles_1 = 288;
+	model_inst[0]->mem_cycles_2 = 288;
 	model_inst[0]->mem_bytes = 4;
-	model_inst[0]->num_mem_accesses_1 = 1;
-	model_inst[0]->num_mem_accesses_2 = 2; // 2 in parallel then 1
+	model_inst[0]->num_mem_accesses_1 = 0;
+	model_inst[0]->num_mem_accesses_2 = 2;
 	model_inst[0]->num_mem_requests = 4;
 	model_inst[0]->P_cu = 1;
 	model_inst[0]->P_lu = 1;
 	
-	model_inst[1]->config_name = "PRK_SWI";
-	model_inst[1]->N = 589;
+	model_inst[1]->config_name = "PRK_CU2";
+	model_inst[1]->N = 393;
 	model_inst[1]->F = 240*(1e6);
 	model_inst[1]->II = 1;
-	model_inst[1]->mem_cycles_1 = 288;
-	model_inst[1]->mem_cycles_2 = 288;
+	model_inst[1]->mem_cycles_1 = 280;
+	model_inst[1]->mem_cycles_2 = 192;
 	model_inst[1]->mem_bytes = 4;
 	model_inst[1]->num_mem_accesses_1 = 0;
-	model_inst[1]->num_mem_accesses_2 = 2;
+	model_inst[1]->num_mem_accesses_2 = 3; //2 +1+1
 	model_inst[1]->num_mem_requests = 4;
-	model_inst[1]->P_cu = 1;
+	model_inst[1]->P_cu = 2;
 	model_inst[1]->P_lu = 1;
 	
-	model_inst[2]->config_name = "PRK_CU2";
+	model_inst[2]->config_name = "PRK_CU4";
 	model_inst[2]->N = 393;
 	model_inst[2]->F = 240*(1e6);
 	model_inst[2]->II = 1;
 	model_inst[2]->mem_cycles_1 = 280;
 	model_inst[2]->mem_cycles_2 = 192;
 	model_inst[2]->mem_bytes = 4;
-	model_inst[2]->num_mem_accesses_1 = 1;
-	model_inst[2]->num_mem_accesses_2 = 3; //2 +1+1
+	model_inst[2]->num_mem_accesses_1 = 0;
+	model_inst[2]->num_mem_accesses_2 = 3; //2 +1+!
 	model_inst[2]->num_mem_requests = 4;
-	model_inst[2]->P_cu = 2;
+	model_inst[2]->P_cu = 4;
 	model_inst[2]->P_lu = 1;
 	
-	model_inst[3]->config_name = "PRK_CU4";
-	model_inst[3]->N = 393;
+	model_inst[3]->config_name = "PRK_LU2";
+	model_inst[3]->N = 653;
 	model_inst[3]->F = 240*(1e6);
 	model_inst[3]->II = 1;
-	model_inst[3]->mem_cycles_1 = 280;
-	model_inst[3]->mem_cycles_2 = 192;
+	model_inst[3]->mem_cycles_1 = 320;
+	model_inst[3]->mem_cycles_2 = 320;
 	model_inst[3]->mem_bytes = 4;
-	model_inst[3]->num_mem_accesses_1 = 1;
-	model_inst[3]->num_mem_accesses_2 = 3; //2 +1+!
+	model_inst[3]->num_mem_accesses_1 = 0;//2
+	model_inst[3]->num_mem_accesses_2 = 6;//2 + 1 + 1 + 2 + 1 + 1
 	model_inst[3]->num_mem_requests = 4;
-	model_inst[3]->P_cu = 4;
-	model_inst[3]->P_lu = 1;
+	model_inst[3]->P_cu = 1;
+	model_inst[3]->P_lu = 2;
 	
-	model_inst[4]->config_name = "PRK_LU2";
-	model_inst[4]->N = 653;
+	model_inst[4]->config_name = "PRK_LU4";
+	model_inst[4]->N = 417;
 	model_inst[4]->F = 240*(1e6);
 	model_inst[4]->II = 1;
-	model_inst[4]->mem_cycles_1 = 320;
-	model_inst[4]->mem_cycles_2 = 320;
+	model_inst[4]->mem_cycles_1 = 202;
+	model_inst[4]->mem_cycles_2 = 202;
 	model_inst[4]->mem_bytes = 4;
-	model_inst[4]->num_mem_accesses_1 = 0;//2
-	model_inst[4]->num_mem_accesses_2 = 6;//2 + 1 + 1 + 2 + 1 + 1
+	model_inst[4]->num_mem_accesses_1 = 0; // 2
+	model_inst[4]->num_mem_accesses_2 = 14; // 2 + 1+ 1 + 1 + 2 + 1 + 1 + 1 + 2 + 1 + 1 + 2 + 1 + 1=14
 	model_inst[4]->num_mem_requests = 4;
 	model_inst[4]->P_cu = 1;
-	model_inst[4]->P_lu = 2;
+	model_inst[4]->P_lu = 4;
 	
-	model_inst[5]->config_name = "PRK_LU4";
-	model_inst[5]->N = 417;
+	model_inst[5]->config_name = "PRK_LU8";
+	model_inst[5]->N = 465;
 	model_inst[5]->F = 240*(1e6);
 	model_inst[5]->II = 1;
-	model_inst[5]->mem_cycles_1 = 202;
-	model_inst[5]->mem_cycles_2 = 202;
+	model_inst[5]->mem_cycles_1 = 226;
+	model_inst[5]->mem_cycles_2 = 226;
 	model_inst[5]->mem_bytes = 4;
-	model_inst[5]->num_mem_accesses_1 = 0; // 2
-	model_inst[5]->num_mem_accesses_2 = 14; // 2 + 1+ 1 + 1 + 2 + 1 + 1 + 1 + 2 + 1 + 1 + 2 + 1 + 1=14
+	model_inst[5]->num_mem_accesses_1 = 0;// 2
+	model_inst[5]->num_mem_accesses_2 = 30; //2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+2+1+1=30
 	model_inst[5]->num_mem_requests = 4;
 	model_inst[5]->P_cu = 1;
-	model_inst[5]->P_lu = 4;
-	
-	model_inst[6]->config_name = "PRK_LU8";
-	model_inst[6]->N = 465;
-	model_inst[6]->F = 240*(1e6);
-	model_inst[6]->II = 1;
-	model_inst[6]->mem_cycles_1 = 226;
-	model_inst[6]->mem_cycles_2 = 226;
-	model_inst[6]->mem_bytes = 4;
-	model_inst[6]->num_mem_accesses_1 = 0;// 2
-	model_inst[6]->num_mem_accesses_2 = 30; //2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+2+1+1=30
-	model_inst[6]->num_mem_requests = 4;
-	model_inst[6]->P_cu = 1;
-	model_inst[6]->P_lu = 8;
+	model_inst[5]->P_lu = 8;
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	model_inst[7]->config_name = "SSSP_BASE";
+// 	model_inst[7]->config_name = "SSSP_BASE";
+// 	model_inst[7]->N = 387;
+// 	model_inst[7]->F = 240*(1e6);
+// 	model_inst[7]->II = 1;
+// 	model_inst[7]->mem_cycles_1 = 280;
+// 	model_inst[7]->mem_cycles_2 = 192;
+// 	model_inst[7]->mem_bytes = 4;
+// 	model_inst[7]->num_mem_accesses_1 = 1; // prefetching 
+// 	model_inst[7]->num_mem_accesses_2 = 2; // 2 + 1
+// 	model_inst[7]->num_mem_requests = 4;
+// 	model_inst[7]->P_cu = 1;
+// 	model_inst[7]->P_lu = 1;
+	
+	model_inst[6]->config_name = "SSSP_SWI";
+	model_inst[6]->N = 585;
+	model_inst[6]->F = 240*(1e6);
+	model_inst[6]->II = 1;
+	model_inst[6]->mem_cycles_1 = 288;
+	model_inst[6]->mem_cycles_2 = 288;
+	model_inst[6]->mem_bytes = 4;
+	model_inst[6]->num_mem_accesses_1 = 0; // prefetching 
+	model_inst[6]->num_mem_accesses_2 = 2;
+	model_inst[6]->num_mem_requests = 4;
+	model_inst[6]->P_cu = 1;
+	model_inst[6]->P_lu = 1;
+		
+	model_inst[7]->config_name = "SSSP_CU2";
 	model_inst[7]->N = 387;
 	model_inst[7]->F = 240*(1e6);
 	model_inst[7]->II = 1;
 	model_inst[7]->mem_cycles_1 = 280;
 	model_inst[7]->mem_cycles_2 = 192;
 	model_inst[7]->mem_bytes = 4;
-	model_inst[7]->num_mem_accesses_1 = 1; // prefetching 
-	model_inst[7]->num_mem_accesses_2 = 2; // 2 + 1
+	model_inst[7]->num_mem_accesses_1 = 0; // 2 
+	model_inst[7]->num_mem_accesses_2 = 2;// 2 +1 
 	model_inst[7]->num_mem_requests = 4;
-	model_inst[7]->P_cu = 1;
+	model_inst[7]->P_cu = 2;
 	model_inst[7]->P_lu = 1;
 	
-	model_inst[8]->config_name = "SSSP_SWI";
-	model_inst[8]->N = 585;
+	model_inst[8]->config_name = "SSSP_CU4";
+	model_inst[8]->N = 387;
 	model_inst[8]->F = 240*(1e6);
 	model_inst[8]->II = 1;
-	model_inst[8]->mem_cycles_1 = 288;
-	model_inst[8]->mem_cycles_2 = 288;
+	model_inst[8]->mem_cycles_1 = 280;
+	model_inst[8]->mem_cycles_2 = 192;
 	model_inst[8]->mem_bytes = 4;
-	model_inst[8]->num_mem_accesses_1 = 0; // prefetching 
-	model_inst[8]->num_mem_accesses_2 = 2;
+	model_inst[8]->num_mem_accesses_1 = 0; // 2 parallel
+	model_inst[8]->num_mem_accesses_2 = 2;// 2 +1
 	model_inst[8]->num_mem_requests = 4;
-	model_inst[8]->P_cu = 1;
+	model_inst[8]->P_cu = 4;
 	model_inst[8]->P_lu = 1;
-		
-	model_inst[9]->config_name = "SSSP_CU2";
-	model_inst[9]->N = 387;
+	
+	model_inst[9]->config_name = "SSSP_LU2";
+	model_inst[9]->N = 651 + 333;
 	model_inst[9]->F = 240*(1e6);
 	model_inst[9]->II = 1;
-	model_inst[9]->mem_cycles_1 = 280;
-	model_inst[9]->mem_cycles_2 = 192;
+	model_inst[9]->mem_cycles_1 = 321;
+	model_inst[9]->mem_cycles_2 = 321;
 	model_inst[9]->mem_bytes = 4;
-	model_inst[9]->num_mem_accesses_1 = 1; // 2 
-	model_inst[9]->num_mem_accesses_2 = 2;// 2 +1 
+	model_inst[9]->num_mem_accesses_1 = 0; // 3 in parallel 
+	model_inst[9]->num_mem_accesses_2 = 5; // 2 + 1 + 1 + 2 + 1 = 5
 	model_inst[9]->num_mem_requests = 4;
-	model_inst[9]->P_cu = 2;
-	model_inst[9]->P_lu = 1;
-	
-	model_inst[10]->config_name = "SSSP_CU4";
-	model_inst[10]->N = 387;
+	model_inst[9]->P_cu = 1;
+	model_inst[9]->P_lu = 2;
+		
+	model_inst[10]->config_name = "SSSP_LU4";
+	model_inst[10]->N = 413 + 194;
 	model_inst[10]->F = 240*(1e6);
 	model_inst[10]->II = 1;
-	model_inst[10]->mem_cycles_1 = 280;
-	model_inst[10]->mem_cycles_2 = 192;
+	model_inst[10]->mem_cycles_1 = 202;
+	model_inst[10]->mem_cycles_2 = 202;
 	model_inst[10]->mem_bytes = 4;
-	model_inst[10]->num_mem_accesses_1 = 1; // 2 parallel
-	model_inst[10]->num_mem_accesses_2 = 2;// 2 +1
+	model_inst[10]->num_mem_accesses_1 = 0; // 3 
+	model_inst[10]->num_mem_accesses_2 = 11; //2+1+2+2+1+2+2+1+1+2+1
 	model_inst[10]->num_mem_requests = 4;
-	model_inst[10]->P_cu = 4;
-	model_inst[10]->P_lu = 1;
+	model_inst[10]->P_cu = 1;
+	model_inst[10]->P_lu = 4;
 	
-	model_inst[11]->config_name = "SSSP_LU2";
-	model_inst[11]->N = 651 + 333;
+	model_inst[11]->config_name = "SSSP_LU8";
+	model_inst[11]->N = 461 + 238;
 	model_inst[11]->F = 240*(1e6);
 	model_inst[11]->II = 1;
-	model_inst[11]->mem_cycles_1 = 321;
-	model_inst[11]->mem_cycles_2 = 321;
+	model_inst[11]->mem_cycles_1 = 226;
+	model_inst[11]->mem_cycles_2 = 226;
 	model_inst[11]->mem_bytes = 4;
-	model_inst[11]->num_mem_accesses_1 = 0; // 3 in parallel 
-	model_inst[11]->num_mem_accesses_2 = 5; // 2 + 1 + 1 + 2 + 1 = 5
-	model_inst[11]->num_mem_requests = 4;
+	model_inst[11]->num_mem_accesses_1 = 0; // 3 
+	model_inst[11]->num_mem_accesses_2 = 23; //2+1+2+2+1+2+2+!+2+2+1+2+2+1+2+2+1+2+2+1+1+2+1
+	model_inst[11]->num_mem_requests = 4;	
 	model_inst[11]->P_cu = 1;
-	model_inst[11]->P_lu = 2;
-		
-	model_inst[12]->config_name = "SSSP_LU4";
-	model_inst[12]->N = 413 + 194;
-	model_inst[12]->F = 240*(1e6);
-	model_inst[12]->II = 1;
-	model_inst[12]->mem_cycles_1 = 202;
-	model_inst[12]->mem_cycles_2 = 202;
-	model_inst[12]->mem_bytes = 4;
-	model_inst[12]->num_mem_accesses_1 = 0; // 3 
-	model_inst[12]->num_mem_accesses_2 = 11; //2+1+2+2+1+2+2+1+1+2+1
-	model_inst[12]->num_mem_requests = 4;
-	model_inst[12]->P_cu = 1;
-	model_inst[12]->P_lu = 4;
-	
-	model_inst[13]->config_name = "SSSP_LU8";
-	model_inst[13]->N = 461 + 238;
-	model_inst[13]->F = 240*(1e6);
-	model_inst[13]->II = 1;
-	model_inst[13]->mem_cycles_1 = 226;
-	model_inst[13]->mem_cycles_2 = 226;
-	model_inst[13]->mem_bytes = 4;
-	model_inst[13]->num_mem_accesses_1 = 0; // 3 
-	model_inst[13]->num_mem_accesses_2 = 23; //2+1+2+2+1+2+2+!+2+2+1+2+2+1+2+2+1+2+2+1+1+2+1
-	model_inst[13]->num_mem_requests = 4;	
-	model_inst[13]->P_cu = 1;
-	model_inst[13]->P_lu = 8;
+	model_inst[11]->P_lu = 8;
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	model_inst[14]->config_name = "MIS_BASE";
+// 	model_inst[14]->config_name = "MIS_BASE";
+// 	model_inst[14]->N = 585;
+// 	model_inst[14]->F = 240*(1e6);
+// 	model_inst[14]->II = 1;
+// 	model_inst[14]->mem_cycles_1 = 193;
+// 	model_inst[14]->mem_cycles_2 = 193;
+// 	model_inst[14]->mem_bytes = 4;
+// 	model_inst[14]->num_mem_accesses_1 = 1;
+// 	model_inst[14]->num_mem_accesses_2 = 3;//1+2+1
+// 	model_inst[14]->num_mem_requests = 4;
+// 	model_inst[14]->P_cu = 1;
+// 	model_inst[14]->P_lu = 1;
+
+	model_inst[12]->config_name = "MIS_SWI";
+	model_inst[12]->N = 592 + 204;
+	model_inst[12]->F = 240*(1e6);
+	model_inst[12]->II = 1;
+	model_inst[12]->mem_cycles_1 = 193;
+	model_inst[12]->mem_cycles_2 = 193;
+	model_inst[12]->mem_bytes = 4;
+	model_inst[12]->num_mem_accesses_1 = 0; //1
+	model_inst[12]->num_mem_accesses_2 = 3; //1+2+1
+	model_inst[12]->num_mem_requests = 4;
+	model_inst[12]->P_cu = 1;
+	model_inst[12]->P_lu = 1;
+	
+	model_inst[13]->config_name = "MIS_CU2";
+	model_inst[13]->N = 585;
+	model_inst[13]->F = 240*(1e6);
+	model_inst[13]->II = 1;
+	model_inst[13]->mem_cycles_1 = 193;
+	model_inst[13]->mem_cycles_2 = 193;
+	model_inst[13]->mem_bytes = 4;
+	model_inst[13]->num_mem_accesses_1 = 0;
+	model_inst[13]->num_mem_accesses_2 = 3;
+	model_inst[13]->num_mem_requests = 4;
+	model_inst[13]->P_cu = 2;
+	model_inst[13]->P_lu = 1;
+	
+	model_inst[14]->config_name = "MIS_CU4";
 	model_inst[14]->N = 585;
 	model_inst[14]->F = 240*(1e6);
 	model_inst[14]->II = 1;
 	model_inst[14]->mem_cycles_1 = 193;
 	model_inst[14]->mem_cycles_2 = 193;
 	model_inst[14]->mem_bytes = 4;
-	model_inst[14]->num_mem_accesses_1 = 1;
-	model_inst[14]->num_mem_accesses_2 = 3;//1+2+1
+	model_inst[14]->num_mem_accesses_1 = 0;
+	model_inst[14]->num_mem_accesses_2 = 3;
 	model_inst[14]->num_mem_requests = 4;
-	model_inst[14]->P_cu = 1;
+	model_inst[14]->P_cu = 4;
 	model_inst[14]->P_lu = 1;
-
-	model_inst[15]->config_name = "MIS_SWI";
-	model_inst[15]->N = 592 + 204;
+	
+	model_inst[15]->config_name = "MIS_LU2";
+	model_inst[15]->N = 592 + 441;
 	model_inst[15]->F = 240*(1e6);
 	model_inst[15]->II = 1;
-	model_inst[15]->mem_cycles_1 = 193;
+	model_inst[15]->mem_cycles_1 = 193 + 50;
 	model_inst[15]->mem_cycles_2 = 193;
 	model_inst[15]->mem_bytes = 4;
-	model_inst[15]->num_mem_accesses_1 = 1; //1
-	model_inst[15]->num_mem_accesses_2 = 3; //1+2+1
+	model_inst[15]->num_mem_accesses_1 = 1;
+	model_inst[15]->num_mem_accesses_2 = 9; //1+1+2+1+1+1+1+2+1
 	model_inst[15]->num_mem_requests = 4;
 	model_inst[15]->P_cu = 1;
-	model_inst[15]->P_lu = 1;
+	model_inst[15]->P_lu = 2;
 	
-	model_inst[16]->config_name = "MIS_CU2";
-	model_inst[16]->N = 585;
+	model_inst[16]->config_name = "MIS_LU4";
+	model_inst[16]->N = 631 + 899;
 	model_inst[16]->F = 240*(1e6);
 	model_inst[16]->II = 1;
-	model_inst[16]->mem_cycles_1 = 193;
-	model_inst[16]->mem_cycles_2 = 193;
+	model_inst[16]->mem_cycles_1 = 206 + 71;
+	model_inst[16]->mem_cycles_2 = 206;
 	model_inst[16]->mem_bytes = 4;
 	model_inst[16]->num_mem_accesses_1 = 1;
-	model_inst[16]->num_mem_accesses_2 = 3;
+	model_inst[16]->num_mem_accesses_2 = 18; //1+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1
 	model_inst[16]->num_mem_requests = 4;
-	model_inst[16]->P_cu = 2;
-	model_inst[16]->P_lu = 1;
+	model_inst[16]->P_cu = 1;
+	model_inst[16]->P_lu = 4;
 	
-	model_inst[17]->config_name = "MIS_CU4";
-	model_inst[17]->N = 585;
+	model_inst[17]->config_name = "MIS_LU8";
+	model_inst[17]->N = 718 + 1999;
 	model_inst[17]->F = 240*(1e6);
 	model_inst[17]->II = 1;
-	model_inst[17]->mem_cycles_1 = 193;
-	model_inst[17]->mem_cycles_2 = 193;
+	model_inst[17]->mem_cycles_1 = 235 + 115;
+	model_inst[17]->mem_cycles_2 = 277;
 	model_inst[17]->mem_bytes = 4;
 	model_inst[17]->num_mem_accesses_1 = 1;
-	model_inst[17]->num_mem_accesses_2 = 3;
+	model_inst[17]->num_mem_accesses_2 = 38; //1+1+1+1+1+1+1+1+1+2+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1
 	model_inst[17]->num_mem_requests = 4;
-	model_inst[17]->P_cu = 4;
-	model_inst[17]->P_lu = 1;
-	
-	model_inst[18]->config_name = "MIS_LU2";
-	model_inst[18]->N = 592 + 441;
-	model_inst[18]->F = 240*(1e6);
-	model_inst[18]->II = 1;
-	model_inst[18]->mem_cycles_1 = 193 + 50;
-	model_inst[18]->mem_cycles_2 = 193;
-	model_inst[18]->mem_bytes = 4;
-	model_inst[18]->num_mem_accesses_1 = 1;
-	model_inst[18]->num_mem_accesses_2 = 9; //1+1+2+1+1+1+1+2+1
-	model_inst[18]->num_mem_requests = 4;
-	model_inst[18]->P_cu = 1;
-	model_inst[18]->P_lu = 2;
-	
-	model_inst[19]->config_name = "MIS_LU4";
-	model_inst[19]->N = 631 + 899;
-	model_inst[19]->F = 240*(1e6);
-	model_inst[19]->II = 1;
-	model_inst[19]->mem_cycles_1 = 206 + 71;
-	model_inst[19]->mem_cycles_2 = 206;
-	model_inst[19]->mem_bytes = 4;
-	model_inst[19]->num_mem_accesses_1 = 1;
-	model_inst[19]->num_mem_accesses_2 = 18; //1+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1
-	model_inst[19]->num_mem_requests = 4;
-	model_inst[19]->P_cu = 1;
-	model_inst[19]->P_lu = 4;
-	
-	model_inst[20]->config_name = "MIS_LU8";
-	model_inst[20]->N = 718 + 1999;
-	model_inst[20]->F = 240*(1e6);
-	model_inst[20]->II = 1;
-	model_inst[20]->mem_cycles_1 = 235 + 115;
-	model_inst[20]->mem_cycles_2 = 277;
-	model_inst[20]->mem_bytes = 4;
-	model_inst[20]->num_mem_accesses_1 = 1;
-	model_inst[20]->num_mem_accesses_2 = 38; //1+1+1+1+1+1+1+1+1+2+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1+1+1+2+1
-	model_inst[20]->num_mem_requests = 4;
-	model_inst[20]->P_cu = 1;
-	model_inst[20]->P_lu = 8;
+	model_inst[17]->P_cu = 1;
+	model_inst[17]->P_lu = 8;
 }
 
 //initialize the dataset properties

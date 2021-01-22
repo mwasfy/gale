@@ -8,9 +8,9 @@ Description: This is a framework to execute, analyze, profile, and model graph a
 Repository structure 
 ----------------------------
 
-*apps: This directory includes the host code (C++) and OpenCL kernels for four graph applications
+`apps`: This directory includes the host code (C++) and OpenCL kernels for four graph applications
 
-*graph_parser: This directory includes C++ code to parse graph data-set input. Different sparse storage formats are used (CSR,COO,...), as well as the ability to transform a graph storage datastructures from format to another (CSR,COO,ELL)
+`graph_parser`: This directory includes C++ code to parse graph data-set input. Different sparse storage formats are used (CSR,COO,...), as well as the ability to transform a graph storage datastructures from format to another (CSR,COO,ELL)
 
 
 Compilation and Run instructions
